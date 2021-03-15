@@ -1,29 +1,32 @@
-import { Link } from "react-router-dom";
 import {useDispatch} from 'react-redux';
 import { useState, useEffect } from 'react';
 
 function FriendsList() {
 
-  const [search, setSearch] = useState('');
+  const [friendSearch, setFriendSearch] = useState('');
 
   const dispatch = useDispatch();
 
   const getSearchResults = (event) => {
     event.prevent();
-    dispatchEvent({
-      type: 'FETCH_FRIEND_SEARCH'
+    dispatch({
+      type: 'FETCH_FRIEND_SEARCH',
+      payload: friendSearch
     })
   }
-  
+
   return (
     <div>
       <h2>List of friends</h2>
       <form onSubmit={getSearchResults}>
         <input 
           type="text"
-          onChange={(event) => setSearch(event.target.value)}
+          name="search"
+          placeholder="Search for friend"
+          value={friendSearch}
+          onChange={(event) => setFriendSearch(event.target.value)}
         />  
-        <Link className="navLink" to="/friendsSearchResults">Search</Link>
+        <button>Search</button>
       </form>
     </div>
   )

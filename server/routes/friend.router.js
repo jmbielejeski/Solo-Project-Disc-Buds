@@ -7,6 +7,7 @@ router.get('/', (req, res) => {
 
   queryText = `
     SELECT * FROM "user"
+    WHERE username LIKE '%$1%';
   `
   pool.query(queryText)
     .then((dbRes) => {
