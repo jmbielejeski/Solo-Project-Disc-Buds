@@ -20,6 +20,9 @@ import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import HomePage from '../HomePage/HomePage';
+import SearchPage from '../SearchPage/SearchPage';
+import SearchResults from '../SearchResults/SearchResults';
+import SelectFriend from '../SelectFriend/SelectFriend';
 
 import './App.css';
 
@@ -65,6 +68,30 @@ function App() {
             path="/homePage"
           >
             <HomePage />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shoes HomePage
+            exact
+            path="/searchPage"
+          >
+            <SearchPage />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shoes HomePage
+            exact
+            path="/searchResults"
+          >
+            <SearchResults />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shoes HomePage
+            exact
+            path="/selectFriend"
+          >
+            <SelectFriend />
           </ProtectedRoute>
 
           <ProtectedRoute
