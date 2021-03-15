@@ -19,6 +19,7 @@ import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
+import HomePage from '../HomePage/HomePage';
 
 import './App.css';
 
@@ -59,6 +60,14 @@ function App() {
           </ProtectedRoute>
 
           <ProtectedRoute
+            // logged in shoes HomePage
+            exact
+            path="/homePage"
+          >
+            <HomePage />
+          </ProtectedRoute>
+
+          <ProtectedRoute
             // logged in shows InfoPage else shows LoginPage
             exact
             path="/info"
@@ -75,7 +84,7 @@ function App() {
             // - else shows LoginPage at /login
             exact
             path="/login"
-            authRedirect="/user"
+            authRedirect="/HomePage"
           >
             <LoginPage />
           </ProtectedRoute>
@@ -86,7 +95,7 @@ function App() {
             // - else shows RegisterPage at "/registration"
             exact
             path="/registration"
-            authRedirect="/user"
+            authRedirect="/HomePage"
           >
             <RegisterPage />
           </ProtectedRoute>
@@ -97,7 +106,7 @@ function App() {
             // - else shows LandingPage at "/home"
             exact
             path="/home"
-            authRedirect="/user"
+            authRedirect="/homePage"
           >
             <LandingPage />
           </ProtectedRoute>
