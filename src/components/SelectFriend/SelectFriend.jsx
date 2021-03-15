@@ -1,6 +1,9 @@
 function SelectFriend() {
   return (
-    <h3>Select a friend</h3>
+    <div>
+      <h3>Select a friend</h3>
+      <button>Start Game</button>
+    </div>
   )
 }
 

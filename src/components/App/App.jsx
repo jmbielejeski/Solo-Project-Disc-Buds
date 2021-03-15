@@ -23,6 +23,9 @@ import HomePage from '../HomePage/HomePage';
 import SearchPage from '../SearchPage/SearchPage';
 import SearchResults from '../SearchResults/SearchResults';
 import SelectFriend from '../SelectFriend/SelectFriend';
+import GameProgress from '../GameProgress/GameProgress';
+import GameResult from '../GameResult/GameResult';
+import FriendsList from '../FriendsList/FriendsList';
 
 import './App.css';
 
@@ -92,6 +95,30 @@ function App() {
             path="/selectFriend"
           >
             <SelectFriend />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shoes HomePage
+            exact
+            path="/gameProgress"
+          >
+            <GameProgress />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shoes HomePage
+            exact
+            path="/gameResult"
+          >
+            <GameResult />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shoes HomePage
+            exact
+            path="/friendsList"
+          >
+            <FriendsList />
           </ProtectedRoute>
 
           <ProtectedRoute
