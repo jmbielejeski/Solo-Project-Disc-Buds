@@ -13,7 +13,7 @@ function Nav() {
   };
 
   if (user.id != null) {
-    loginLinkData.path = '/user';
+    loginLinkData.path = '/homePage';
     loginLinkData.text = 'Home';
   }
 
@@ -29,8 +29,11 @@ function Nav() {
 
         {user.id && (
           <>
-            <Link className="navLink" to="/info">
-              Info Page
+            <Link className="navLink" to="/friendsList">
+              Friends
+            </Link>
+            <Link className="navLink" to="/editProfile">
+              Edit profile
             </Link>
             <LogOutButton className="navLink" />
           </>

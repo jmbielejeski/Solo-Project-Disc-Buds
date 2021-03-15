@@ -14,7 +14,6 @@ import Footer from '../Footer/Footer';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
 import AboutPage from '../AboutPage/AboutPage';
-import UserPage from '../UserPage/UserPage';
 import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
@@ -26,6 +25,8 @@ import SelectFriend from '../SelectFriend/SelectFriend';
 import GameProgress from '../GameProgress/GameProgress';
 import GameResult from '../GameResult/GameResult';
 import FriendsList from '../FriendsList/FriendsList';
+import FriendsSearchResults from '../FriendsSearchResults/FriendsSearchResults';
+import EditProfile from '../EditProfile/EditProfile';
 
 import './App.css';
 
@@ -57,13 +58,6 @@ function App() {
             Visiting localhost:3000/user will show the UserPage if the user is logged in.
             If the user is not logged in, the ProtectedRoute will show the LoginPage (component).
             Even though it seems like they are different pages, the user is always on localhost:3000/user */}
-          <ProtectedRoute
-            // logged in shows UserPage else shows LoginPage
-            exact
-            path="/user"
-          >
-            <UserPage />
-          </ProtectedRoute>
 
           <ProtectedRoute
             // logged in shoes HomePage
@@ -120,6 +114,23 @@ function App() {
           >
             <FriendsList />
           </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shoes HomePage
+            exact
+            path="/friendsSearchResults"
+          >
+            <FriendsSearchResults />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shoes HomePage
+            exact
+            path="/editProfile"
+          >
+            <EditProfile />
+          </ProtectedRoute>
+
 
           <ProtectedRoute
             // logged in shows InfoPage else shows LoginPage

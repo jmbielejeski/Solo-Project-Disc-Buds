@@ -1,8 +1,11 @@
+import { Link } from "react-router-dom";
+
 function SelectFriend() {
+
   return (
     <div>
       <h3>Select a friend</h3>
-      <button>Start Game</button>
+      <Link className="navLink" to='/gameProgress'>Start Game</Link>
     </div>
   )
 }
