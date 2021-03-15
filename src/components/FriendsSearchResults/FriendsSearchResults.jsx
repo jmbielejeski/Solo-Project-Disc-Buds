@@ -16,13 +16,19 @@ function FriendsSearchResults() {
     })
   }, [])
 
+  const addFriend = (userId) => {
+    console.log('userId', userId);
+  }
+
   return (
     <div>
       <h3>Friend Search Results</h3>
       <ul>
         {friendSearch.map(friend => {
           return(
-            <li key={friend.id}>{friend.username}</li>
+            <li key={friend.id}>{friend.username} 
+              <button onClick={() => addFriend(friend.id)}>Add Friend</button>
+            </li>            
           )
         })}
       </ul>
