@@ -14,7 +14,7 @@ router.get('/:search', (req, res) => {
 
   // console.log('queryParams', queryParams)
 
-  queryText = `
+  const queryText = `
     SELECT * FROM "user"
     WHERE username LIKE $1 AND id != $2;
   `
@@ -31,10 +31,10 @@ router.get('/:search', (req, res) => {
 
 router.get('/', (req, res) => {
 
-  console.log('in friend GET')
+  //console.log('in friend GET')
 
-  queryText = `
-    SELECT "user".username FROM "user"
+  const queryText = `
+    SELECT "user".username, "user".id FROM "user"
       JOIN "friends" ON "user".id = "user_two"
       WHERE "user_one" = $1;
   `
@@ -44,6 +44,26 @@ router.get('/', (req, res) => {
     })
     .catch((error) => {
       console.log('error getting friend data from DB', error);
+      res.sendStatus(500);
+    })
+
+})
+
+router.get('/details/:id', (req, res) => {
+  console.log('in friend details router', req.params.id);
+
+  const queryText = `
+  SELECT "user".username, "user".id FROM "user"
+  JOIN "friends" ON "user".id = "user_two"
+  WHERE "user_one" = $1 AND "user_two" = $2;
+  `
+
+  pool.query(queryText, [req.user.id, req.params.id])
+    .then((dbRes) => {
+      res.send(dbRes.rows)
+    })
+    .catch((error) => {
+      console.log('error getting friend details in router', error);
       res.sendStatus(500);
     })
 

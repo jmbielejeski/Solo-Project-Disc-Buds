@@ -2,7 +2,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 
-
 function FriendsList() {
 
   const history = useHistory();
@@ -30,6 +29,18 @@ function FriendsList() {
     history.push('/friendsSearchResults')
   }
 
+  const handleClick = (friendId) => {
+
+    console.log('friendId', friendId)
+
+    dispatch({
+      type: 'FETCH_FRIEND_DETAILS',
+      payload: {
+        friendId
+      }
+    })
+    history.push(`/friendDetail/`)
+  }
 
   return (
     <div>
@@ -37,7 +48,7 @@ function FriendsList() {
       <ul>
         {friendList.map(friend => {
           return(
-            <li key={friend.id}>{friend.username}</li>
+            <li key={friend.id} onClick={() => handleClick(friend.id)}>{friend.username}</li>
           )
         })}
       </ul>

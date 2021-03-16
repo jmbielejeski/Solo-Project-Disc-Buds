@@ -27,6 +27,7 @@ import GameResult from '../GameResult/GameResult';
 import FriendsList from '../FriendsList/FriendsList';
 import FriendsSearchResults from '../FriendsSearchResults/FriendsSearchResults';
 import EditProfile from '../EditProfile/EditProfile';
+import FriendDetail from '../FriendDetail/FriendDetail';  
 
 import './App.css';
 
@@ -121,6 +122,14 @@ function App() {
             path="/friendsSearchResults"
           >
             <FriendsSearchResults />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shoes HomePage
+            exact
+            path="/friendDetail"
+          >
+            <FriendDetail />
           </ProtectedRoute>
 
           <ProtectedRoute
