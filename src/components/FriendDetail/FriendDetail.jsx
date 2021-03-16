@@ -13,7 +13,7 @@ function FriendDetail() {
   }, [])
   const friendDetails = useSelector(store => store.friendDetailReducer);
 
-  // console.log('friendDetails', friendDetails[0])
+  console.log('friendDetails', friendDetails[0])
 
   const goBack = () => {
     history.push('/friendsList');
