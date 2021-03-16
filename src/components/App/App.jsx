@@ -19,8 +19,8 @@ import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import HomePage from '../HomePage/HomePage';
-import SearchPage from '../SearchPage/SearchPage';
-import SearchResults from '../SearchResults/SearchResults';
+import CourseSearch from '../CourseSearch/CourseSearch';
+import CourseSearchResults from '../CourseSearchResults/CourseSearchResults';
 import SelectFriend from '../SelectFriend/SelectFriend';
 import GameProgress from '../GameProgress/GameProgress';
 import GameResult from '../GameResult/GameResult';
@@ -71,17 +71,17 @@ function App() {
           <ProtectedRoute
             // logged in shoes HomePage
             exact
-            path="/searchPage"
+            path="/courseSearch"
           >
-            <SearchPage />
+            <CourseSearch />
           </ProtectedRoute>
 
           <ProtectedRoute
             // logged in shoes HomePage
             exact
-            path="/searchResults"
+            path="/courseSearchResults"
           >
-            <SearchResults />
+            <CourseSearchResults />
           </ProtectedRoute>
 
           <ProtectedRoute

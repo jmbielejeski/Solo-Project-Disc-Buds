@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-function SearchResults() {
+function CourseSearchResults() {
 
 
   return(
@@ -13,4 +13,4 @@ function SearchResults() {
   )
 }
 
-export default SearchResults;
+export default CourseSearchResults;

@@ -5,7 +5,7 @@ function HomePage() {
   return (
     <div>
       <h1>Home Page!</h1>
-      <Link className="navLink" to='/searchPage'>Start Game</Link>
+      <Link className="navLink" to='/courseSearch'>Start Game</Link>
     </div>
   )
 }
