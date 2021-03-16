@@ -1,11 +1,10 @@
-
 import {put, takeEvery} from 'redux-saga/effects';
-
 import axios from 'axios';
 
 function* friend (action) {
   yield takeEvery('FETCH_FRIEND_SEARCH', fetchFriendSearch)
   yield takeEvery('ADD_FRIEND', addFriend)
+  yield takeEvery('FETCH_FRIEND_LIST', fetchFriendList);
 };
 
 function* fetchFriendSearch (action) {
@@ -33,5 +32,18 @@ function* addFriend (action) {
     console.log('error adding friend in saga', error);
   }
 };
+
+function* fetchFriendList (action) {
+  try {
+    const response = yield axios.get('/api/friend')
+    yield put({
+      type: 'SET_FRIEND_LIST',
+      payload: response.data
+    })
+  }
+  catch (error) {
+    console.log('error in fetchFriendList', error);
+  }
+}
 
 export default friend;

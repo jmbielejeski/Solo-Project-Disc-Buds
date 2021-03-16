@@ -29,6 +29,26 @@ router.get('/:search', (req, res) => {
 
 });
 
+router.get('/', (req, res) => {
+
+  console.log('in friend GET')
+
+  queryText = `
+    SELECT "user".username FROM "user"
+      JOIN "friends" ON "user".id = "user_two"
+      WHERE "user_one" = $1;
+  `
+  pool.query(queryText, [req.user.id])
+    .then((dbRes) => {
+      res.send(dbRes.rows)
+    })
+    .catch((error) => {
+      console.log('error getting friend data from DB', error);
+      res.sendStatus(500);
+    })
+
+})
+
 // POST route to add friend
 router.post('/', (req, res) => {
   // POST route code here
