@@ -5,8 +5,8 @@ function EditProfile() {
   return (
     <div>
       <h1>Edit your profile</h1>
-      <Link className="navLink" to='/homepAge'>Save</Link>
-      <Link className="navLink" to='/homepAge'>Cancel</Link>
+      <Link className="navLink" to='/homePage'>Save</Link>
+      <Link className="navLink" to='/homePage'>Cancel</Link>
     </div>
   )
 }
