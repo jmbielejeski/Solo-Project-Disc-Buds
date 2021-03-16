@@ -1,6 +1,6 @@
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 
 function FriendDetail() {
 
@@ -13,7 +13,7 @@ function FriendDetail() {
   }, [])
   const friendDetails = useSelector(store => store.friendDetailReducer);
 
-  console.log('friendDetails', friendDetails[0])
+  // console.log('friendDetails', friendDetails[0])
 
   const goBack = () => {
     history.push('/friendsList');
@@ -27,6 +27,8 @@ function FriendDetail() {
         friendId
       }
     })
+    history.push('/friendsList');
+
   }
 
   return (
