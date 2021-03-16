@@ -16,9 +16,9 @@ router.get('/:search', (req, res) => {
 
   queryText = `
     SELECT * FROM "user"
-    WHERE username LIKE $1;
+    WHERE username LIKE $1 AND id != $2;
   `
-  pool.query(queryText, [queryParams])
+  pool.query(queryText, [queryParams, req.user.id])
     .then((dbRes) => {
       res.send(dbRes.rows)
     })
