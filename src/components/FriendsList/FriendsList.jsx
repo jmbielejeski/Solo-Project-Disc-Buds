@@ -8,7 +8,7 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
-import Button from '@material-ui/core/Button';
+import {Button, TextField} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 
@@ -74,7 +74,7 @@ function FriendsList() {
       direction="column"
     >
       <Grid item xs={12}>
-        List of friends!
+        Current Friends!
       </Grid>
       <Grid item xs={12}>
         <Grid item xs={12}>
@@ -85,11 +85,12 @@ function FriendsList() {
           })}
         </Grid>
         <FormControl component="fieldset">
-        <FormLabel component="legend">Search for a friend to add</FormLabel>          <input 
-            type="text"
-            name="search"
+        <FormLabel component="legend">Search for a friend to add</FormLabel> 
+          <TextField
+            required 
+            variant="outlined"
             placeholder="Search for friend"
-            value={friendSearch}
+            defaultValue={friendSearch}
             onChange={(event) => setFriendSearch(event.target.value)}
           />  
           <Button 
