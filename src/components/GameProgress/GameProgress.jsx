@@ -4,17 +4,19 @@ function GameProgress() {
 
   const [yourScore, setYourScore] = useState(0);
   const [friendScore, setFriendScore] = useState(0);
-  const [currentScore, setCurrentScore] = useState(0);
+  const [currentScore, setCurrentScore] = useState('');
+  const [currentHole, setCurrentHole] = useState(1);
 
   const handleSubmit = (event) => {
     event.preventDefault();
     setYourScore(Number(yourScore) + Number(currentScore));
     setCurrentScore('');
+    setCurrentHole(Number(currentHole) + 1);
   }
 
   return (
     <div>
-      <h3>Hole 1</h3>
+      <h3>Hole {currentHole}</h3>
       <form onSubmit={handleSubmit}>
         <input 
           type="number" 
