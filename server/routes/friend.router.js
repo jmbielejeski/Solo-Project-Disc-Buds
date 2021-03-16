@@ -50,7 +50,7 @@ router.get('/', (req, res) => {
 })
 
 router.get('/details/:id', (req, res) => {
-  console.log('in friend details router', req.params.id);
+  // console.log('in friend details router', req.params.id);
 
   const queryText = `
   SELECT "user".username, "user".id FROM "user"
@@ -73,7 +73,7 @@ router.get('/details/:id', (req, res) => {
 router.post('/', (req, res) => {
   // POST route code here
 
-  console.log('req.body', req.body);
+  // console.log('req.body', req.body);
 
   let queryText = `
     INSERT INTO "friends" ("user_one", "user_two")
@@ -90,5 +90,25 @@ router.post('/', (req, res) => {
     })
 
 });
+
+router.delete('/:id', (req, res) => {
+  console.log('router delete req.params', req.params.id);
+
+  const queryText = `
+  DELETE FROM "friends"
+  WHERE user_one = $1 AND user_two = $2;
+  `
+
+  pool.query(queryText, [req.user.id, req.params.id])
+    .then(dbRes => {
+      console.log('friend deleted');
+      res.sendStatus(200);
+    })
+    .catch(error => {
+      console.log('error deleting friend');
+      res.sendStatus(500)
+    })
+
+})
 
 module.exports = router;

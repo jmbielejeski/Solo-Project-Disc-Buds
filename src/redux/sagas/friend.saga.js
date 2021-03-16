@@ -6,6 +6,7 @@ function* friend (action) {
   yield takeEvery('ADD_FRIEND', addFriend)
   yield takeEvery('FETCH_FRIEND_LIST', fetchFriendList);
   yield takeEvery('FETCH_FRIEND_DETAILS', fetchFriendDetails);
+  yield takeEvery('DELETE_FRIEND', deleteFriend);
 };
 
 function* fetchFriendSearch (action) {
@@ -24,15 +25,6 @@ function* fetchFriendSearch (action) {
   }
 }
 
-function* addFriend (action) {
-  //console.log('action.payload', action.payload)
-  try {
-    yield axios.post(`/api/friend`, action.payload);
-  }
-  catch(error) {
-    console.log('error adding friend in saga', error);
-  }
-};
 
 function* fetchFriendList (action) {
   try {
@@ -61,6 +53,26 @@ function* fetchFriendDetails (action) {
   }
   catch (error) {
     console.log('error in saga fetching friend details', error);
+  }
+}
+
+function* addFriend (action) {
+  //console.log('action.payload', action.payload)
+  try {
+    yield axios.post(`/api/friend`, action.payload);
+  }
+  catch(error) {
+    console.log('error adding friend in saga', error);
+  }
+};
+
+function* deleteFriend (action) {
+  console.log('in deleteFriend saga')
+  try {
+    yield axios.delete(`/api/friend/${action.payload.friendId}`)
+  }
+  catch (error) {
+    console.log('error in friendDelete saga', error)
   }
 }
 

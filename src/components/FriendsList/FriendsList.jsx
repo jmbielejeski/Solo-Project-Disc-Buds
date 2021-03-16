@@ -19,7 +19,7 @@ function FriendsList() {
 
   const getSearchResults = (event) => {
     event.preventDefault();
-    console.log('freindSearch', friendSearch)
+    console.log('friendSearch', friendSearch)
     dispatch({
       type: 'FETCH_FRIEND_SEARCH',
       payload: {
@@ -44,7 +44,7 @@ function FriendsList() {
 
   return (
     <div>
-      <h2>List of friends</h2>
+      <h2>List of friends!</h2>
       <ul>
         {friendList.map(friend => {
           return(

@@ -1,10 +1,16 @@
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { useState, useEffect } from 'react';
 
 function FriendDetail() {
 
   const history = useHistory();
 
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+
+  }, [])
   const friendDetails = useSelector(store => store.friendDetailReducer);
 
   console.log('friendDetails', friendDetails[0])
@@ -13,10 +19,22 @@ function FriendDetail() {
     history.push('/friendsList');
   }
 
+  const handleDelete = (friendId) => {
+    console.log('friendId', friendId);
+    dispatch({
+      type: 'DELETE_FRIEND',
+      payload: {
+        friendId
+      }
+    })
+  }
+
   return (
     <div>
       <h1>Friend Detail</h1>
-      <h4>{friendDetails[0].username}</h4>
+      <div>{friendDetails[0].username}
+        <button onClick={() => handleDelete(friendDetails[0].id)}>Delete</button>
+      </div>
       <button onClick={goBack}>Back</button>
     </div>
   )
