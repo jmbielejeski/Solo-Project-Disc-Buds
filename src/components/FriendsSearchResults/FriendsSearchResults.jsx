@@ -18,6 +18,12 @@ function FriendsSearchResults() {
 
   const addFriend = (userId) => {
     console.log('userId', userId);
+    dispatch({
+      type: 'ADD_FRIEND',
+      payload: {
+        userId
+      }
+    })
   }
 
   return (

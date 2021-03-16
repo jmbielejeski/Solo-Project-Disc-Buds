@@ -1,4 +1,5 @@
 const express = require('express');
+const { query } = require('../modules/pool');
 const pool = require('../modules/pool');
 const router = express.Router();
 
@@ -19,7 +20,6 @@ router.get('/:search', (req, res) => {
   `
   pool.query(queryText, [queryParams])
     .then((dbRes) => {
-      console.log('dbRes', dbRes);
       res.send(dbRes.rows)
     })
     .catch((error) => {
@@ -29,11 +29,26 @@ router.get('/:search', (req, res) => {
 
 });
 
-/**
- * POST route template
- */
+// POST route to add friend
 router.post('/', (req, res) => {
   // POST route code here
+
+  console.log('req.body', req.body);
+
+  let queryText = `
+    INSERT INTO "friends" ("user_one", "user_two")
+      VALUES ($1, $2);
+  `
+  pool.query(queryText, [req.user.id, req.body.userId])
+    .then(dbRes => {
+      console.log('added friend');
+      res.sendStatus(200);
+    })
+    .catch(error => {
+      console.log('error adding friend', error);
+      res.sendStatus(500);
+    })
+
 });
 
 module.exports = router;
