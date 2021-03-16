@@ -1,18 +1,25 @@
 import {useDispatch} from 'react-redux';
 import { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
+
 
 function FriendsList() {
 
-  const [friendSearch, setFriendSearch] = useState('');
-
+  const history = useHistory();
   const dispatch = useDispatch();
 
+  const [friendSearch, setFriendSearch] = useState('');
+
   const getSearchResults = (event) => {
-    event.prevent();
+    event.preventDefault();
+    console.log('freindSearch', friendSearch)
     dispatch({
       type: 'FETCH_FRIEND_SEARCH',
-      payload: friendSearch
+      payload: {
+        friendSearch,
+      }
     })
+    history.push('/friendsSearchResults')
   }
 
   return (
