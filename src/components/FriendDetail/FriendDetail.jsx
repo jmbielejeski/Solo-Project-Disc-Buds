@@ -8,13 +8,6 @@ function FriendDetail() {
 
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch({
-      type: 'FETCH_FRIEND_DETAILS'
-      
-    })
-  }, [])
-
   const friendDetails = useSelector(store => store.friendDetailReducer);
 
   console.log('friendDetails', friendDetails[0])

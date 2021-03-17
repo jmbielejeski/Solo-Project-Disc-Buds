@@ -15,7 +15,7 @@ router.get('/:search', (req, res) => {
 
   const queryText = `
     SELECT * FROM "courses"
-    WHERE course_name LIKE $1;
+    WHERE course_name ILIKE $1;
   `
   pool.query(queryText, [queryParams])
     .then((dbRes) => {
