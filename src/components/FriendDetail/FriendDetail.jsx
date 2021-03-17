@@ -25,7 +25,6 @@ function FriendDetail() {
       }
     })
     history.push('/friendsList');
-
   }
 
   return (

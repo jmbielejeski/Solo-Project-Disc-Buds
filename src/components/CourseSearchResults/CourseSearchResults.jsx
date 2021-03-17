@@ -35,14 +35,14 @@ function CourseSearchResults() {
     })
   }
 
-  const startGame = (courseName) => {
-    console.log('courseId', courseName)
+  const startGame = (courseName, courseId) => {
+    console.log('courseId', courseName, courseId)
 
     dispatch({
       type: 'SET_SELECT_COURSE',
       payload: {
-        courseId,
         courseName,
+        courseId
       }
     })
     history.push('/selectFriend');
@@ -55,7 +55,7 @@ function CourseSearchResults() {
         {courseSearchResults.map(course => {
           return (
             <li key={course.id} >{course.course_name} number of holes: {course.hole_count}
-              <button onClick={() => startGame(course.course_name)}>Play Course</button>
+              <button onClick={() => startGame(course.course_name, course.id)}>Play Course</button>
             </li>
           )
         })}

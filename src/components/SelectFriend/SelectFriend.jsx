@@ -56,7 +56,7 @@ function SelectFriend() {
       direction="column"
     >
     <Grid item xs={12}>
-      {selectCourse.course_name} 
+      {selectCourse.courseName} 
     </Grid>
       <Grid item xs={12}>
         <FormControl component="fieldset">
