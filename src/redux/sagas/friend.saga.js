@@ -27,8 +27,9 @@ function* fetchFriendSearch (action) {
 
 
 function* fetchFriendList (action) {
+  console.log('fetchFriendList saga', action.payload)
   try {
-    const response = yield axios.get('/api/friend')
+    const response = yield axios.get(`/api/friend/course/${action.payload}`)
     yield put({
       type: 'SET_FRIEND_LIST',
       payload: response.data

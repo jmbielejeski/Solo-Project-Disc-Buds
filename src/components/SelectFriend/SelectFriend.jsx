@@ -36,7 +36,10 @@ function SelectFriend() {
 
   useEffect(() => {
     dispatch({
-      type: 'FETCH_FRIEND_LIST'
+      type: 'FETCH_FRIEND_LIST',
+      payload: {
+        selectCourse
+      }
     })
   }, [])
 

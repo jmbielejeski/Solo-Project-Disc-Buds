@@ -29,23 +29,23 @@ router.get('/:search', (req, res) => {
 
 });
 
-router.get('/', (req, res) => {
+router.get('/course/:id', (req, res) => {
 
-  //console.log('in friend GET')
+  console.log('in friend GET')
 
-  const queryText = `
-    SELECT "user".username, "user".id FROM "user"
-      JOIN "friends" ON "user".id = "user_two"
-      WHERE "user_one" = $1;
-  `
-  pool.query(queryText, [req.user.id])
-    .then((dbRes) => {
-      res.send(dbRes.rows)
-    })
-    .catch((error) => {
-      console.log('error getting friend data from DB', error);
-      res.sendStatus(500);
-    })
+  // const queryText = `
+  //   SELECT "user".username, "user".id FROM "user"
+  //     JOIN "friends" ON "user".id = "user_two"
+  //     WHERE "user_one" = $1;
+  // `
+  // pool.query(queryText, [req.user.id])
+  //   .then((dbRes) => {
+  //     res.send(dbRes.rows)
+  //   })
+  //   .catch((error) => {
+  //     console.log('error getting friend data from DB', error);
+  //     res.sendStatus(500);
+  //   })
 
 })
 
