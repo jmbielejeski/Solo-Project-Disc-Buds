@@ -20,6 +20,7 @@ router.get('/:search', (req, res) => {
   pool.query(queryText, [queryParams])
     .then((dbRes) => {
       res.send(dbRes.rows)
+      console.log('course router dbRes', dbRes.rows)
     })
     .catch((error) => {
       console.log('error in search', error);

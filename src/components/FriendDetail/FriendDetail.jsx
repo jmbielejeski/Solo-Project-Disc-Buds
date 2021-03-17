@@ -11,6 +11,7 @@ function FriendDetail() {
   useEffect(() => {
     dispatch({
       type: 'FETCH_FRIEND_DETAILS'
+      
     })
   }, [])
 
