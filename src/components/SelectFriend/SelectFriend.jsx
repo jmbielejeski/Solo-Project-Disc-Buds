@@ -29,13 +29,19 @@ function SelectFriend() {
 
   const dispatch = useDispatch();
 
-  const friendList = useSelector(store => store.friendListReducer)
+  const friendList = useSelector(store => store.friendListReducer);
+
+  const selectCourse = useSelector(store => store.selectCourseReducer);
+
 
   useEffect(() => {
     dispatch({
       type: 'FETCH_FRIEND_LIST'
     })
   }, [])
+
+  console.log('selectCourse is ', selectCourse);
+
 
   const handleClick = () => {
     console.log('clicked button');
@@ -50,7 +56,7 @@ function SelectFriend() {
       direction="column"
     >
     <Grid item xs={12}>
-      The Valley Disc Gold Course 
+      {selectCourse.course_name} 
     </Grid>
       <Grid item xs={12}>
         <FormControl component="fieldset">

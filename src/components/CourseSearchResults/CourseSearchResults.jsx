@@ -1,9 +1,11 @@
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import { useState, useEffect } from 'react';
-
+import { useHistory } from 'react-router-dom';
 
 function CourseSearchResults() {
+
+  const history = useHistory();
 
   const dispatch = useDispatch();
 
@@ -33,13 +35,28 @@ function CourseSearchResults() {
     })
   }
 
+  const startGame = (courseName) => {
+    console.log('courseId', courseName)
+
+    dispatch({
+      type: 'SET_SELECT_COURSE',
+      payload: {
+        courseId,
+        courseName,
+      }
+    })
+    history.push('/selectFriend');
+  }
+
   return(
     <div>
       <h5>Select a course</h5>
       <ul>
         {courseSearchResults.map(course => {
           return (
-            <li key={course.id}>{course.course_name}</li>
+            <li key={course.id} >{course.course_name} number of holes: {course.hole_count}
+              <button onClick={() => startGame(course.course_name)}>Play Course</button>
+            </li>
           )
         })}
       </ul>
@@ -148,7 +165,6 @@ function CourseSearchResults() {
         <button>Add course</button>
       </form>
       <Link className="navLink" to='/courseSearch'>Back</Link>
-      <Link className="navLink" to='/selectFriend'>Continue</Link>
     </div>
 
   )

@@ -9,7 +9,7 @@ function* course (action) {
 
 
 function* fetchCourseSearch (action) {
-console.log('saga course search', action.payload.courseSearch)
+//console.log('saga course search', action.payload.courseSearch)
 
 
   try {
@@ -26,7 +26,7 @@ console.log('saga course search', action.payload.courseSearch)
 }
 
 function* addCourse (action) {
-  console.log('saga addCourse', action.payload);
+  //console.log('saga addCourse', action.payload);
   try {
     yield axios.post('api/course', action.payload);
   }
@@ -34,5 +34,20 @@ function* addCourse (action) {
     console.log('error in saga adding course', error);
   }
 }
+
+// function* selectCourse (action) {
+//   console.log('in saga select course', action.payload);
+
+
+//   try {
+//     yield put({
+//       type: 'SET_SELECT_COURSE',
+//       payload: action.payload.courseId
+//     })
+//   }
+//   catch(error) {
+//     console.log('error in selectCourse saga', error)
+//   }
+// }
 
 export default course;

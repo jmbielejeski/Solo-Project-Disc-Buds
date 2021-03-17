@@ -5,7 +5,7 @@ const router = express.Router();
 // GET route to search for course
 router.get('/:search', (req, res) => {
 
-  console.log('in course search router', req.params)
+  // console.log('in course search router')
 
   let queryParams = req.params.search;
 
@@ -20,7 +20,7 @@ router.get('/:search', (req, res) => {
   pool.query(queryText, [queryParams])
     .then((dbRes) => {
       res.send(dbRes.rows)
-      console.log('course router dbRes', dbRes.rows)
+      //console.log('course router dbRes', dbRes.rows)
     })
     .catch((error) => {
       console.log('error in search', error);
@@ -29,9 +29,35 @@ router.get('/:search', (req, res) => {
 
 });
 
+// GET route for selecting course
+// router.get('/:id', (req, res) => {
+//   console.log('in select course GET')
+  
+  // let queryParams = req.params.id;
+
+  // console.log('params are', req.params)
+
+  // let queryText = `
+  //   SELECT * FROM "courses"
+  //   WHERE id = $1;
+  // `
+
+  // pool.query(queryText, [queryParams])
+  //   .then((dbRes) => {
+  //     console.log('courseSelect GET', dbRes.rows);
+
+  //     res.send(dbRes.rows)
+  //   })
+  //   .catch((error) => {
+  //     console.log('error in select course GET route', error);
+  //     res.sendStatus(500);
+  //   })
+
+// })
+
 // add a course POST
 router.post('/', (req, res) => {
-  console.log('in addCourse POST router')  
+  //console.log('in addCourse POST router')  
 
   const queryText = `
     INSERT INTO "courses"
