@@ -4,7 +4,7 @@ import CourseSearch from '../../components/CourseSearch/CourseSearch';
 
 function* course (action) {
   yield takeEvery('FETCH_COURSE_SEARCH', fetchCourseSearch)
-
+  yield takeEvery('ADD_COURSE', addCourse)
 };
 
 
@@ -22,6 +22,16 @@ console.log('saga course search', action.payload.courseSearch)
   }
   catch (error) {
     console.log('error in fetchCourseSearch', error);
+  }
+}
+
+function* addCourse (action) {
+  console.log('saga addCourse', action.payload);
+  try {
+    yield axios.post('api/course', action.payload);
+  }
+  catch(error) {
+    console.log('error in saga adding course', error);
   }
 }
 

@@ -1,9 +1,11 @@
 import { Link } from "react-router-dom";
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useState, useEffect } from 'react';
 
 
 function CourseSearchResults() {
+
+  const dispatch = useDispatch();
 
   const [courseName, setCourseName] = useState('');
   const [holeCount, setHoleCount] = useState('');
@@ -16,7 +18,19 @@ function CourseSearchResults() {
 
   const addCourse = (event) => {
     event.preventDefault();
-    console.log('adding course', courseName, holeCount, streetAddress, city, state, zipCode)
+    console.log('adding course', courseName, holeCount, streetAddress, city, state, zipCode);
+
+    dispatch({
+      type: 'ADD_COURSE',
+      payload: {
+        course_name: courseName,
+        hole_count: holeCount,
+        address: streetAddress,
+        city: city,
+        state: state,
+        zip_code: zipCode
+      }
+    })
   }
 
   return(
@@ -120,6 +134,7 @@ function CourseSearchResults() {
         />
         <button>Add course</button>
       </form>
+      <Link className="navLink" to='/courseSearch'>Back</Link>
       <Link className="navLink" to='/selectFriend'>Continue</Link>
     </div>
 

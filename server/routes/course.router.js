@@ -29,11 +29,9 @@ router.get('/:search', (req, res) => {
 
 });
 
-/**
- * POST route template
- */
+// add a course POST
 router.post('/', (req, res) => {
-  // POST route code here
+  console.log('in addCourse POST router')  
 });
 
 module.exports = router;
