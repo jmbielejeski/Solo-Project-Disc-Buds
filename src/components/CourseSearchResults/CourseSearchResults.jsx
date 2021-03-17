@@ -43,34 +43,44 @@ function CourseSearchResults() {
           )
         })}
       </ul>
-      <h5>Add a course</h5>
+      <h5>Or add a course</h5>
       <form onSubmit={addCourse}>
+        <label for="courseName">Enter course name</label>
         <input 
+          id="courseName"
           type="text"
           placeholder="Course Name"
           value={courseName}
           onChange={(evt) => setCourseName(evt.target.value)}
         />
+        <label for="holeCount">Enter hole count</label>
         <input 
+          id="holeCount"
           type="number"
           placeholder="Hole Count"
           value={holeCount}
           onChange={(evt) => setHoleCount(evt.target.value)}
 
         />
+        <label for="streetAddress">Enter street address</label>
         <input 
+          id="streetAddress"
           type="text"
           placeholder="Street Address"
           value={streetAddress}
           onChange={(evt) => setStreetAddress(evt.target.value)}
         />
+        <label for="city">Enter city</label>
         <input 
+          id="city"
           type="text"
           placeholder="City"
           value={city}
           onChange={(evt) => setCity(evt.target.value)}
         />
+        <label for="state">Select State</label>
         <select
+          id="state"
           value={state}
           onChange={(evt) => setState(evt.target.value)}
         >
@@ -126,9 +136,12 @@ function CourseSearchResults() {
           <option value="WI">Wisconsin</option>
           <option value="WY">Wyoming</option>
         </select>
+        <label for="zipCode">Enter zip code</label>
         <input 
-          type="number"
-          placeholder="Zip"
+          id="zipCode" 
+          type="number" 
+          min="00000"
+          max="99999"
           value={zipCode}
           onChange={(evt) => setZipCode(evt.target.value)}
         />
