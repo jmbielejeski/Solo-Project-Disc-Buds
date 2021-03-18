@@ -1,6 +1,5 @@
 import {put, takeEvery} from 'redux-saga/effects';
 import axios from 'axios';
-import CourseSearch from '../../components/CourseSearch/CourseSearch';
 
 function* course (action) {
   yield takeEvery('FETCH_COURSE_SEARCH', fetchCourseSearch);

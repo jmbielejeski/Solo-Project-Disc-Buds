@@ -38,7 +38,7 @@ function FriendDetail() {
 
   return (
     <div>
-      <h1>Friend Detail</h1>
+      <h4>Friend Details</h4>
       <div>{friendDetails.friendUsername}
         <button onClick={() => handleDelete(friendDetails.friendId)}>Delete</button>
       </div>
