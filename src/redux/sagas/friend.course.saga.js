@@ -1,6 +1,5 @@
 import { put, takeEvery } from 'redux-saga/effects';
 import axios from 'axios';
-import friend from './friend.saga';
 
 function* friendCourse (action) {
   yield takeEvery('SELECTED_FRIEND_COURSE', selectedFriendCourse);
