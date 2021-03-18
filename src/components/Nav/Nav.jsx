@@ -76,6 +76,7 @@ function Nav() {
       onClick={toggleDrawer}
       onKeyDown={toggleDrawer}
       role="presentation">
+        Welcome {user.username}
       <List>
         <ListItem>
           <Link className="navLink" to="/">
@@ -93,12 +94,12 @@ function Nav() {
           </Link>
         </ListItem>
         <ListItem>
-          <LogOutButton className="navLink" />
-        </ListItem>
-        <ListItem>
           <Link className="navLink" to="/about">
             About
           </Link>
+        </ListItem>
+        <ListItem>
+          <LogOutButton className="navLink" />
         </ListItem>
       </List>
     </div>
