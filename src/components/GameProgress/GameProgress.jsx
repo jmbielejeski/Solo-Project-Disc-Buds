@@ -21,6 +21,7 @@ function GameProgress() {
 
   return (
     <div>
+      <h2>{friendAndCourse.courseName}</h2>
       <h3>Hole {currentHole}</h3>
       <form onSubmit={handleSubmit}>
         <input 
