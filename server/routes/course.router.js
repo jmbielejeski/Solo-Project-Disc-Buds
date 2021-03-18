@@ -30,8 +30,14 @@ router.get('/search/:query', (req, res) => {
 });
 
 // GET to grab friends who have played course
-router.get('/selected', (req, res) => {
-  console.log('in course GET router for course friend list')
+router.get('/selected/:query', (req, res) => {
+  console.log('in course GET router for course friend list', req.params.courseName)
+
+  // SELECT "user".username, count("user".username) FROM "course_history"
+// JOIN "friends" ON "course_history".user_id = "friends".user_two
+// JOIN "user" ON "friends".user_two = "user".id
+// WHERE "friends".user_one = 1
+// GROUP BY "user".username;
 })
 
 // add a course POST
