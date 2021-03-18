@@ -7,6 +7,7 @@ function* friend (action) {
   yield takeEvery('FETCH_FRIEND_DETAILS', fetchFriendDetails);
   yield takeEvery('DELETE_FRIEND', deleteFriend);
   yield takeEvery('FETCH_FRIEND_LIST', fetchFriendList);
+  yield takeEvery('FETCH_CURRENT_DETAILS', fetchCurrentFriendDetails);
 };
 
 function* fetchFriendSearch (action) {
@@ -31,10 +32,26 @@ function* fetchFriendDetails (action) {
 
   try {
 
-    const response = yield axios.get(`/api/friend/details/${action.payload.friendId}`)
+    // const response = yield axios.get(`/api/friend/details/${action.payload.friendId}`)
     yield put({
       type: 'SET_FRIEND_DETAILS',
-      payload: response.data
+      payload: action.payload.friendId
+    })
+  }
+  catch (error) {
+    console.log('error in saga fetching friend details', error);
+  }
+}
+
+function* fetchCurrentFriendDetails (action) {
+
+  //console.log('action.payload', action.payload.friendId);
+
+  try {
+    const response = yield axios.get(`/api/friend/details/${action.payload.friendId}`)
+    yield put({
+      type: 'SET_CURRENT_FRIEND_DETAILS',
+      payload: action.payload.friendId
     })
   }
   catch (error) {

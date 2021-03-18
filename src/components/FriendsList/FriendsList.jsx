@@ -29,16 +29,20 @@ function FriendsList() {
   const history = useHistory();
   const dispatch = useDispatch();
 
+  // grab users friend list from reducer so we can render it
   const friendList = useSelector(store => store.friendListReducer)
 
+  // local state to hold the text we will be searching for
   const [friendSearch, setFriendSearch] = useState('');
 
+  // on load of page fetch the user's friend list
   useEffect(() => {
     dispatch({
       type: 'FETCH_FRIEND_LIST'
     })
   }, [])
 
+  // searches for friend that match the input
   const getSearchResults = (event) => {
     event.preventDefault();
     console.log('friendSearch', friendSearch)
@@ -51,16 +55,21 @@ function FriendsList() {
     history.push('/friendsSearchResults')
   }
 
-  const handleClick = (friendId) => {
+  // handles clicking on a friend to go to details.
+  // takes the friendId to pass and store in a reducer.
+  const handleClick = (friendId, friendUsername) => {
 
-    console.log('friendId', friendId)
+    console.log('friendId', friendId, friendUsername)
 
+    // sends friend ID to reducer to be stored
     dispatch({
-      type: 'FETCH_FRIEND_DETAILS',
+      type: 'SET_FRIEND_DETAILS',
       payload: {
-        friendId
+        friendId,
+        friendUsername
       }
     })
+    // sends us to friend detail
     history.push(`/friendDetail/`)
   }
 
@@ -79,7 +88,7 @@ function FriendsList() {
         <Grid item xs={12}>
           {friendList.map(friend => {
             return(
-              <li key={friend.id} onClick={() => handleClick(friend.id)}>{friend.username}</li>
+              <li key={friend.id} onClick={() => handleClick(friend.id, friend.username)}>{friend.username}</li>
             )
           })}
         </Grid>
