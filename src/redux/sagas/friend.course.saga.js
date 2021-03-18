@@ -1,5 +1,6 @@
 import { put, takeEvery } from 'redux-saga/effects';
 import axios from 'axios';
+import friend from './friend.saga';
 
 function* friendCourse (action) {
   yield takeEvery('SELECTED_FRIEND_COURSE', selectedFriendCourse);
@@ -8,13 +9,11 @@ function* friendCourse (action) {
 function* selectedFriendCourse (action) {
   console.log('in selectedFriendCourse saga', action.payload);
 
-  try {
-    const response = yield axios.get(`/api/friendCourse`);
+  let courseId = action.payload.courseId;
+  let friendName = action.payload.friend;
 
-    yield put({
-      type: 'SET_FRIEND_COURSE_HISTORY',
-      payload: response.data
-    })
+  try {
+    yield axios.post(`/api/friendCourse`, action.payload);
   }
   catch(error) {
     console.log('in selectedFriendCourse sage GET failed', error)
