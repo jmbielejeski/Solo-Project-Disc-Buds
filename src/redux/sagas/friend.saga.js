@@ -14,7 +14,7 @@ function* fetchFriendSearch (action) {
   try {
     const response = yield axios.get(`/api/friend/${action.payload.friendSearch}`);
 
-    console.log('friend search response', response);
+    // console.log('friend search response', response);
 
     yield put({
       type:'SET_FRIEND_SEARCH',
@@ -70,7 +70,7 @@ function* addFriend (action) {
 };
 
 function* deleteFriend (action) {
-  console.log('in deleteFriend saga')
+  // console.log('in deleteFriend saga')
   try {
     yield axios.delete(`/api/friend/${action.payload.friendId}`)
   }
@@ -80,7 +80,7 @@ function* deleteFriend (action) {
 }
 
 function* fetchFriendList (action) {
-  console.log('fetchFriendList saga')
+  // console.log('fetchFriendList saga')
   try {
     const response = yield axios.get(`/api/friend`);
     yield put({

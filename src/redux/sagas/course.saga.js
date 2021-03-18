@@ -1,6 +1,5 @@
 import {put, takeEvery} from 'redux-saga/effects';
 import axios from 'axios';
-import CourseSearch from '../../components/CourseSearch/CourseSearch';
 
 function* course (action) {
   yield takeEvery('FETCH_COURSE_SEARCH', fetchCourseSearch);
@@ -10,7 +9,7 @@ function* course (action) {
 
 
 function* fetchCourseSearch (action) {
-console.log('saga course search', action.payload.courseSearch)
+// console.log('saga course search', action.payload.courseSearch)
   try {
     const response = yield axios.get(`/api/course/search/${action.payload.courseSearch}`)
 
@@ -35,7 +34,7 @@ function* addCourse (action) {
 }
 
 function* fetchFriendCourseHistory (action) {
-  console.log('fetchFriendCourseHistory saga')
+  // console.log('fetchFriendCourseHistory saga')
   try {
     const response = yield axios.get(`/api/course/selected`);
     yield put({

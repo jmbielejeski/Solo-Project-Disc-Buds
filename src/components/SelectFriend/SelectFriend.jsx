@@ -1,4 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
+import { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
 // Material UI imports
 import Radio from '@material-ui/core/Radio';
@@ -27,11 +29,15 @@ function SelectFriend() {
   const classes = useStyles();
   // End Material UI
 
+  const history = useHistory();
+
   const dispatch = useDispatch();
 
   const friendList = useSelector(store => store.friendCourseHistoryReducer);
 
   const selectCourse = useSelector(store => store.selectCourseReducer);
+
+  const [selectedFriend, setSelectedFriend] = useState('');
 
 
   useEffect(() => {
@@ -40,11 +46,20 @@ function SelectFriend() {
     })
   }, [])
 
-  console.log('selectCourse is ', selectCourse);
-
 
   const handleClick = () => {
-    console.log('clicked button');
+    console.log('clicked button', selectedFriend);
+    console.log('selectCourse is ', selectCourse);
+
+    dispatch({
+      type: 'SET_FRIEND_COURSE',
+      payload: {
+        friend: selectedFriend,
+        courseId: selectCourse.courseId,
+        courseName: selectCourse.courseName
+      }
+    })
+    history.push('/gameProgress');
   }
 
   return (
@@ -62,7 +77,12 @@ function SelectFriend() {
         <FormControl component="fieldset">
         <FormLabel component="legend">Choose a friend to play against</FormLabel>
           <Grid item xs={12}>
-            <RadioGroup aria-label="Friend" name="friend.id" >
+            <RadioGroup 
+              aria-label="Friend" 
+              name="friend.id" 
+              value={selectedFriend}
+              onChange={(event) => setSelectedFriend(event.target.value)} 
+            >
               {friendList.map(friend => {
                 return (
                   <FormControlLabel 
