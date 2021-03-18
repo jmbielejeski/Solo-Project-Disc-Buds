@@ -6,6 +6,7 @@ import friendListReducer from './friend.list.reducer';
 import friendDetailReducer from './friend_detail_reducer';
 import courseSearchReducer from './course.search.reducer';
 import selectCourseReducer from './select.course.reducer';
+import friendCourseHistoryReducer from './friend.course.history.reducer'
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -21,6 +22,7 @@ const rootReducer = combineReducers({
   friendDetailReducer,
   courseSearchReducer,
   selectCourseReducer,
+  friendCourseHistoryReducer,
 });
 
 export default rootReducer;

@@ -35,9 +35,9 @@ function* addCourse (action) {
 }
 
 function* fetchFriendCourseHistory (action) {
-  console.log('fetchFriendCourseHistory saga', action.payload.selectCourse.courseId)
+  console.log('fetchFriendCourseHistory saga')
   try {
-    const response = yield axios.get(`/api/course/selected/${action.payload.selectCourse}`);
+    const response = yield axios.get(`/api/course/selected`);
     yield put({
       type: 'SET_FRIEND_HISTORY',
       payload: response.data

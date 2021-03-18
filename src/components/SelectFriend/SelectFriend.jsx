@@ -29,17 +29,14 @@ function SelectFriend() {
 
   const dispatch = useDispatch();
 
-  const friendList = useSelector(store => store.friendListReducer);
+  const friendList = useSelector(store => store.friendCourseHistoryReducer);
 
   const selectCourse = useSelector(store => store.selectCourseReducer);
 
 
   useEffect(() => {
     dispatch({
-      type: 'FETCH_FRIEND_COURSE_HISTORY',
-      payload: {
-        selectCourse
-      }
+      type: 'FETCH_FRIEND_COURSE_HISTORY'
     })
   }, [])
 
