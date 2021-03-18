@@ -3,11 +3,11 @@ const pool = require('../modules/pool');
 const router = express.Router();
 
 // GET route to search for course
-router.get('/:search', (req, res) => {
+router.get('/search/:query', (req, res) => {
 
   // console.log('in course search router')
 
-  let queryParams = req.params.search;
+  let queryParams = req.params.query;
 
   queryParams = '%'+queryParams+'%';
 
@@ -29,31 +29,10 @@ router.get('/:search', (req, res) => {
 
 });
 
-// GET route for selecting course
-// router.get('/:id', (req, res) => {
-//   console.log('in select course GET')
-  
-  // let queryParams = req.params.id;
-
-  // console.log('params are', req.params)
-
-  // let queryText = `
-  //   SELECT * FROM "courses"
-  //   WHERE id = $1;
-  // `
-
-  // pool.query(queryText, [queryParams])
-  //   .then((dbRes) => {
-  //     console.log('courseSelect GET', dbRes.rows);
-
-  //     res.send(dbRes.rows)
-  //   })
-  //   .catch((error) => {
-  //     console.log('error in select course GET route', error);
-  //     res.sendStatus(500);
-  //   })
-
-// })
+// GET to grab friends who have played course
+router.get('/selected', (req, res) => {
+  console.log('in course GET router for course friend list')
+})
 
 // add a course POST
 router.post('/', (req, res) => {

@@ -36,7 +36,7 @@ function SelectFriend() {
 
   useEffect(() => {
     dispatch({
-      type: 'FETCH_FRIEND_LIST',
+      type: 'FETCH_FRIEND_COURSE_HISTORY',
       payload: {
         selectCourse
       }

@@ -4,9 +4,9 @@ import axios from 'axios';
 function* friend (action) {
   yield takeEvery('FETCH_FRIEND_SEARCH', fetchFriendSearch)
   yield takeEvery('ADD_FRIEND', addFriend)
-  yield takeEvery('FETCH_FRIEND_LIST', fetchFriendList);
   yield takeEvery('FETCH_FRIEND_DETAILS', fetchFriendDetails);
   yield takeEvery('DELETE_FRIEND', deleteFriend);
+  yield takeEvery('FETCH_FRIEND_LIST', fetchFriendList);
 };
 
 function* fetchFriendSearch (action) {
@@ -22,21 +22,6 @@ function* fetchFriendSearch (action) {
   }
   catch (error) {
     console.log('error getting data', error);
-  }
-}
-
-
-function* fetchFriendList (action) {
-  console.log('fetchFriendList saga', action.payload)
-  try {
-    const response = yield axios.get(`/api/friend/course/${action.payload}`)
-    yield put({
-      type: 'SET_FRIEND_LIST',
-      payload: response.data
-    })
-  }
-  catch (error) {
-    console.log('error in fetchFriendList', error);
   }
 }
 
@@ -74,6 +59,20 @@ function* deleteFriend (action) {
   }
   catch (error) {
     console.log('error in friendDelete saga', error)
+  }
+}
+
+function* fetchFriendList (action) {
+  console.log('fetchFriendList saga')
+  try {
+    const response = yield axios.get(`/api/friend`);
+    yield put({
+      type: 'SET_FRIEND_LIST',
+      payload: response.data
+    })
+  }
+  catch (error) {
+    console.log('error in fetchFriendList', error);
   }
 }
 
