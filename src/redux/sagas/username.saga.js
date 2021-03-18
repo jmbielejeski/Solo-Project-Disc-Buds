@@ -9,7 +9,7 @@ function* changeUserName (action) {
   console.log('in changeUserName saga', action.payload);
 
   try {
-    console.log('allaalal');
+    yield axios.put('/api/username', action.payload)
   }
   catch(error) {
     console.log('error in changeUserName saga', error)
