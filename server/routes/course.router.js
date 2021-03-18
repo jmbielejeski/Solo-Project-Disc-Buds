@@ -42,7 +42,7 @@ router.get('/selected', (req, res) => {
 
   pool.query(queryText, [req.user.id])
     .then((dbRes) => {
-      console.log('selected course friends', dbRes.rows)
+      // console.log('selected course friends', dbRes.rows)
       res.send(dbRes.rows);
     })
     .catch((error) => {

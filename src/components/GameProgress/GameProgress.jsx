@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 
 function GameProgress() {
 
+  const dispatch = useDispatch();
+
   const [yourScore, setYourScore] = useState(0);
   const [friendScore, setFriendScore] = useState(0);
   const [currentScore, setCurrentScore] = useState('');
@@ -11,6 +13,13 @@ function GameProgress() {
   let friendAndCourse = useSelector(store => store.friendCourseReducer);
 
   console.log('friendAndCourse', friendAndCourse);
+
+  useEffect(() => {
+    dispatch({
+      type: 'SELECTED_FRIEND_COURSE',
+      payload: friendAndCourse
+    })
+  })
 
   const handleSubmit = (event) => {
     event.preventDefault();
