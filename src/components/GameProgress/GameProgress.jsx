@@ -39,12 +39,18 @@ function GameProgress() {
     event.preventDefault();
     let holeIndex = currentHole-1;
     console.log('matchDetails', matchDetails[0]);
-    swal(`Hole ${currentHole}: you scored a ${currentScore}, ${friendAndCourse.friend} scored a  ${matchDetails[holeIndex].hole_score}`);
+    swal({
+      title: `Hole ${currentHole}:`, 
+      text: `you scored a ${currentScore}, ${friendAndCourse.friend} scored a  ${matchDetails[holeIndex].hole_score}`,
+      button: 'Next hole'
+    })
+    .then(function() {
     setYourScore(Number(yourScore) + Number(currentScore));
     setFriendScore(Number(friendScore) + Number(matchDetails[holeIndex].hole_score));
     setCurrentScore('');
     setCurrentHole(Number(currentHole) + 1);
-  }
+  })
+}
 
   return (
     <div>
