@@ -3,12 +3,12 @@ const pool = require('../modules/pool');
 const router = express.Router();
 
 // GET route to grab friend course history
-router.post('/', (req, res) => {
-  console.log('in friendCourse router', req.body);
-
-  let friendId = req.body.friendId;
-  let courseId = req.body.courseId;
-  let holeCount = req.body.holeCount;
+router.get('/match', (req, res) => {
+  // console.log('in friendCourse router', req.query.friendId);
+  
+  let courseId = req.query.courseId;
+  let friendId = req.query.friendId;
+  let holeCount = req.query.holeCount;
 
   const queryText = `
   SELECT * FROM "course_history"
@@ -18,7 +18,7 @@ router.post('/', (req, res) => {
 
   pool.query(queryText, [friendId, courseId, holeCount])
     .then((dbRes) => {
-      console.log('courseHistory', dbRes.rows);
+      // console.log('courseHistory', dbRes.rows);
       res.send(dbRes.rows);
     })
     .catch((error) => {

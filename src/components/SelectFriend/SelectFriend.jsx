@@ -1,3 +1,4 @@
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
@@ -89,6 +90,7 @@ function SelectFriend() {
               {friendList.map(friend => {
                 return (
                   <FormControlLabel 
+                    key={friend.id}
                     value={friend.username}
                     control={<Radio />} 
                     label={friend.username}

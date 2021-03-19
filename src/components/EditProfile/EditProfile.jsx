@@ -1,6 +1,7 @@
+import React from 'react';
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 function EditProfile() {
 
@@ -8,18 +9,22 @@ function EditProfile() {
 
   const user = useSelector((store) => store.user);
 
+  // hole state for edit view status
   const [editView, setEditView] = useState('')
+  // hold new username input
   const [newUserName, setNewUserName] = useState(user.username);
 
-
+  // change view to edit
   const handleEditButton = () => {
     setEditView('edit')
   }
 
+  // cancel edit view and change back to normal view
   const handleCancel = () => {
     setEditView('');
   }
 
+  // save new username to DB
   const handleSave = () => {
     console.log('handleSave', newUserName)
     // dispatch new username to saga
@@ -30,6 +35,7 @@ function EditProfile() {
         userId: user.id
       }
     })
+    // go back to normal view after changing username
     setEditView('');
   }
 
@@ -38,7 +44,7 @@ switch(editView) {
     return (
       <div>
         <h1>Edit your profile</h1>
-        <label for="editUserName">Change username</label>
+        <label htmlFor="editUserName">Change username</label>
         <input 
           type="text" 
           id="editUserName" 

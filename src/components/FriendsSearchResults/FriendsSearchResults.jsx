@@ -1,20 +1,24 @@
+import React from 'react';
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 
 
 function FriendsSearchResults() {
 
   const dispatch = useDispatch();
 
+  // store friend search from reducer
   const friendSearch = useSelector(store => store.friendReducer);
 
+  // grab friend search results on load
   useEffect(() =>{
     dispatch({
       type: 'FETCH_FRIEND_SEARCH'
     })
   }, [])
 
+  // Add a friend relationship to the DB
   const addFriend = (userId) => {
     console.log('userId', userId);
     dispatch({

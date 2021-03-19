@@ -1,23 +1,27 @@
+import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 
 function FriendDetail() {
 
   const history = useHistory();
   const dispatch = useDispatch();
 
-  const [currentFriend, setCurrentFriend] = useState('');
+  // // store current friend in local state
+  // const [currentFriend, setCurrentFriend] = useState('');
 
+  // grab friend details from reducer
   const friendDetails = useSelector(store => store.friendDetailReducer);
 
+  // on load grab friend details
   useEffect(() => {
     dispatch({
       type: 'GRAB_FRIEND_DETAILS'
     })
   }, [])
 
-  console.log('currentFriend', friendDetails)
+  //console.log('currentFriend', friendDetails)
 
   // navigates back to friends list
   const goBack = () => {
@@ -33,6 +37,7 @@ function FriendDetail() {
         friendId
       }
     })
+    // after deleting friend goes back to friend list view
     history.push('/friendsList');
   }
 

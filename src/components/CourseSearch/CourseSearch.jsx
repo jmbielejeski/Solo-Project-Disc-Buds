@@ -1,10 +1,9 @@
-import { useState, useEffect } from 'react';
+import React from 'react';
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
 // Material UI imports
-import Radio from '@material-ui/core/Radio';
-import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
 import {Button, TextField} from '@material-ui/core';
@@ -29,8 +28,10 @@ const classes = useStyles();
 const history = useHistory();
 const dispatch = useDispatch();
 
+// set local state to store the input for the course search
 const [courseSearch, setCourseSearch] = useState('');
 
+// take the input course search and send to saga
 const getSearchResults = (event) => {
   event.preventDefault();
   console.log('searching for a course', courseSearch);
@@ -40,6 +41,7 @@ const getSearchResults = (event) => {
       courseSearch,
     }
   })
+  // navigate to courseSearchResults
   history.push('/courseSearchResults');
 }
 

@@ -1,6 +1,7 @@
+import React from 'react';
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
 function CourseSearchResults() {
@@ -9,6 +10,7 @@ function CourseSearchResults() {
 
   const dispatch = useDispatch();
 
+  // local state to capture the input for adding a course
   const [courseName, setCourseName] = useState('');
   const [holeCount, setHoleCount] = useState('');
   const [streetAddress, setStreetAddress] = useState('');
@@ -16,11 +18,13 @@ function CourseSearchResults() {
   const [state, setState] = useState('');
   const [zipCode, setZipCode] = useState('');
 
+  // fetch course search results from reducer
   const courseSearchResults = useSelector(store => store.courseSearchReducer);
 
+  // handle adding ac course by sending the input data to the saga
   const addCourse = (event) => {
     event.preventDefault();
-    console.log('adding course', courseName, holeCount, streetAddress, city, state, zipCode);
+    // console.log('adding course', courseName, holeCount, streetAddress, city, state, zipCode);
 
     dispatch({
       type: 'ADD_COURSE',
@@ -35,9 +39,10 @@ function CourseSearchResults() {
     })
   }
 
+  // handle starting game once a course has been selected
   const startGame = (courseName, courseId, holeCount) => {
-    console.log('courseId', courseName, courseId)
-
+   // console.log('courseId', courseName, courseId)
+    // send selected course info so it can be pulled in on next page
     dispatch({
       type: 'SET_SELECT_COURSE',
       payload: {
@@ -46,6 +51,7 @@ function CourseSearchResults() {
         holeCount
       }
     })
+    // navigate to selectFriend
     history.push('/selectFriend');
   }
 
@@ -63,7 +69,7 @@ function CourseSearchResults() {
       </ul>
       <h5>Or add a course</h5>
       <form onSubmit={addCourse}>
-        <label for="courseName">Enter course name</label>
+        <label htmlFor="courseName">Enter course name</label>
         <input 
           id="courseName"
           type="text"
@@ -71,7 +77,7 @@ function CourseSearchResults() {
           value={courseName}
           onChange={(evt) => setCourseName(evt.target.value)}
         />
-        <label for="holeCount">Enter hole count</label>
+        <label fohtmlForr="holeCount">Enter hole count</label>
         <input 
           id="holeCount"
           type="number"
@@ -80,7 +86,7 @@ function CourseSearchResults() {
           onChange={(evt) => setHoleCount(evt.target.value)}
 
         />
-        <label for="streetAddress">Enter street address</label>
+        <label htmlFor="streetAddress">Enter street address</label>
         <input 
           id="streetAddress"
           type="text"
@@ -88,7 +94,7 @@ function CourseSearchResults() {
           value={streetAddress}
           onChange={(evt) => setStreetAddress(evt.target.value)}
         />
-        <label for="city">Enter city</label>
+        <label htmlFor="city">Enter city</label>
         <input 
           id="city"
           type="text"
@@ -96,7 +102,7 @@ function CourseSearchResults() {
           value={city}
           onChange={(evt) => setCity(evt.target.value)}
         />
-        <label for="state">Select State</label>
+        <label htmlFor="state">Select State</label>
         <select
           id="state"
           value={state}
@@ -154,7 +160,7 @@ function CourseSearchResults() {
           <option value="WI">Wisconsin</option>
           <option value="WY">Wyoming</option>
         </select>
-        <label for="zipCode">Enter zip code</label>
+        <label htmlFor="zipCode">Enter zip code</label>
         <input 
           id="zipCode" 
           type="number" 

@@ -1,3 +1,4 @@
+import React from 'react';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -5,18 +6,24 @@ function GameProgress() {
 
   const dispatch = useDispatch();
 
+  // local state to store your total score
   const [yourScore, setYourScore] = useState(0);
+  // local state to store friend's total score
   const [friendScore, setFriendScore] = useState(0);
+  // local state to store your current score
   const [currentScore, setCurrentScore] = useState('');
+  // local state to store current hole
   const [currentHole, setCurrentHole] = useState(1);
 
+  // grab friend and course data from reducer to send to saga
   let friendAndCourse = useSelector(store => store.friendCourseReducer);
+  // store friends match history from reducer
   let matchDetails = useSelector(store => store.matchDetailsReducer);
 
   console.log('matchDetails', matchDetails);
-
   console.log('friendAndCourse', friendAndCourse);
 
+  // on load grab friends match history
   useEffect(() => {
     dispatch({
       type: 'SELECTED_FRIEND_COURSE',
@@ -24,6 +31,7 @@ function GameProgress() {
     })
   })
 
+  // handle submitting a score
   const handleSubmit = (event) => {
     event.preventDefault();
     setYourScore(Number(yourScore) + Number(currentScore));

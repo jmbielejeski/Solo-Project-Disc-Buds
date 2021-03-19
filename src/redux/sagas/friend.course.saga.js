@@ -8,11 +8,8 @@ function* friendCourse (action) {
 function* selectedFriendCourse (action) {
   console.log('in selectedFriendCourse saga', action.payload);
 
-  let courseId = action.payload.courseId;
-  let friendName = action.payload.friend;
-
   try {
-    const response = yield axios.post(`/api/friendCourse`, action.payload);
+    const response = yield axios.get(`/api/friendCourse/match?courseId=${action.payload.courseId}&friendId=${action.payload.friendId}&holeCount=${action.payload.holeCount}`);
     yield put({
       type: 'SET_MATCH_DETAILS',
       payload: response.data
