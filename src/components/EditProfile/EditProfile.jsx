@@ -6,10 +6,11 @@ function EditProfile() {
 
   const dispatch = useDispatch();
 
-  const [editView, setEditView] = useState('')
-  const [newUserName, setNewUserName] = useState('');
-
   const user = useSelector((store) => store.user);
+
+  const [editView, setEditView] = useState('')
+  const [newUserName, setNewUserName] = useState(user.username);
+
 
   const handleEditButton = () => {
     setEditView('edit')
@@ -41,7 +42,7 @@ switch(editView) {
         <input 
           type="text" 
           id="editUserName" 
-          defaultValue={user.username} 
+          defaultValue={newUserName} 
           onChange={(event) => setNewUserName(event.target.value)}
         />
         <button onClick={handleSave}>Save</button>
@@ -52,7 +53,7 @@ switch(editView) {
         return (
       <div>
         <h1>Edit your profile</h1> <div>
-          {user.username}
+          {newUserName}
           <button onClick={handleEditButton}>Change username</button>
         </div>
         <Link className="navLink" to='/homePage'>Cancel</Link>
