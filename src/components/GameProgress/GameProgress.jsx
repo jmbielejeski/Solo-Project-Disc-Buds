@@ -11,6 +11,9 @@ function GameProgress() {
   const [currentHole, setCurrentHole] = useState(1);
 
   let friendAndCourse = useSelector(store => store.friendCourseReducer);
+  let matchDetails = useSelector(store => store.matchDetailsReducer);
+
+  console.log('matchDetails', matchDetails);
 
   console.log('friendAndCourse', friendAndCourse);
 

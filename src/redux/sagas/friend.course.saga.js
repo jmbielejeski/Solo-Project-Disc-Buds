@@ -12,7 +12,11 @@ function* selectedFriendCourse (action) {
   let friendName = action.payload.friend;
 
   try {
-    yield axios.post(`/api/friendCourse`, action.payload);
+    const response = yield axios.post(`/api/friendCourse`, action.payload);
+    yield put({
+      type: 'SET_MATCH_DETAILS',
+      payload: response.data
+    })
   }
   catch(error) {
     console.log('in selectedFriendCourse sage GET failed', error)
