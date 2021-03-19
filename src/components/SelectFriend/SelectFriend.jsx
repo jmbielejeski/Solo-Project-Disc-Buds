@@ -50,13 +50,16 @@ function SelectFriend() {
   const handleClick = () => {
     console.log('clicked button', selectedFriend);
     console.log('selectCourse is ', selectCourse);
+    console.log('friendList is ', friendList);
 
     dispatch({
       type: 'SET_FRIEND_COURSE',
       payload: {
         friend: selectedFriend,
         courseId: selectCourse.courseId,
-        courseName: selectCourse.courseName
+        courseName: selectCourse.courseName,
+        holeCount: selectCourse.holeCount,
+        friendId: friendList[0].id
       }
     })
     history.push('/gameProgress');
