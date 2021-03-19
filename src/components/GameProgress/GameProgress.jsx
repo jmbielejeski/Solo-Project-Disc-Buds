@@ -1,6 +1,9 @@
+import { SquareFootOutlined } from '@material-ui/icons';
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import swal from 'sweetalert';
+
 
 function GameProgress() {
 
@@ -34,7 +37,11 @@ function GameProgress() {
   // handle submitting a score
   const handleSubmit = (event) => {
     event.preventDefault();
+    let holeIndex = currentHole-1;
+    console.log('matchDetails', matchDetails[0]);
+    swal(`Hole ${currentHole}: you scored a ${currentScore}, ${friendAndCourse.friend} scored a  ${matchDetails[holeIndex].hole_score}`);
     setYourScore(Number(yourScore) + Number(currentScore));
+    setFriendScore(Number(friendScore) + Number(matchDetails[holeIndex].hole_score));
     setCurrentScore('');
     setCurrentHole(Number(currentHole) + 1);
   }
