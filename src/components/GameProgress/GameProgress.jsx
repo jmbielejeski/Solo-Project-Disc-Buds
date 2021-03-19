@@ -40,7 +40,6 @@ function GameProgress() {
   const handleSubmit = (event) => {
     event.preventDefault();
     let holeIndex = currentHole-1;
-    //console.log('matchDetails', matchDetails[0]);
     if(currentHole < friendAndCourse.holeCount) {
       swal({
         title: `Hole ${currentHole}:`, 
@@ -50,8 +49,8 @@ function GameProgress() {
       .then(function() {
       setYourTotalScore(Number(yourTotalScore) + Number(currentScore));
       setFriendTotalScore(Number(friendTotalScore) + Number(matchDetails[holeIndex].hole_score));
-      console.log('scoreArray', scoreArray);
       setCurrentScore('');
+      // change hole to next hole
       setCurrentHole(Number(currentHole) + 1);
     })
   } else {
@@ -63,6 +62,7 @@ function GameProgress() {
     .then(function() {
       setYourTotalScore(Number(yourTotalScore) + Number(currentScore));
       setFriendTotalScore(Number(friendTotalScore) + Number(matchDetails[holeIndex].hole_score));
+      console.log('your total score', yourTotalScore)
       dispatch({
         type: 'SET_MATCH_RESULTS',
         payload: {
