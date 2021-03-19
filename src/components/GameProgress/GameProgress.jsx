@@ -39,7 +39,9 @@ function GameProgress() {
   // handle submitting a score
   const handleSubmit = (event) => {
     event.preventDefault();
+    // This is so we can grab the index of the hole from friends course history
     let holeIndex = currentHole-1;
+    // display this alert on every hole but the last one
     if(currentHole < friendAndCourse.holeCount) {
       swal({
         title: `Hole ${currentHole}:`, 
@@ -47,33 +49,37 @@ function GameProgress() {
         button: 'Next hole'
       })
       .then(function() {
+        // update totalScore by adding the current score to total score
       setYourTotalScore(Number(yourTotalScore) + Number(currentScore));
+      // update friend's total score by adding the hole score at this hole_index to total score
       setFriendTotalScore(Number(friendTotalScore) + Number(matchDetails[holeIndex].hole_score));
       setCurrentScore('');
       // change hole to next hole
       setCurrentHole(Number(currentHole) + 1);
     })
+    // display this sweet alert on the last hole
   } else {
+    setYourTotalScore(Number(yourTotalScore) + Number(currentScore));
+    setFriendTotalScore(Number(friendTotalScore) + Number(matchDetails[holeIndex].hole_score));
+    console.log('your total score', yourTotalScore)
+
+    dispatch({
+      type: 'SET_MATCH_RESULTS',
+      payload: {
+        yourScore: yourTotalScore,
+        friendScore: friendTotalScore,
+        friend: friendAndCourse.friend,
+        course: friendAndCourse.courseName,
+        courseId: friendAndCourse.courseId,
+      }
+    })
+
     swal({
       title: `Hole ${currentHole}:`, 
       text: `you scored a ${currentScore}, ${friendAndCourse.friend} scored a  ${matchDetails[holeIndex].hole_score}`,
-      button: 'Finish game'
+      button: 'Finish game' 
     })
     .then(function() {
-      setYourTotalScore(Number(yourTotalScore) + Number(currentScore));
-      setFriendTotalScore(Number(friendTotalScore) + Number(matchDetails[holeIndex].hole_score));
-      console.log('your total score', yourTotalScore)
-      dispatch({
-        type: 'SET_MATCH_RESULTS',
-        payload: {
-          yourScore: yourTotalScore,
-          friendScore: friendTotalScore,
-          friend: friendAndCourse.friend,
-          course: friendAndCourse.courseName,
-          courseId: friendAndCourse.courseId,
-        }
-      })
-      setCurrentScore('');
       history.push('/gameResult');
     })
   }
