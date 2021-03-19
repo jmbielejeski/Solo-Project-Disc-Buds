@@ -58,12 +58,11 @@ const getSearchResults = (event) => {
       </Grid>
         <FormControl component="fieldset">
         <FormLabel component="legend">Search for a course</FormLabel> 
-          <TextField
-            required 
+          <TextField 
             variant="outlined"
             placeholder="Search for a course"
-            defaultValue={courseSearch}
             onChange={(event) => setCourseSearch(event.target.value)}
+            required={true} 
           />  
           <Button 
             type="submit" 

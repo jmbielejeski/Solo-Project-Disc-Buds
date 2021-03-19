@@ -13,21 +13,20 @@ function GameProgress() {
   const dispatch = useDispatch();
 
   // local state to store your total score
-  const [yourScore, setYourScore] = useState(0);
+  const [yourTotalScore, setYourTotalScore] = useState(0);
   // local state to store friend's total score
-  const [friendScore, setFriendScore] = useState(0);
+  const [friendTotalScore, setFriendTotalScore] = useState(0);
   // local state to store your current score
   const [currentScore, setCurrentScore] = useState('');
   // local state to store current hole
   const [currentHole, setCurrentHole] = useState(1);
-
-  // grab friend and course data from reducer to send to saga
+ // local variable to store hole scores for later sending to DB
   let friendAndCourse = useSelector(store => store.friendCourseReducer);
   // store friends match history from reducer
   let matchDetails = useSelector(store => store.matchDetailsReducer);
 
-  console.log('matchDetails', matchDetails);
-  console.log('friendAndCourse', friendAndCourse);
+  //console.log('matchDetails', matchDetails);
+  //console.log('friendAndCourse', friendAndCourse);
 
   // on load grab friends match history
   useEffect(() => {
@@ -41,19 +40,19 @@ function GameProgress() {
   const handleSubmit = (event) => {
     event.preventDefault();
     let holeIndex = currentHole-1;
-    console.log('matchDetails', matchDetails[0]);
+    //console.log('matchDetails', matchDetails[0]);
     if(currentHole < friendAndCourse.holeCount) {
       swal({
         title: `Hole ${currentHole}:`, 
-        text: `you scored a ${currentScore}, ${friendAndCourse.friend} scored a  ${matchDetails[holeIndex].hole_score}`,
+        text: `you scored a ${currentScore}, ${friendAndCourse.friend} scored a ${matchDetails[holeIndex].hole_score}`,
         button: 'Next hole'
       })
       .then(function() {
-      setYourScore(Number(yourScore) + Number(currentScore));
-      setFriendScore(Number(friendScore) + Number(matchDetails[holeIndex].hole_score));
+      setYourTotalScore(Number(yourTotalScore) + Number(currentScore));
+      setFriendTotalScore(Number(friendTotalScore) + Number(matchDetails[holeIndex].hole_score));
+      console.log('scoreArray', scoreArray);
       setCurrentScore('');
       setCurrentHole(Number(currentHole) + 1);
-      
     })
   } else {
     swal({
@@ -62,8 +61,18 @@ function GameProgress() {
       button: 'Finish game'
     })
     .then(function() {
-      setYourScore(Number(yourScore) + Number(currentScore));
-      setFriendScore(Number(friendScore) + Number(matchDetails[holeIndex].hole_score));
+      setYourTotalScore(Number(yourTotalScore) + Number(currentScore));
+      setFriendTotalScore(Number(friendTotalScore) + Number(matchDetails[holeIndex].hole_score));
+      dispatch({
+        type: 'SET_MATCH_RESULTS',
+        payload: {
+          yourScore: yourTotalScore,
+          friendScore: friendTotalScore,
+          friend: friendAndCourse.friend,
+          course: friendAndCourse.courseName,
+          courseId: friendAndCourse.courseId,
+        }
+      })
       setCurrentScore('');
       history.push('/gameResult');
     })
@@ -81,11 +90,12 @@ function GameProgress() {
           placeholder="Enter Score"
           value={currentScore}
           onChange={(event) => setCurrentScore(event.target.value)}
+          required
         />
         <button>Submit Score</button>
       </form>
-      <h4>your score: {yourScore}</h4>
-      <h4>{friendAndCourse.friend}'s score: {friendScore}</h4>
+      <h4>your score: {yourTotalScore}</h4>
+      <h4>{friendAndCourse.friend}'s score: {friendTotalScore}</h4>
     </div>
   )
 }
