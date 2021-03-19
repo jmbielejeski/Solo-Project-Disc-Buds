@@ -29,7 +29,7 @@ function GameProgress() {
       type: 'SELECTED_FRIEND_COURSE',
       payload: friendAndCourse
     })
-  })
+  }, [])
 
   // handle submitting a score
   const handleSubmit = (event) => {
