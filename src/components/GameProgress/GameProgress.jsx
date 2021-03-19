@@ -2,10 +2,13 @@ import { SquareFootOutlined } from '@material-ui/icons';
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import swal from 'sweetalert';
 
 
 function GameProgress() {
+
+  const history = useHistory();
 
   const dispatch = useDispatch();
 
@@ -39,17 +42,32 @@ function GameProgress() {
     event.preventDefault();
     let holeIndex = currentHole-1;
     console.log('matchDetails', matchDetails[0]);
+    if(currentHole < friendAndCourse.holeCount) {
+      swal({
+        title: `Hole ${currentHole}:`, 
+        text: `you scored a ${currentScore}, ${friendAndCourse.friend} scored a  ${matchDetails[holeIndex].hole_score}`,
+        button: 'Next hole'
+      })
+      .then(function() {
+      setYourScore(Number(yourScore) + Number(currentScore));
+      setFriendScore(Number(friendScore) + Number(matchDetails[holeIndex].hole_score));
+      setCurrentScore('');
+      setCurrentHole(Number(currentHole) + 1);
+      
+    })
+  } else {
     swal({
       title: `Hole ${currentHole}:`, 
       text: `you scored a ${currentScore}, ${friendAndCourse.friend} scored a  ${matchDetails[holeIndex].hole_score}`,
-      button: 'Next hole'
+      button: 'Finish game'
     })
     .then(function() {
-    setYourScore(Number(yourScore) + Number(currentScore));
-    setFriendScore(Number(friendScore) + Number(matchDetails[holeIndex].hole_score));
-    setCurrentScore('');
-    setCurrentHole(Number(currentHole) + 1);
-  })
+      setYourScore(Number(yourScore) + Number(currentScore));
+      setFriendScore(Number(friendScore) + Number(matchDetails[holeIndex].hole_score));
+      setCurrentScore('');
+      history.push('/gameResult');
+    })
+  }
 }
 
   return (
