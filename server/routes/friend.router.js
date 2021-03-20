@@ -18,8 +18,13 @@ router.get('/:search', rejectUnauthenticated, (req, res) => {
   // console.log('queryParams', queryParams)
 
   const queryText = `
-    SELECT * FROM "user"
-    WHERE username ILIKE $1 AND id != $2;
+    SELECT "user".id, "user".username FROM "user"
+    WHERE "user".username ILIKE $1 
+    AND "user".id != $2
+    AND NOT EXISTS (
+      SELECT 1 FROM "friends"
+      WHERE user_two = "user".id
+      AND user_one = $2); 
   `
   pool.query(queryText, [queryParams, req.user.id])
     .then((dbRes) => {

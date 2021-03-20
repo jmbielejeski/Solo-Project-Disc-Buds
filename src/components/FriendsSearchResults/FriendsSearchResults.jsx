@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-
+import swal from 'sweetalert';
 
 function FriendsSearchResults() {
 
@@ -26,6 +26,9 @@ function FriendsSearchResults() {
       payload: {
         userId
       }
+    })
+    swal({
+      title: "Friend Added"
     })
   }
 
