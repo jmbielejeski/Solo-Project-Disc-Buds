@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
 import { useState } from 'react';
+import DropzoneS3Uploader from '../DropzoneS3Uploader/DropzoneS3Uploader';
 
 function EditProfile() {
 
@@ -53,6 +54,7 @@ switch(editView) {
         />
         <button onClick={handleSave}>Save</button>
         <button onClick={handleCancel}>Cancel</button>
+        <DropzoneS3Uploader />
       </div>
     )
     default:
