@@ -43,6 +43,7 @@ router.get('/selected/:courseId', rejectUnauthenticated, (req, res) => {
   JOIN "user" ON "friends".user_two = "user".id
   WHERE "friends".user_one = $1
   AND "course_history".course_id = $2
+  AND "user".id != $1
   GROUP BY "user".id;`
 
   pool.query(queryText, [req.user.id, req.params.courseId])

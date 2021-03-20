@@ -4,7 +4,27 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
+// Material UI imports
+import FormControl from '@material-ui/core/FormControl';
+import FormLabel from '@material-ui/core/FormLabel';
+import {Button, TextField} from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+import Grid from '@material-ui/core/Grid';
+
 function CourseSearchResults() {
+// Material UI
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+  },
+  control: {
+    padding: theme.spacing(2),
+    margin: 'auto',
+  },
+}));
+
+const classes = useStyles();
+// End Material UI
 
   const history = useHistory();
 
@@ -17,6 +37,9 @@ function CourseSearchResults() {
   const [city, setCity] = useState('');
   const [state, setState] = useState('');
   const [zipCode, setZipCode] = useState('');
+
+  const [googleMapsSearch, setGoogleMapsSearch]= useState('');
+
 
   // fetch course search results from reducer
   const courseSearchResults = useSelector(store => store.courseSearchReducer);
@@ -53,7 +76,17 @@ function CourseSearchResults() {
     // navigate to selectFriend
     history.push('/selectFriend');
   }
-
+  const getGoogleMapsSearch = (event) => {
+    event.preventDefault();
+    console.log('in google maps search', googleMapsSearch)
+    dispatch({
+      type: 'GOOGLE_MAPS_SEARCH',
+      payload: {
+        googleMapsSearch
+      }
+    })
+  }
+  
   return(
     <div>
       <h5>Select a course</h5>
@@ -67,6 +100,24 @@ function CourseSearchResults() {
         })}
       </ul>
       <h5>Or add a course</h5>
+      <FormControl component="fieldset">
+        <FormLabel component="legend">Search for a course through google</FormLabel> 
+          <TextField 
+            variant="outlined"
+            placeholder="Search for a course on google"
+            onChange={(event) => setGoogleMapsSearch(event.target.value)}
+            required={true} 
+          />  
+          <Button 
+            type="submit" 
+            variant="contained" 
+            color="primary" 
+            className={classes.button} 
+            onClick={getGoogleMapsSearch}
+          >
+            Search
+          </Button>
+      </FormControl>
       <form onSubmit={addCourse}>
         <label htmlFor="courseName">Enter course name</label>
         <input 

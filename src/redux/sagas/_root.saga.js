@@ -6,6 +6,8 @@ import friend from './friend.saga';
 import course from './course.saga';
 import friendCourse from './friend.course.saga';
 import userName from './username.saga';
+import holeResults from './hole_results.saga';
+import googleMaps from './google.maps.saga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -22,6 +24,8 @@ export default function* rootSaga() {
     friend(),
     course(),
     friendCourse(),
-    userName()
+    userName(),
+    holeResults(),
+    googleMaps()
   ]);
 }

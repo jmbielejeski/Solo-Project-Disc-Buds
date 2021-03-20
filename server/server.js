@@ -6,6 +6,7 @@ const app = express();
 
 const sessionMiddleware = require('./modules/session-middleware');
 const passport = require('./strategies/user.strategy');
+require('dotenv').config() // protect those keys! npm install dontenv
 
 // Route includes
 const userRouter = require('./routes/user.router');
@@ -13,6 +14,8 @@ const friendRouter = require('./routes/friend.router');
 const courseRouter = require('./routes/course.router');
 const friendCourseRouter = require('./routes/friend.course.router');
 const userNameRouter = require('./routes/username.router');
+const holeResultsRouter = require('./routes/hole.results.router');
+const googleMaps = require('./routes/google.maps.api')
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -31,6 +34,9 @@ app.use('/api/friend', friendRouter);
 app.use('/api/course', courseRouter);
 app.use('/api/friendCourse', friendCourseRouter);
 app.use('/api/username', userNameRouter);
+app.use('/api/holeResults', holeResultsRouter);
+app.use('/api/googleMaps', googleMaps)
+
 
 // Serve static files
 app.use(express.static('build'));
