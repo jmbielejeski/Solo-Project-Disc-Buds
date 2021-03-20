@@ -54,6 +54,16 @@ function GameProgress() {
       setYourTotalScore(Number(yourTotalScore) + Number(currentScore));
       // update friend's total score by adding the hole score at this hole_index to total score
       setFriendTotalScore(Number(friendTotalScore) + Number(matchDetails[holeIndex].hole_score));
+    
+      // dispatch current hole results so it can be stored in DB
+      dispatch({
+        type: 'SET_HOLE_RESULT',
+        payload: {
+          courseId: friendAndCourse.courseId,
+          holeScore: currentScore,
+          holeIndex: currentHole
+        }
+      })
       setCurrentScore('');
       // change hole to next hole
       setCurrentHole(Number(currentHole) + 1);
@@ -69,6 +79,15 @@ function GameProgress() {
       setYourTotalScore(Number(yourTotalScore) + Number(currentScore));
       setFriendTotalScore(Number(friendTotalScore) + Number(matchDetails[holeIndex].hole_score));
       console.log('your total score', yourTotalScore, 'friendTotalScore', friendTotalScore)
+      // dispatch current hole results so it can be stored in DB
+      dispatch({
+        type: 'SET_HOLE_RESULT',
+        payload: {
+          courseId: friendAndCourse.courseId,
+          holeScore: currentScore,
+          holeIndex: currentHole
+        }
+      })
       setCurrentScore('');
       setFinishGameButton(true);
       })

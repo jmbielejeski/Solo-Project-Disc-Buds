@@ -10,6 +10,7 @@ import friendCourseHistoryReducer from './friend.course.history.reducer';
 import friendCourseReducer from './friend.course.reducer';
 import matchDetailsReducer from './match.details.reducer';
 import matchResultsReducer from './match.results.reducer';
+import googleMapsResult from './google.maps.reducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -29,6 +30,7 @@ const rootReducer = combineReducers({
   friendCourseReducer,
   matchDetailsReducer,
   matchResultsReducer,
+  googleMapsResult,
 });
 
 export default rootReducer;

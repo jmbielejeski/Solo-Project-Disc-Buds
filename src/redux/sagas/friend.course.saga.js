@@ -6,7 +6,7 @@ function* friendCourse (action) {
 };
 
 function* selectedFriendCourse (action) {
-  console.log('in selectedFriendCourse saga', action.payload);
+  //console.log('in selectedFriendCourse saga', action.payload);
 
   try {
     const response = yield axios.get(`/api/friendCourse/match?courseId=${action.payload.courseId}&friendId=${action.payload.friendId}&holeCount=${action.payload.holeCount}`);

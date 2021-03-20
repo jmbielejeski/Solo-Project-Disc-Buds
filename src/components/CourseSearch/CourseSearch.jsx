@@ -45,6 +45,7 @@ const getSearchResults = (event) => {
   history.push('/courseSearchResults');
 }
 
+
   return (
     <Grid 
       container 
@@ -74,6 +75,7 @@ const getSearchResults = (event) => {
             Search
           </Button>
         </FormControl>
+        
       </Grid>
   )
 }
