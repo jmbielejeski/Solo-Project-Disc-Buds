@@ -12,59 +12,59 @@ import Grid from '@material-ui/core/Grid';
 
 function AddCourseForm() {
   // Material UI
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
-  control: {
-    padding: theme.spacing(2),
-    margin: 'auto',
-  },
-}));
-const classes = useStyles();
-// End Material UI
+  const useStyles = makeStyles((theme) => ({
+    root: {
+      flexGrow: 1,
+    },
+    control: {
+      padding: theme.spacing(2),
+      margin: 'auto',
+    },
+  }));
+  const classes = useStyles();
+  // End Material UI
 
-  const history = useHistory();
+    const history = useHistory();
 
-  const dispatch = useDispatch();
+    const dispatch = useDispatch();
 
-    // local state to capture the input for adding a course
-    const [courseName, setCourseName] = useState('');
-    const [holeCount, setHoleCount] = useState('');
-    const [streetAddress, setStreetAddress] = useState('');
-    const [city, setCity] = useState('');
-    const [state, setState] = useState('');
-    const [zipCode, setZipCode] = useState('');
-  
-    const [googleMapsSearch, setGoogleMapsSearch]= useState('');
+      // local state to capture the input for adding a course
+      const [courseName, setCourseName] = useState('');
+      const [holeCount, setHoleCount] = useState('');
+      const [streetAddress, setStreetAddress] = useState('');
+      const [city, setCity] = useState('');
+      const [state, setState] = useState('');
+      const [zipCode, setZipCode] = useState('');
+    
+      const [googleMapsSearch, setGoogleMapsSearch]= useState('');
 
- // handle adding ac course by sending the input data to the saga
- const addCourse = (event) => {
-  event.preventDefault();
-  // console.log('adding course', courseName, holeCount, streetAddress, city, state, zipCode);
-  dispatch({
-    type: 'ADD_COURSE',
-    payload: {
-      course_name: courseName,
-      hole_count: holeCount,
-      address: streetAddress,
-      city: city,
-      state: state,
-      zip_code: zipCode
-    }
-  })
-}
+  // handle adding ac course by sending the input data to the saga
+  const addCourse = (event) => {
+    event.preventDefault();
+    // console.log('adding course', courseName, holeCount, streetAddress, city, state, zipCode);
+    dispatch({
+      type: 'ADD_COURSE',
+      payload: {
+        course_name: courseName,
+        hole_count: holeCount,
+        address: streetAddress,
+        city: city,
+        state: state,
+        zip_code: zipCode
+      }
+    })
+  }
 
-const getGoogleMapsSearch = (event) => {
-  event.preventDefault();
-  console.log('in google maps search', googleMapsSearch)
-  dispatch({
-    type: 'GOOGLE_MAPS_SEARCH',
-    payload: {
-      googleMapsSearch
-    }
-  })
-}
+  const getGoogleMapsSearch = (event) => {
+    event.preventDefault();
+    console.log('in google maps search', googleMapsSearch)
+    dispatch({
+      type: 'GOOGLE_MAPS_SEARCH',
+      payload: {
+        googleMapsSearch
+      }
+    })
+  }
 
   return (
     <div>

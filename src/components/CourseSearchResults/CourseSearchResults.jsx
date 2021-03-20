@@ -12,29 +12,25 @@ import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 
 function CourseSearchResults() {
-// Material UI
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
-  control: {
-    padding: theme.spacing(2),
-    margin: 'auto',
-  },
-}));
+  // Material UI
+  const useStyles = makeStyles((theme) => ({
+    root: {
+      flexGrow: 1,
+    },
+    control: {
+      padding: theme.spacing(2),
+      margin: 'auto',
+    },
+  }));
 
-const classes = useStyles();
-// End Material UI
+  const classes = useStyles();
+  // End Material UI
 
   const history = useHistory();
-
   const dispatch = useDispatch();
-
 
   // fetch course search results from reducer
   const courseSearchResults = useSelector(store => store.courseSearchReducer);
-
- 
 
   // handle starting game once a course has been selected
   const startGame = (courseName, courseId, holeCount) => {
