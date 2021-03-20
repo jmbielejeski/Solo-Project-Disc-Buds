@@ -1,7 +1,7 @@
 import { SquareFootOutlined } from '@material-ui/icons';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import swal from 'sweetalert';
+import Swal from 'sweetalert2'
 
 function GameResult() {
 
@@ -9,18 +9,18 @@ function GameResult() {
 
   console.log('matchResults', matchResults);
 
-  if (matchResults.yourScore > matchResults.friendScore) {
-    swal({
+  if (matchResults.yourScore < matchResults.friendScore) {
+    Swal.fire({
       title: 'Results',
       text: `You won!`
     })
-  } else if (matchResults.yourScore < matchResults.friendScore) {
-    swal({
+  } else if (matchResults.yourScore > matchResults.friendScore) {
+    Swal.fire({
       title: 'Results',
       text: `${matchResults.friend} won!`
     })
   } else {
-    swal({
+    Swal.fire({
       title: 'Results',
       text: `It's a tie!`
     })

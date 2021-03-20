@@ -2,7 +2,7 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import swal from 'sweetalert';
+import Swal from 'sweetalert2'
 
 function FriendDetail() {
 
@@ -32,16 +32,18 @@ function FriendDetail() {
   // deletes friend relationship from database
   const handleDelete = (friendId) => {
     console.log('friendId', friendId);
-    swal({
+    Swal.fire({
       title: "Are you sure?",
       text: "Once deleted you will no longer be able to play against this friend",
       icon: "warning",
-      buttons: true,
-      dangerMode: true
+      confirmButtonText: 'Yes!',
+      dangerMode: true,
+      showCancelButton: true,
+
     })
-    .then((willDelete) => {
-      if (willDelete) { 
-        swal({
+    .then((result) => {
+      if (result.value) { 
+        Swal.fire({
           title: "friend deleted",
           icon: "success",
         })
@@ -54,7 +56,7 @@ function FriendDetail() {
         // after deleting friend goes back to friend list view
         history.push('/friendsList');
       } else {
-        swal("Friend not deleted");
+        Swal.fire("Friend not deleted");
       }
   })
 }

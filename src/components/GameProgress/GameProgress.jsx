@@ -1,9 +1,9 @@
-import { SquareFootOutlined } from '@material-ui/icons';
+import { SquareFootOutlined, SwapCallsSharp } from '@material-ui/icons';
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import swal from 'sweetalert';
+import Swal from 'sweetalert2'
 
 
 function GameProgress() {
@@ -20,6 +20,7 @@ function GameProgress() {
   const [currentScore, setCurrentScore] = useState('');
   // local state to store current hole
   const [currentHole, setCurrentHole] = useState(1);
+  const [finishGameButton, setFinishGameButton] = useState(false)
  // local variable to store hole scores for later sending to DB
   let friendAndCourse = useSelector(store => store.friendCourseReducer);
   // store friends match history from reducer
@@ -43,10 +44,10 @@ function GameProgress() {
     let holeIndex = currentHole-1;
     // display this alert on every hole but the last one
     if(currentHole < friendAndCourse.holeCount) {
-      swal({
+      Swal.fire({
         title: `Hole ${currentHole}:`, 
         text: `you scored a ${currentScore}, ${friendAndCourse.friend} scored a ${matchDetails[holeIndex].hole_score}`,
-        button: 'Next hole'
+        confirmButtonText: 'Next hole'
       })
       .then(function() {
         // update totalScore by adding the current score to total score
@@ -59,10 +60,22 @@ function GameProgress() {
     })
     // display this sweet alert on the last hole
   } else {
-    setYourTotalScore(Number(yourTotalScore) + Number(currentScore));
-    setFriendTotalScore(Number(friendTotalScore) + Number(matchDetails[holeIndex].hole_score));
-    console.log('your total score', yourTotalScore)
+    Swal.fire({
+      title: `Hole ${currentHole}:`, 
+      text: `you scored a ${currentScore}, ${friendAndCourse.friend} scored a  ${matchDetails[holeIndex].hole_score}`,
+      confirmButtonText: 'Finish game' 
+    })
+    .then(function() {
+      setYourTotalScore(Number(yourTotalScore) + Number(currentScore));
+      setFriendTotalScore(Number(friendTotalScore) + Number(matchDetails[holeIndex].hole_score));
+      console.log('your total score', yourTotalScore, 'friendTotalScore', friendTotalScore)
+      setCurrentScore('');
+      setFinishGameButton(true);
+      })
+    }
+  }
 
+  const finishGame = () => {
     dispatch({
       type: 'SET_MATCH_RESULTS',
       payload: {
@@ -73,37 +86,42 @@ function GameProgress() {
         courseId: friendAndCourse.courseId,
       }
     })
-
-    swal({
-      title: `Hole ${currentHole}:`, 
-      text: `you scored a ${currentScore}, ${friendAndCourse.friend} scored a  ${matchDetails[holeIndex].hole_score}`,
-      button: 'Finish game' 
-    })
-    .then(function() {
-      history.push('/gameResult');
-    })
+    history.push('/gameResult');
   }
-}
 
-  return (
-    <div>
-      <h2>{friendAndCourse.courseName}</h2>
-      <h3>Hole {currentHole}</h3>
-      <form onSubmit={handleSubmit}>
-        <input 
-          type="number" 
-          name="Score"
-          placeholder="Enter Score"
-          value={currentScore}
-          onChange={(event) => setCurrentScore(event.target.value)}
-          required
-        />
-        <button>Submit Score</button>
-      </form>
-      <h4>your score: {yourTotalScore}</h4>
-      <h4>{friendAndCourse.friend}'s score: {friendTotalScore}</h4>
-    </div>
-  )
+switch(finishGameButton) {
+  case true:
+    return (
+      <div>
+        <h2>{friendAndCourse.courseName}</h2>
+        <h3>Hole {currentHole}</h3>
+        
+        <h4>your score: {yourTotalScore}</h4>
+        <h4>{friendAndCourse.friend}'s score: {friendTotalScore}</h4>
+        <button onClick={finishGame}>Finish Game</button>
+      </div>
+    )
+    default:
+      return (
+        <div>
+          <h2>{friendAndCourse.courseName}</h2>
+          <h3>Hole {currentHole}</h3>
+          <form onSubmit={handleSubmit}>
+            <input 
+              type="number" 
+              name="Score"
+              placeholder="Enter Score"
+              value={currentScore}
+              onChange={(event) => setCurrentScore(event.target.value)}
+              required
+            />
+            <button>Submit Score</button>
+          </form>
+          <h4>your score: {yourTotalScore}</h4>
+          <h4>{friendAndCourse.friend}'s score: {friendTotalScore}</h4>
+        </div>
+      )
+  }
 }
 
 export default GameProgress;
