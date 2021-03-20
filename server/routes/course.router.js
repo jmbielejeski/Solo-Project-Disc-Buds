@@ -33,17 +33,19 @@ router.get('/search/:query', rejectUnauthenticated, (req, res) => {
 });
 
 // GET to grab friends who have played course
-router.get('/selected', rejectUnauthenticated, (req, res) => {
+router.get('/selected/:courseId', rejectUnauthenticated, (req, res) => {
   // console.log('in course GET router for course friend list', req.params.course)
+  // console.log('courseId', req.params.courseId);
 
   const queryText =`
   SELECT "user".username, "user".id, count("user".username) FROM "course_history"
   JOIN "friends" ON "course_history".user_id = "friends".user_two
   JOIN "user" ON "friends".user_two = "user".id
   WHERE "friends".user_one = $1
+  AND "course_history".course_id = $2
   GROUP BY "user".id;`
 
-  pool.query(queryText, [req.user.id])
+  pool.query(queryText, [req.user.id, req.params.courseId])
     .then((dbRes) => {
       // console.log('selected course friends', dbRes.rows)
       res.send(dbRes.rows);

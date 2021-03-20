@@ -76,7 +76,7 @@ function CourseSearchResults() {
           value={courseName}
           onChange={(evt) => setCourseName(evt.target.value)}
         />
-        <label fohtmlForr="holeCount">Enter hole count</label>
+        <label htmlFor="holeCount">Enter hole count</label>
         <input 
           id="holeCount"
           type="number"
