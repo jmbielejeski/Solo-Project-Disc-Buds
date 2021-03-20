@@ -1,10 +1,13 @@
 const express = require('express');
+const {
+  rejectUnauthenticated,
+} = require('../modules/authentication-middleware');
 const { query } = require('../modules/pool');
 const pool = require('../modules/pool');
 const router = express.Router();
 
 // GET route to search for friends
-router.get('/:search', (req, res) => {
+router.get('/:search', rejectUnauthenticated, (req, res) => {
 
   // console.log('GET Friend route', req.params.search)
 
@@ -29,7 +32,7 @@ router.get('/:search', (req, res) => {
 
 });
 
-router.get('/', (req, res) => {
+router.get('/', rejectUnauthenticated, (req, res) => {
 
   //console.log('in friend GET')
 
@@ -49,7 +52,7 @@ router.get('/', (req, res) => {
 
 })
 
-router.get('/details/:id', (req, res) => {
+router.get('/details/:id', rejectUnauthenticated, (req, res) => {
   // console.log('in friend details router', req.params.id);
 
   const queryText = `
@@ -70,7 +73,7 @@ router.get('/details/:id', (req, res) => {
 })
 
 // POST route to add friend
-router.post('/', (req, res) => {
+router.post('/', rejectUnauthenticated,  (req, res) => {
   // POST route code here
 
   // console.log('req.body', req.body);
@@ -91,7 +94,7 @@ router.post('/', (req, res) => {
 
 });
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', rejectUnauthenticated, (req, res) => {
   console.log('router delete req.params', req.params.id);
 
   const queryText = `

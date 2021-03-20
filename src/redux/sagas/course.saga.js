@@ -24,7 +24,7 @@ function* fetchCourseSearch (action) {
 }
 
 function* addCourse (action) {
-  //console.log('saga addCourse', action.payload);
+  console.log('saga addCourse', action.payload);
   try {
     yield axios.post('api/course', action.payload);
   }

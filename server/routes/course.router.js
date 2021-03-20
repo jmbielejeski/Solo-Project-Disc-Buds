@@ -1,9 +1,12 @@
 const express = require('express');
+const {
+  rejectUnauthenticated,
+} = require('../modules/authentication-middleware');
 const pool = require('../modules/pool');
 const router = express.Router();
 
 // GET route to search for course
-router.get('/search/:query', (req, res) => {
+router.get('/search/:query', rejectUnauthenticated, (req, res) => {
 
   // console.log('in course search router')
 
@@ -30,7 +33,7 @@ router.get('/search/:query', (req, res) => {
 });
 
 // GET to grab friends who have played course
-router.get('/selected', (req, res) => {
+router.get('/selected', rejectUnauthenticated, (req, res) => {
   // console.log('in course GET router for course friend list', req.params.course)
 
   const queryText =`
@@ -52,7 +55,7 @@ router.get('/selected', (req, res) => {
 })
 
 // add a course POST
-router.post('/', (req, res) => {
+router.post('/', rejectUnauthenticated, (req, res) => {
   //console.log('in addCourse POST router')  
 
   const queryText = `

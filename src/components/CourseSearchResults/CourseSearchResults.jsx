@@ -25,7 +25,6 @@ function CourseSearchResults() {
   const addCourse = (event) => {
     event.preventDefault();
     // console.log('adding course', courseName, holeCount, streetAddress, city, state, zipCode);
-
     dispatch({
       type: 'ADD_COURSE',
       payload: {
