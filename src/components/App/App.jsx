@@ -28,6 +28,7 @@ import FriendsList from '../FriendsList/FriendsList';
 import FriendsSearchResults from '../FriendsSearchResults/FriendsSearchResults';
 import EditProfile from '../EditProfile/EditProfile';
 import FriendDetail from '../FriendDetail/FriendDetail';  
+import AddCourseForm from '../AddCourseForm/AddCourseForm';
 
 import './App.css';
 
@@ -86,6 +87,14 @@ function App() {
 
           <ProtectedRoute
             // logged in shoes HomePage
+            exact
+            path="/addCourse"
+          >
+            <AddCourseForm />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows HomePage
             exact
             path="/selectFriend"
           >
