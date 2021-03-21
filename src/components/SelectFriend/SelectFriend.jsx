@@ -189,7 +189,7 @@ function SelectFriend() {
               variant="contained" 
               color="primary" 
               className={classes.button} 
-              onClick={startSoloGame}
+              onClick={StartGameWithoutFriend}
             >
               Start Game!
             </Button>
@@ -237,7 +237,7 @@ function SelectFriend() {
               variant="contained" 
               color="primary" 
               className={classes.button} 
-              onClick={startSoloGame}
+              onClick={handleClick}
           >
               Start Game!
           </Button>

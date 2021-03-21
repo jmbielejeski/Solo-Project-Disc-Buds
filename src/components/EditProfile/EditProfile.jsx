@@ -39,7 +39,7 @@ function EditProfile() {
       }
     })
     // go back to normal view after changing username
-    setEditView('');
+    setChangeUserNameView('');
   }
 
   const deleteButton = () => {

@@ -16,7 +16,7 @@ router.post('/', rejectUnauthenticated, (req, res) => {
     VALUES ($1, $2, $3, $4);
   `
   
-  pool.query(queryText, rejectUnauthenticated, [req.body.courseId, req.user.id, req.body.holeScore, req.body.holeIndex])
+  pool.query(queryText, [req.body.courseId, req.user.id, req.body.holeScore, req.body.holeIndex])
     .then(dbRes => {
       res.sendStatus(200);
     })
