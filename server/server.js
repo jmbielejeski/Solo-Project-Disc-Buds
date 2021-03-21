@@ -8,6 +8,14 @@ const sessionMiddleware = require('./modules/session-middleware');
 const passport = require('./strategies/user.strategy');
 require('dotenv').config() // protect those keys! npm install dontenv
 
+// AWS Upload
+app.use('/s3', require('react-dropzone-s3-uploader/s3router')({
+  bucket: process.env.AWS_S3_BUCKET, // required
+  region: process.env.AWS_S3_REGION, // optional
+  headers: {'Access-Control-Allow-Origin': '*'}, // optional
+  ACL: 'public-read', // this is the default - set to `public-read` to let anyone view uploads
+  }));
+
 // Route includes
 const userRouter = require('./routes/user.router');
 const friendRouter = require('./routes/friend.router');
