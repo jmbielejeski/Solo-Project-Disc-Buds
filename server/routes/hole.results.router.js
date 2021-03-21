@@ -1,10 +1,13 @@
 const { actionChannel } = require('@redux-saga/core/effects');
+const {
+  rejectUnauthenticated,
+} = require('../modules/authentication-middleware');
 const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
 
 // POST to add hole results to DB
-router.post('/', (req, res) => {
+router.post('/', rejectUnauthenticated, (req, res) => {
   console.log('in hole results router', req.body)
 
   let queryText = `
@@ -13,7 +16,7 @@ router.post('/', (req, res) => {
     VALUES ($1, $2, $3, $4);
   `
   
-  pool.query(queryText, [req.body.courseId, req.user.id, req.body.holeScore, req.body.holeIndex])
+  pool.query(queryText, rejectUnauthenticated, [req.body.courseId, req.user.id, req.body.holeScore, req.body.holeIndex])
     .then(dbRes => {
       res.sendStatus(200);
     })

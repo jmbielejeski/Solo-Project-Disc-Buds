@@ -19,7 +19,7 @@ router.get('/match', rejectUnauthenticated, (req, res) => {
   LIMIT $3
   `
 
-  pool.query(queryText, [friendId, courseId, holeCount])
+  pool.query(queryText, rejectUnauthenticated, [friendId, courseId, holeCount])
     .then((dbRes) => {
       // console.log('courseHistory', dbRes.rows);
       res.send(dbRes.rows);

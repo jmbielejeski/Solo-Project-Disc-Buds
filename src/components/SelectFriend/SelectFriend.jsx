@@ -103,6 +103,21 @@ function SelectFriend() {
     history.push('/soloGame');
   }
 
+  let startGameButton = 
+  <Button 
+    type="submit" 
+    variant="contained" 
+    color="primary" 
+    className={classes.button} 
+    onClick={startSoloGame}
+  >
+    Start Game!
+  </Button>
+
+  if (selectedFriend === '') {
+    console.log('choose a friend')
+  }
+
   if (friendList[0] === undefined && randomPlayerList[0] === undefined) {
     return (
     <Grid 
@@ -170,14 +185,14 @@ function SelectFriend() {
             </RadioGroup>
           </Grid>
           <Button 
-            type="submit" 
-            variant="contained" 
-            color="primary" 
-            className={classes.button} 
-            onClick={StartGameWithoutFriend}
-          >
-            Start Game!
-          </Button>
+              type="submit" 
+              variant="contained" 
+              color="primary" 
+              className={classes.button} 
+              onClick={startSoloGame}
+            >
+              Start Game!
+            </Button>
         </FormControl>
     </Grid>
   </Grid>
@@ -218,13 +233,13 @@ function SelectFriend() {
             </RadioGroup>
           </Grid>
           <Button 
-            type="submit" 
-            variant="contained" 
-            color="primary" 
-            className={classes.button} 
-            onClick={handleClick}
+              type="submit" 
+              variant="contained" 
+              color="primary" 
+              className={classes.button} 
+              onClick={startSoloGame}
           >
-            Start Game!
+              Start Game!
           </Button>
         </FormControl>
     </Grid>

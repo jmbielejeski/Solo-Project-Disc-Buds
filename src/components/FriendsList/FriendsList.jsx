@@ -72,47 +72,91 @@ function FriendsList() {
     history.push(`/friendDetail/`)
   }
 
-  return (
-    <Grid 
-      container 
-      className={classes.root} 
-      spacing={2}
-      alignItems="center"
-      direction="column"
-    >
-      <Grid item xs={12}>
-        Current Friends!
-      </Grid>
-      <Grid item xs={12}>
+  if (friendSearch === '') {
+    return (
+      <Grid 
+        container 
+        className={classes.root} 
+        spacing={2}
+        alignItems="center"
+        direction="column"
+      >
         <Grid item xs={12}>
-          {friendList.map(friend => {
-            return(
-              <li key={friend.id} onClick={() => handleClick(friend.id, friend.username)}>{friend.username}</li>
-            )
-          })}
+          Current Friends!
         </Grid>
-        <FormControl component="fieldset">
-        <FormLabel component="legend">Search for a friend to add</FormLabel> 
-          <TextField
-            required 
-            variant="outlined"
-            placeholder="Search for friend"
-            defaultValue={friendSearch}
-            onChange={(event) => setFriendSearch(event.target.value)}
-          />  
-          <Button 
-            type="submit" 
-            variant="contained" 
-            color="primary" 
-            className={classes.button} 
-            onClick={getSearchResults}
-          >
-            Search
-          </Button>
-        </FormControl>
+        <Grid item xs={12}>
+          <Grid item xs={12}>
+            {friendList.map(friend => {
+              return(
+                <li key={friend.id} onClick={() => handleClick(friend.id, friend.username)}>{friend.username}</li>
+              )
+            })}
+          </Grid>
+          <FormControl component="fieldset">
+          <FormLabel component="legend">Search for a friend to add</FormLabel> 
+            <TextField
+              required 
+              variant="outlined"
+              placeholder="Search for friend"
+              defaultValue={friendSearch}
+              onChange={(event) => setFriendSearch(event.target.value)}
+            />  
+            <Button 
+              type="submit" 
+              variant="contained" 
+              color="primary" 
+              className={classes.button} 
+              onClick={getSearchResults}
+              disabled
+            >
+              Search
+            </Button>
+          </FormControl>
+        </Grid>
       </Grid>
-    </Grid>
-  )
+    )
+  } else {
+    return (
+      <Grid 
+        container 
+        className={classes.root} 
+        spacing={2}
+        alignItems="center"
+        direction="column"
+      >
+        <Grid item xs={12}>
+          Current Friends!
+        </Grid>
+        <Grid item xs={12}>
+          <Grid item xs={12}>
+            {friendList.map(friend => {
+              return(
+                <li key={friend.id} onClick={() => handleClick(friend.id, friend.username)}>{friend.username}</li>
+              )
+            })}
+          </Grid>
+          <FormControl component="fieldset">
+          <FormLabel component="legend">Search for a friend to add</FormLabel> 
+            <TextField
+              required 
+              variant="outlined"
+              placeholder="Search for friend"
+              defaultValue={friendSearch}
+              onChange={(event) => setFriendSearch(event.target.value)}
+            />  
+            <Button 
+              type="submit" 
+              variant="contained" 
+              color="primary" 
+              className={classes.button} 
+              onClick={getSearchResults}
+            >
+              Search
+            </Button>
+          </FormControl>
+        </Grid>
+      </Grid>
+    )
+  }
 }
-
 export default FriendsList;

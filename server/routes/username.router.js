@@ -1,9 +1,12 @@
 const express = require('express');
 const pool = require('../modules/pool');
+const {
+  rejectUnauthenticated,
+} = require('../modules/authentication-middleware');
 const router = express.Router();
 
 // PUT route to change username
-router.put('/', (req, res) => {
+router.put('/', rejectUnauthenticated, (req, res) => {
   console.log('in PUT route to  change username', req.body)
 
   const queryText = `

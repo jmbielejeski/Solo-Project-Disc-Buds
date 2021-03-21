@@ -45,7 +45,7 @@ const getSearchResults = (event) => {
   history.push('/courseSearchResults');
 }
 
-
+if (courseSearch === '') {
   return (
     <Grid 
       container 
@@ -63,7 +63,41 @@ const getSearchResults = (event) => {
             variant="outlined"
             placeholder="Search for a course"
             onChange={(event) => setCourseSearch(event.target.value)}
-            required={true} 
+            required
+          />  
+          <Button 
+            type="submit" 
+            variant="contained" 
+            color="primary" 
+            className={classes.button} 
+            onClick={getSearchResults}
+            disabled
+          >
+            Search
+          </Button>
+        </FormControl>
+        
+      </Grid>
+  )
+} else {
+  return (
+    <Grid 
+      container 
+      className={classes.root} 
+      spacing={2}
+      alignItems="center"
+      direction="column"
+    >
+      <Grid item xs={12}>
+        Course Search
+      </Grid>
+        <FormControl component="fieldset">
+        <FormLabel component="legend"></FormLabel> 
+          <TextField 
+            variant="outlined"
+            placeholder="Search for a course"
+            onChange={(event) => setCourseSearch(event.target.value)}
+            required
           />  
           <Button 
             type="submit" 
@@ -78,6 +112,7 @@ const getSearchResults = (event) => {
         
       </Grid>
   )
+  }
 }
 
 export default CourseSearch;
