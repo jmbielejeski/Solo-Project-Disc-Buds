@@ -5,8 +5,9 @@ function HomePage() {
 
   return (
     <div>
-      <h1>Home Page!</h1>
+      <h1>Welcome to Disc Buds!</h1>
       <Link className="navLink" to='/courseSearch'>Start Game</Link>
+      <Link className="navLink" to='/friendsList'>Add a friend</Link>
     </div>
   )
 }

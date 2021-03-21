@@ -29,6 +29,7 @@ import FriendsSearchResults from '../FriendsSearchResults/FriendsSearchResults';
 import EditProfile from '../EditProfile/EditProfile';
 import FriendDetail from '../FriendDetail/FriendDetail';  
 import AddCourseForm from '../AddCourseForm/AddCourseForm';
+import SoloGame from '../SoloGame/SoloGame';
 
 import './App.css';
 
@@ -139,6 +140,14 @@ function App() {
             path="/friendDetail"
           >
             <FriendDetail />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shoes HomePage
+            exact
+            path="/soloGame"
+          >
+            <SoloGame />
           </ProtectedRoute>
 
           <ProtectedRoute

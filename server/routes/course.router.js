@@ -57,6 +57,30 @@ router.get('/selected/:courseId', rejectUnauthenticated, (req, res) => {
     })
 })
 
+
+// GET to grab random players who have played course
+router.get('/random/:courseId', rejectUnauthenticated, (req, res) => {
+  // console.log('in course GET router for course friend list', req.params.course)
+  // console.log('courseId', req.params.courseId);
+
+  const queryText =`
+  SELECT "user".username, "user".id, count("user".username) FROM "course_history"
+  JOIN "user" ON "course_history".user_id = "user".id
+  WHERE "course_history".course_id = $2
+  AND "user".id != $1
+  GROUP BY "user".id;`
+
+  pool.query(queryText, [req.user.id, req.params.courseId])
+    .then((dbRes) => {
+      // console.log('selected course friends', dbRes.rows)
+      res.send(dbRes.rows);
+    })
+    .catch((error) => {
+      console.log('error getting friends who played course', error);
+      res.sendStatus(500);
+    })
+})
+
 // add a course POST
 router.post('/', rejectUnauthenticated, (req, res) => {
   //console.log('in addCourse POST router')  

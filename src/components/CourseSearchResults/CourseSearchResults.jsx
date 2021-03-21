@@ -54,7 +54,7 @@ function CourseSearchResults() {
 
   return(
     <div>
-      <h5>Select a course</h5>
+      <h5>Select a Course</h5>
       <ul>
         {courseSearchResults.map(course => {
           return (
@@ -64,8 +64,8 @@ function CourseSearchResults() {
           )
         })}
       </ul>
+      <h5>Or Add a Course</h5>
       <button onClick={goToAddCourseForm}>Add a course</button>
-      
       <Link className="navLink" to='/courseSearch'>Back</Link>
     </div>
 
