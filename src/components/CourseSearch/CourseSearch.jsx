@@ -55,10 +55,10 @@ const getSearchResults = (event) => {
       direction="column"
     >
       <Grid item xs={12}>
-        Course
+        Course Search
       </Grid>
         <FormControl component="fieldset">
-        <FormLabel component="legend">Search for a course</FormLabel> 
+        <FormLabel component="legend"></FormLabel> 
           <TextField 
             variant="outlined"
             placeholder="Search for a course"

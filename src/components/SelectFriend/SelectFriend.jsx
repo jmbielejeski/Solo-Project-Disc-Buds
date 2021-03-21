@@ -113,7 +113,7 @@ function SelectFriend() {
     </Grid>
       <Grid item xs={12}>
         <FormControl component="fieldset">
-        <FormLabel component="legend">You don't have a friend who played this course. Select a  score at this course.</FormLabel>
+        <FormLabel component="legend">You don't have a friend who played this course. You can play against a random player below.</FormLabel>
           <Grid item xs={12}>
             <RadioGroup 
               aria-label="Friend" 

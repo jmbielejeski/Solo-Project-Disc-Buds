@@ -1,5 +1,6 @@
 import { SquareFootOutlined } from '@material-ui/icons';
 import React from 'react';
+import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import Swal from 'sweetalert2'
 
@@ -31,6 +32,8 @@ function GameResult() {
       <h2>Game Results!</h2>
       <h4>your score: {matchResults.yourScore}</h4>
       <h4>{matchResults.friend}'s score: {matchResults.friendScore}</h4>
+      <Link className="navLink" to='/homePage'>Home page</Link>
+
     </div>
   )
 }

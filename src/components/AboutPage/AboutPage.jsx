@@ -10,7 +10,7 @@ function AboutPage() {
     <div className="container">
       <div>
         <h2>Welcome to Disc Buds</h2>
-        <p>With this App you can play disc golf against your friend's score history. This allows you to compete against them even when you can't be on the course at the same time.</p>
+        <p>Disc Buds let you play disc golf against your friend's round history. This allows you to compete against them even when you can't be on the course at the same time.</p>
       </div>
     </div>
   );
