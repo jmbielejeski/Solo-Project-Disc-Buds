@@ -54,7 +54,7 @@ switch(editView) {
         />
         <button onClick={handleSave}>Save</button>
         <button onClick={handleCancel}>Cancel</button>
-        <DropzoneS3Uploader />
+        {/* <DropzoneS3Uploader /> */}
       </div>
     )
     default:
