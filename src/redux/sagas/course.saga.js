@@ -5,6 +5,7 @@ function* course (action) {
   yield takeEvery('FETCH_COURSE_SEARCH', fetchCourseSearch);
   yield takeEvery('ADD_COURSE', addCourse);
   yield takeEvery('FETCH_FRIEND_COURSE_HISTORY', fetchFriendCourseHistory);
+  yield takeEvery('FETCH_RANDOM_COURSE_HISTORY', fetchRandomPlayer);
 };
 
 
@@ -46,5 +47,23 @@ function* fetchFriendCourseHistory (action) {
     console.log('error in fetchFriendCourseHistory', error);
   }
 }
+
+
+function* fetchRandomPlayer (action) {
+  //console.log('in fetchRandomPlayer saga', action.payload);
+
+  console.log('fetchRandomPlayer saga', action.payload.courseId)
+  try {
+    const response = yield axios.get(`/api/course/random/${action.payload.courseId}`);
+    yield put({
+      type: 'SET_RANDOM_PLAYER_HISTORY',
+      payload: response.data
+    })
+  }
+  catch (error) {
+    console.log('error in fetchRandomPlayer', error);
+  }
+}
+
 
 export default course;

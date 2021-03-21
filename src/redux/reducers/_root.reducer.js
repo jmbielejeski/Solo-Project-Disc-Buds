@@ -11,6 +11,7 @@ import friendCourseReducer from './friend.course.reducer';
 import matchDetailsReducer from './match.details.reducer';
 import matchResultsReducer from './match.results.reducer';
 import googleMapsResult from './google.maps.reducer';
+import randomPlayerReducer from './random.player.reducer'
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -31,6 +32,7 @@ const rootReducer = combineReducers({
   matchDetailsReducer,
   matchResultsReducer,
   googleMapsResult,
+  randomPlayerReducer,
 });
 
 export default rootReducer;
