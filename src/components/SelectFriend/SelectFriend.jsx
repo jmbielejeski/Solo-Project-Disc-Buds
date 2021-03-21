@@ -97,6 +97,42 @@ function SelectFriend() {
     history.push('/gameProgress');
   }
 
+  const startSoloGame = (event) => {
+    event.preventDefault();
+    console.log('starting solo game');
+    history.push('/soloGame');
+  }
+
+  if (friendList[0] === undefined && randomPlayerList[0] === undefined) {
+    return (
+    <Grid 
+      container 
+      className={classes.root} 
+      spacing={2}
+      alignItems="center"
+      direction="column"
+    >
+      <Grid item xs={12}>
+        {selectCourse.courseName} 
+      </Grid>
+        <Grid item xs={12}>
+          <FormControl component="fieldset">
+          <FormLabel component="legend">No one else has played this course. Click Start Game to track your score.</FormLabel>
+            <Button 
+              type="submit" 
+              variant="contained" 
+              color="primary" 
+              className={classes.button} 
+              onClick={startSoloGame}
+            >
+              Start Game!
+            </Button>
+          </FormControl>
+        </Grid>
+    </Grid>
+    )
+  }
+
 
   if (friendList[0] === undefined) {
     
