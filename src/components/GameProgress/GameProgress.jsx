@@ -6,10 +6,12 @@ import Swal from 'sweetalert2'
 
 // Material UI imports
 import Grid from '@material-ui/core/Grid';
-import {Button} from '@material-ui/core';
+import {Button, TextField} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
+import PlusOneIcon from '@material-ui/icons/PlusOne';
+import ExposureNeg1Icon from '@material-ui/icons/ExposureNeg1';
 
 function GameProgress() {
 
@@ -21,6 +23,14 @@ const useStyles = makeStyles((theme) => ({
   control: {
     padding: theme.spacing(2),
     margin: 'auto',
+  },
+  textField: {
+    width: '10ch',
+    autoFocus: 'true',
+    textAlign: "center"
+  },
+  icons: {
+    height: '3rem',
   },
 }));
 
@@ -142,7 +152,15 @@ switch(finishGameButton) {
         
         <Grid item xs={12}>your score: {yourTotalScore}</Grid>
         <Grid item xs={12}>{friendAndCourse.friend}'s score: {friendTotalScore}</Grid>
-        <button onClick={finishGame}>Finish Game</button>
+        <Button
+          type="submit" 
+          variant="contained" 
+          color="primary" 
+          className={classes.button} 
+          onClick={finishGame}
+        >
+          Finish Game
+        </Button>
       </Grid>
     )
     default:
@@ -156,15 +174,22 @@ switch(finishGameButton) {
         >
           <Grid item xs={12}>{friendAndCourse.courseName}</Grid>
           <Grid item xs={12}>Hole {currentHole}</Grid>
-          <FormControl >
-            <input 
-              type="number" 
-              name="Score"
-              placeholder="Enter Score"
-              value={currentScore}
-              onChange={(event) => setCurrentScore(event.target.value)}
-              required
-            />
+
+          <FormControl component="fieldset">
+              <Grid item xs={12}>Enter Score:</Grid>
+              <Grid item xs={12}>
+                <ExposureNeg1Icon className={classes.icons}  onClick={() => setCurrentScore(Number(currentScore) - 1)}/>
+                <TextField 
+                  className={classes.textField}
+                  variant="outlined"
+                  value={currentScore}
+                  onChange={(event) => setCurrentScore(event.target.value)}
+                  type="number"
+                  required
+                />
+                <PlusOneIcon className={classes.icons}  onClick={() => setCurrentScore(Number(currentScore) + 1)}/>
+              </Grid>
+              
             <Button
               type="submit" 
               variant="contained" 
