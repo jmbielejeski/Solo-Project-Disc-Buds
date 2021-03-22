@@ -4,8 +4,28 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import Swal from 'sweetalert2'
 
+// Material UI imports
+import Grid from '@material-ui/core/Grid';
+import {Button} from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+import FormControl from '@material-ui/core/FormControl';
+import FormLabel from '@material-ui/core/FormLabel';
 
 function GameProgress() {
+
+  // Material UI
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+  },
+  control: {
+    padding: theme.spacing(2),
+    margin: 'auto',
+  },
+}));
+
+const classes = useStyles();
+// End Material UI
 
   const history = useHistory();
 
@@ -110,21 +130,33 @@ function GameProgress() {
 switch(finishGameButton) {
   case true:
     return (
-      <div>
-        <h2>{friendAndCourse.courseName}</h2>
-        <h3>Hole {currentHole}</h3>
+      <Grid
+        container 
+        className={classes.root} 
+        spacing={2}
+        alignItems="center"
+        direction="column"
+      >
+        <Grid item xs={12}>{friendAndCourse.courseName}</Grid>
+        <Grid item xs={12}>Hole {currentHole}</Grid>
         
-        <h4>your score: {yourTotalScore}</h4>
-        <h4>{friendAndCourse.friend}'s score: {friendTotalScore}</h4>
+        <Grid item xs={12}>your score: {yourTotalScore}</Grid>
+        <Grid item xs={12}>{friendAndCourse.friend}'s score: {friendTotalScore}</Grid>
         <button onClick={finishGame}>Finish Game</button>
-      </div>
+      </Grid>
     )
     default:
       return (
-        <div>
-          <h2>{friendAndCourse.courseName}</h2>
-          <h3>Hole {currentHole}</h3>
-          <form onSubmit={handleSubmit}>
+        <Grid 
+          container 
+          className={classes.root} 
+          spacing={4}
+          alignItems="center"
+          direction="column"
+        >
+          <Grid item xs={12}>{friendAndCourse.courseName}</Grid>
+          <Grid item xs={12}>Hole {currentHole}</Grid>
+          <FormControl >
             <input 
               type="number" 
               name="Score"
@@ -133,11 +165,19 @@ switch(finishGameButton) {
               onChange={(event) => setCurrentScore(event.target.value)}
               required
             />
-            <button>Submit Score</button>
-          </form>
-          <h4>your score: {yourTotalScore}</h4>
-          <h4>{friendAndCourse.friend}'s score: {friendTotalScore}</h4>
-        </div>
+            <Button
+              type="submit" 
+              variant="contained" 
+              color="primary" 
+              className={classes.button} 
+              onClick={handleSubmit}
+            >
+              Submit Score
+            </Button>
+          </FormControl>
+          <Grid item xs={12}>your score: {yourTotalScore}</Grid>
+          <Grid item xs={12}>{friendAndCourse.friend}'s score: {friendTotalScore}</Grid>
+        </Grid>
       )
   }
 }

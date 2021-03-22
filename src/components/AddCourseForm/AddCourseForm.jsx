@@ -36,7 +36,9 @@ function AddCourseForm() {
       const [state, setState] = useState('');
       const [zipCode, setZipCode] = useState('');
     
-      const [googleMapsSearch, setGoogleMapsSearch]= useState('');
+      // const [googleMapsSearch, setGoogleMapsSearch]= useState('');
+
+      // const googleMapSearchResults = useSelector(store => store.googleMapsResult);
 
   // handle adding ac course by sending the input data to the saga
   const addCourse = (event) => {
@@ -55,6 +57,8 @@ function AddCourseForm() {
     })
   }
 
+  // console.log('googleMapSearchResults', googleMapSearchResults.candidates[0].formatted_address)
+
   // const getGoogleMapsSearch = (event) => {
   //   event.preventDefault();
   //   console.log('in google maps search', googleMapsSearch)
@@ -68,9 +72,9 @@ function AddCourseForm() {
 
   return (
     <div>
-      {/* <h3>Add a course through Google</h3>
+      {/* <h3>Search for a course through Google</h3>
       <FormControl component="fieldset">
-        <FormLabel component="legend">Search for a course through google</FormLabel> 
+        <FormLabel component="legend"></FormLabel> 
           <TextField 
             variant="outlined"
             placeholder="Search for a course on google"

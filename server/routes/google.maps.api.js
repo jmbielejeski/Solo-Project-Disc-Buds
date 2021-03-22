@@ -19,6 +19,7 @@ router.get('/:input', rejectUnauthenticated, (req, res) => {
     }
   })
     .then((response) => {
+      console.log('google maps search results', response.data)
       res.send(response.data);
     })
     .catch((error) => {
