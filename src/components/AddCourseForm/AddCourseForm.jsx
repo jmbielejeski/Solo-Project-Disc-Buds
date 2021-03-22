@@ -9,6 +9,8 @@ import FormLabel from '@material-ui/core/FormLabel';
 import {Button, TextField} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
 
 function AddCourseForm() {
   // Material UI
@@ -36,9 +38,9 @@ function AddCourseForm() {
       const [state, setState] = useState('');
       const [zipCode, setZipCode] = useState('');
     
-      // const [googleMapsSearch, setGoogleMapsSearch]= useState('');
+      const [googleMapsSearch, setGoogleMapsSearch]= useState('');
 
-      // const googleMapSearchResults = useSelector(store => store.googleMapsResult);
+      const googleMapSearchResults = useSelector(store => store.googleMapsResult.candidates);
 
   // handle adding ac course by sending the input data to the saga
   const addCourse = (event) => {
@@ -57,22 +59,22 @@ function AddCourseForm() {
     })
   }
 
-  // console.log('googleMapSearchResults', googleMapSearchResults.candidates[0].formatted_address)
+  console.log('googleMapSearchResults', googleMapSearchResults)
 
-  // const getGoogleMapsSearch = (event) => {
-  //   event.preventDefault();
-  //   console.log('in google maps search', googleMapsSearch)
-  //   dispatch({
-  //     type: 'GOOGLE_MAPS_SEARCH',
-  //     payload: {
-  //       googleMapsSearch
-  //     }
-  //   })
-  // }
+  const getGoogleMapsSearch = (event) => {
+    event.preventDefault();
+    console.log('in google maps search', googleMapsSearch)
+    dispatch({
+      type: 'GOOGLE_MAPS_SEARCH',
+      payload: {
+        googleMapsSearch
+      }
+    })
+  }
 
   return (
     <div>
-      {/* <h3>Search for a course through Google</h3>
+      <h3>Search for a course through Google</h3>
       <FormControl component="fieldset">
         <FormLabel component="legend"></FormLabel> 
           <TextField 
@@ -90,8 +92,19 @@ function AddCourseForm() {
           >
             Search
           </Button>
-      </FormControl> */}
-
+      </FormControl>
+      {/* <Grid item xs={12}>
+        <List>
+          {googleMapSearchResults.map(course => {
+            return (
+              <ListItem key={course.place_id}>
+                <Grid item xs={12}>Name{course.name}</Grid> 
+                <Grid item xs={12}>Address{course.formatted_address}</Grid>
+              </ListItem>
+            )
+          })}
+        </List>
+      </Grid> */}
       <h3>Add a course</h3>
 
       <form onSubmit={addCourse}>

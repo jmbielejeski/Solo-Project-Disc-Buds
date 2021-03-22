@@ -14,7 +14,7 @@ router.get('/:input', rejectUnauthenticated, (req, res) => {
     params: {
       input: req.params.input,
       inputtype: 'textquery',
-      fields: 'formatted_address,name',
+      fields: 'formatted_address,name,place_id',
       key: process.env.GOOGLE_MAPS_API_KEY,
     }
   })
