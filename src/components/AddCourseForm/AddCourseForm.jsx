@@ -55,20 +55,20 @@ function AddCourseForm() {
     })
   }
 
-  const getGoogleMapsSearch = (event) => {
-    event.preventDefault();
-    console.log('in google maps search', googleMapsSearch)
-    dispatch({
-      type: 'GOOGLE_MAPS_SEARCH',
-      payload: {
-        googleMapsSearch
-      }
-    })
-  }
+  // const getGoogleMapsSearch = (event) => {
+  //   event.preventDefault();
+  //   console.log('in google maps search', googleMapsSearch)
+  //   dispatch({
+  //     type: 'GOOGLE_MAPS_SEARCH',
+  //     payload: {
+  //       googleMapsSearch
+  //     }
+  //   })
+  // }
 
   return (
     <div>
-      <h3>Add a course through Google</h3>
+      {/* <h3>Add a course through Google</h3>
       <FormControl component="fieldset">
         <FormLabel component="legend">Search for a course through google</FormLabel> 
           <TextField 
@@ -86,9 +86,9 @@ function AddCourseForm() {
           >
             Search
           </Button>
-      </FormControl>
+      </FormControl> */}
 
-      <h3>Add a course manually</h3>
+      <h3>Add a course</h3>
 
       <form onSubmit={addCourse}>
         <label htmlFor="courseName">Enter course name</label>

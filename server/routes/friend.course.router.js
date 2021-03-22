@@ -31,4 +31,26 @@ router.get('/match', rejectUnauthenticated, (req, res) => {
 
 });
 
+// DELETE users course history
+router.delete('/', rejectUnauthenticated, (req, res) => {
+  console.log('deleting profile');
+
+  let queryText = `
+    DELETE FROM "course_history"
+    WHERE user_id = $1;`
+
+
+  pool.query(queryText, [req.user.id])
+    .then(dbRes => {
+      console.log('user profile course history deleted')
+      res.sendStatus(200);
+    })
+    .catch(error => {
+      console.log('error deleting profile course history', error);
+      res.sendStatus(500); 
+    })
+
+
+})
+
 module.exports = router;

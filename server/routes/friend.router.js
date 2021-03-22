@@ -119,4 +119,23 @@ router.delete('/:id', rejectUnauthenticated, (req, res) => {
 
 })
 
+router.delete('/profile/friendships', rejectUnauthenticated, (req, res) => {
+  console.log('router delete friendships');
+
+  let queryText = `
+    DELETE FROM "friends"
+    WHERE user_one = $1 OR user_two=$1;`
+
+    pool.query(queryText, [req.user.id])
+    .then(dbRes => {
+      console.log('user friendships deleted')
+      res.sendStatus(200);
+    })
+    .catch(error => {
+      console.log('error deleting friendships', error);
+      res.sendStatus(500); 
+    })
+
+})
+
 module.exports = router;

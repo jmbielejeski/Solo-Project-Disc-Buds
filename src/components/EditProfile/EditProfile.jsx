@@ -59,9 +59,6 @@ function EditProfile() {
         })
         dispatch({
           type: 'DELETE_PROFILE',
-          payload: {
-            userId: user.id
-          }
         })
         history.push('/homePage');
       } else {

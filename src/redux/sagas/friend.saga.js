@@ -6,6 +6,7 @@ function* friend (action) {
   yield takeEvery('ADD_FRIEND', addFriend)
   yield takeEvery('FETCH_FRIEND_DETAILS', fetchFriendDetails);
   yield takeEvery('DELETE_FRIEND', deleteFriend);
+
   yield takeEvery('FETCH_FRIEND_LIST', fetchFriendList);
   yield takeEvery('FETCH_CURRENT_DETAILS', fetchCurrentFriendDetails);
 };
@@ -92,5 +93,7 @@ function* fetchFriendList (action) {
     console.log('error in fetchFriendList', error);
   }
 }
+
+
 
 export default friend;

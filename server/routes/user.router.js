@@ -47,40 +47,14 @@ router.post('/logout', (req, res) => {
   res.sendStatus(200);
 });
 
-router.delete('/:id', rejectUnauthenticated, (req, res) => {
-  console.log('deleting profile', req.params.id);
+router.delete('/profile', rejectUnauthenticated, (req, res) => {
+  console.log('deleting profile');
 
-  let queryText1 = `
-    DELETE FROM "course_history"
-    WHERE user_id = $1;`
-
-  let queryText2 = `
-    DELETE FROM "friends"
-    WHERE user_one = $1 OR user_two=$1;`
-
-  let queryText3 = `
+  let queryText = `
     DELETE FROM "user"
     WHERE id = $1;`
 
-  pool.query(queryText1, [req.user.id])
-    .then(dbRes => {
-      console.log('user profile deleted')
-      res.sendStatus(200);
-    })
-    .catch(error => {
-      console.log('error deleting profile', error);
-      res.sendStatus(500); 
-    })
-  pool.query(queryText2, [req.user.id])
-    .then(dbRes => {
-      console.log('user profile deleted')
-      res.sendStatus(200);
-    })
-    .catch(error => {
-      console.log('error deleting profile', error);
-      res.sendStatus(500); 
-    })
-  pool.query(queryText3, [req.user.id])
+  pool.query(queryText, [req.user.id])
     .then(dbRes => {
       console.log('user profile deleted')
       res.sendStatus(200);

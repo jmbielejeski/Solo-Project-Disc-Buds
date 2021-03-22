@@ -7,7 +7,9 @@ function HomePage() {
     <div>
       <h1>Welcome to Disc Buds!</h1>
       <Link className="navLink" to='/courseSearch'>Start Game</Link>
+      <div>
       <Link className="navLink" to='/friendsList'>Add a friend</Link>
+      </div>
     </div>
   )
 }
