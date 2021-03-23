@@ -12,7 +12,11 @@ import Grid from '@material-ui/core/Grid';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import Link from '@material-ui/core/Link';
-import Paper from '@material-ui/core/Paper';
+import Accordion from '@material-ui/core/Accordion';
+import AccordionSummary from '@material-ui/core/AccordionSummary';
+import AccordionDetails from '@material-ui/core/AccordionDetails';
+import Typography from '@material-ui/core/Typography';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 
 function CourseSearchResults() {
@@ -71,11 +75,37 @@ function CourseSearchResults() {
         <List>
           {courseSearchResults.map(course => {
             return(
+              <Grid 
+                container 
+                className={classes.root} 
+                spacing={2}
+                alignItems="center"
+                direction="column">
               <ListItem key={course.course_id}>
                 <Grid item xs={12}>{course.course_name}</Grid> 
                 <Grid item xs={12}>number of holes: {course.holes}</Grid>
                 <Grid item xs={12}><button onClick={() => startGame(course.course_name, course.course_id, course.holes)}>Play Course</button></Grid>
               </ListItem>
+                <Accordion>
+                  <AccordionSummary
+                    expandIcon={<ExpandMoreIcon />}
+                    aria-controls="panel1a-content"
+                    id="panel1a-header"
+                  >
+                    <Typography className={classes.heading}>Course Details</Typography>
+                  </AccordionSummary>
+                  <AccordionDetails>
+                    <Grid item xs={12}>
+                      Address: {course.street}, {course.city}, {course.state_province}, {course.postal_code}
+                    </Grid>
+                  </AccordionDetails>
+                  <AccordionDetails>
+                  <Grid item xs={12}>
+                      Description: {course.course_description}
+                    </Grid>
+                  </AccordionDetails>
+                </Accordion>
+              </Grid>
             )
           })}
         </List>
