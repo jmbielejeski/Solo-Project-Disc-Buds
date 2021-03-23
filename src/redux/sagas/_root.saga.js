@@ -7,7 +7,7 @@ import course from './course.saga';
 import friendCourse from './friend.course.saga';
 import userName from './username.saga';
 import holeResults from './hole_results.saga';
-import googleMaps from './google.maps.saga';
+import discGolfSearch from './disc.golf.search.saga';
 import deleteProfile from './delete.profile';
 
 // rootSaga is the primary saga.
@@ -27,7 +27,7 @@ export default function* rootSaga() {
     friendCourse(),
     userName(),
     holeResults(),
-    googleMaps(),
+    discGolfSearch(),
     deleteProfile()
   ]);
 }

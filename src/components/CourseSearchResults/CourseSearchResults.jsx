@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 
 // Material UI imports
@@ -12,7 +12,12 @@ import Grid from '@material-ui/core/Grid';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import Link from '@material-ui/core/Link';
-import Paper from '@material-ui/core/Paper';
+import Accordion from '@material-ui/core/Accordion';
+import AccordionSummary from '@material-ui/core/AccordionSummary';
+import AccordionDetails from '@material-ui/core/AccordionDetails';
+import Typography from '@material-ui/core/Typography';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import Divider from '@material-ui/core/Divider';
 
 
 function CourseSearchResults() {
@@ -27,6 +32,12 @@ function CourseSearchResults() {
     },
   }));
 
+  useEffect(() => {
+    dispatch({
+      type: 'CLEAR_SEARCH_REDUCER'
+    })
+  }, [])
+
   const classes = useStyles();
   // End Material UI
 
@@ -34,7 +45,8 @@ function CourseSearchResults() {
   const dispatch = useDispatch();
 
   // fetch course search results from reducer
-  const courseSearchResults = useSelector(store => store.courseSearchReducer);
+  const courseSearchResults = useSelector(store => store.discGolfSearchResults);
+  console.log('courseSearchResults', courseSearchResults)
 
   // handle starting game once a course has been selected
   const startGame = (courseName, courseId, holeCount) => {
@@ -51,11 +63,6 @@ function CourseSearchResults() {
     // navigate to selectFriend
     history.push('/selectFriend');
   }
-    
-  const goToAddCourseForm = () => {
-    history.push('/addCourse');
-  }
-
   return(
     <Grid
       container 
@@ -68,24 +75,45 @@ function CourseSearchResults() {
       <Grid item xs={12}>
         <List>
           {courseSearchResults.map(course => {
-            return (
-              <ListItem key={course.id}>
-                <Grid item xs={12}>{course.course_name}</Grid> 
-                <Grid item xs={12}>number of holes: {course.hole_count}</Grid>
-                <Grid item xs={12}><button onClick={() => startGame(course.course_name, course.id, course.hole_count)}>Play Course</button></Grid>
-              </ListItem>
+            return(
+              <Grid 
+                container 
+                className={classes.root} 
+                spacing={2}
+                alignItems="center"
+                direction="column"
+              >
+                <Divider />
+                <ListItem key={course.course_id}>
+                  <Grid item xs={12}>{course.course_name}</Grid> 
+                  <Grid item xs={12}>number of holes: {course.holes}</Grid>
+                  <Grid item xs={12}><button onClick={() => startGame(course.course_name, course.course_id, course.holes)}>Play Course</button></Grid>
+                </ListItem>
+                  <Accordion>
+                    <AccordionSummary
+                      expandIcon={<ExpandMoreIcon />}
+                      aria-controls="panel1a-content"
+                      id="panel1a-header"
+                    >
+                      <Typography className={classes.heading}>Course Details</Typography>
+                    </AccordionSummary>
+                    <AccordionDetails>
+                      <Grid item xs={12}>
+                        Address: {course.street}, {course.city}, {course.state_province}, {course.postal_code}
+                      </Grid>
+                    </AccordionDetails>
+                    <AccordionDetails>
+                    <Grid item xs={12}>
+                        Description: {course.course_description}
+                    </Grid>
+                  </AccordionDetails>
+                </Accordion>
+                <Divider />
+              </Grid>
             )
           })}
         </List>
       </Grid>
-      <Grid item xs={12}>Or Add a Course</Grid>
-      <Button 
-        variant="contained" 
-        color="primary"
-        onClick={goToAddCourseForm}
-      >
-        Add a course
-      </Button>
       <Link 
         component="button"
         variant="body1"

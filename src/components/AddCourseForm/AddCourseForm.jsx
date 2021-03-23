@@ -38,9 +38,7 @@ function AddCourseForm() {
       const [state, setState] = useState('');
       const [zipCode, setZipCode] = useState('');
     
-      const [googleMapsSearch, setGoogleMapsSearch]= useState('');
-
-      const googleMapSearchResults = useSelector(store => store.googleMapsResult.candidates);
+      const [discGolfCourseSearch, setDiscGolfCourseSearch]= useState('');
 
   // handle adding ac course by sending the input data to the saga
   const addCourse = (event) => {
@@ -59,28 +57,34 @@ function AddCourseForm() {
     })
   }
 
-  console.log('googleMapSearchResults', googleMapSearchResults)
 
-  const getGoogleMapsSearch = (event) => {
+  const getDiscGolfCourseSearch = (event) => {
     event.preventDefault();
-    console.log('in google maps search', googleMapsSearch)
+    console.log('in google maps search', discGolfCourseSearch)
     dispatch({
-      type: 'GOOGLE_MAPS_SEARCH',
+      type: 'PDGA_SEARCH',
       payload: {
-        googleMapsSearch
+        discGolfCourseSearch
       }
+    })
+  }
+
+  const handleLogin = () => {
+    dispatch({
+      type: 'HANDLE_LOGIN'
     })
   }
 
   return (
     <div>
+      <Button onClick={handleLogin}>Login</Button>
       <h3>Search for a course through Google</h3>
       <FormControl component="fieldset">
         <FormLabel component="legend"></FormLabel> 
           <TextField 
             variant="outlined"
             placeholder="Search for a course on google"
-            onChange={(event) => setGoogleMapsSearch(event.target.value)}
+            onChange={(event) => setDiscGolfCourseSearch(event.target.value)}
             required={true} 
           />  
           <Button 
@@ -88,23 +92,12 @@ function AddCourseForm() {
             variant="contained" 
             color="primary" 
             className={classes.button} 
-            onClick={getGoogleMapsSearch}
+            onClick={getDiscGolfCourseSearch}
           >
             Search
           </Button>
       </FormControl>
-      {/* <Grid item xs={12}>
-        <List>
-          {googleMapSearchResults.map(course => {
-            return (
-              <ListItem key={course.place_id}>
-                <Grid item xs={12}>Name{course.name}</Grid> 
-                <Grid item xs={12}>Address{course.formatted_address}</Grid>
-              </ListItem>
-            )
-          })}
-        </List>
-      </Grid> */}
+ 
       <h3>Add a course</h3>
 
       <form onSubmit={addCourse}>
