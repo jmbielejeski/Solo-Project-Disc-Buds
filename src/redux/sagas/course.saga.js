@@ -6,8 +6,17 @@ function* course (action) {
   yield takeEvery('ADD_COURSE', addCourse);
   yield takeEvery('FETCH_FRIEND_COURSE_HISTORY', fetchFriendCourseHistory);
   yield takeEvery('FETCH_RANDOM_COURSE_HISTORY', fetchRandomPlayer);
+  yield takeEvery('HANDLE_LOGIN', handleLogin);
 };
 
+function* handleLogin (action) {
+  try {
+    yield axios.post('/api/discGolfApi')
+  }
+  catch(error) {
+    console.log('error in API Login saga');
+  }
+}
 
 function* fetchCourseSearch (action) {
 // console.log('saga course search', action.payload.courseSearch)

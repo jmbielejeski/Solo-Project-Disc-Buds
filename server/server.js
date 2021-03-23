@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser')
 require('dotenv').config();
 
 const app = express();
@@ -23,11 +24,14 @@ const courseRouter = require('./routes/course.router');
 const friendCourseRouter = require('./routes/friend.course.router');
 const userNameRouter = require('./routes/username.router');
 const holeResultsRouter = require('./routes/hole.results.router');
-const googleMaps = require('./routes/google.maps.api')
+const discGolfApi = require('./routes/disc.golf.api')
 
 // Body parser middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+// Cookie parser middleware
+app.use(cookieParser())
 
 // Passport Session Configuration //
 app.use(sessionMiddleware);
@@ -43,7 +47,7 @@ app.use('/api/course', courseRouter);
 app.use('/api/friendCourse', friendCourseRouter);
 app.use('/api/username', userNameRouter);
 app.use('/api/holeResults', holeResultsRouter);
-app.use('/api/googleMaps', googleMaps)
+app.use('/api/discGolfApi', discGolfApi)
 
 
 // Serve static files

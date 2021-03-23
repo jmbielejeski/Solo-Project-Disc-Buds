@@ -10,7 +10,7 @@ import friendCourseHistoryReducer from './friend.course.history.reducer';
 import friendCourseReducer from './friend.course.reducer';
 import matchDetailsReducer from './match.details.reducer';
 import matchResultsReducer from './match.results.reducer';
-import googleMapsResult from './google.maps.reducer';
+import discGolfSearchResults from './disc.golf.search.reducer'
 import randomPlayerReducer from './random.player.reducer'
 
 // rootReducer is the primary reducer for our entire project
@@ -31,7 +31,7 @@ const rootReducer = combineReducers({
   friendCourseReducer,
   matchDetailsReducer,
   matchResultsReducer,
-  googleMapsResult,
+  discGolfSearchResults,
   randomPlayerReducer,
 });
 

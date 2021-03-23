@@ -29,23 +29,22 @@ const history = useHistory();
 const dispatch = useDispatch();
 
 // set local state to store the input for the course search
-const [courseSearch, setCourseSearch] = useState('');
+const [discGolfCourseSearch, setDiscGolfCourseSearch]= useState('');
 
-// take the input course search and send to saga
-const getSearchResults = (event) => {
+const getDiscGolfCourseSearch = (event) => {
   event.preventDefault();
-  console.log('searching for a course', courseSearch);
+  console.log('in google maps search', discGolfCourseSearch)
   dispatch({
-    type: 'FETCH_COURSE_SEARCH',
+    type: 'PDGA_SEARCH',
     payload: {
-      courseSearch,
+      discGolfCourseSearch
     }
   })
   // navigate to courseSearchResults
   history.push('/courseSearchResults');
 }
 
-if (courseSearch === '') {
+if (discGolfCourseSearch === '') {
   return (
     <Grid 
       container 
@@ -54,29 +53,30 @@ if (courseSearch === '') {
       alignItems="center"
       direction="column"
     >
+
       <Grid item xs={12}>
         Course Search
       </Grid>
-        <FormControl component="fieldset">
+      <FormControl component="fieldset">
         <FormLabel component="legend"></FormLabel> 
           <TextField 
             variant="outlined"
-            placeholder="Search for a course"
-            onChange={(event) => setCourseSearch(event.target.value)}
-            required
+            placeholder="Search for a course on google"
+            onChange={(event) => setDiscGolfCourseSearch(event.target.value)}
+            required={true} 
           />  
           <Button 
             type="submit" 
             variant="contained" 
             color="primary" 
             className={classes.button} 
-            onClick={getSearchResults}
+            onClick={getDiscGolfCourseSearch}
             disabled
           >
             Search
           </Button>
-        </FormControl>
-        
+      </FormControl>
+
       </Grid>
   )
 } else {
@@ -91,26 +91,25 @@ if (courseSearch === '') {
       <Grid item xs={12}>
         Course Search
       </Grid>
-        <FormControl component="fieldset">
+      <FormControl component="fieldset">
         <FormLabel component="legend"></FormLabel> 
           <TextField 
             variant="outlined"
-            placeholder="Search for a course"
-            onChange={(event) => setCourseSearch(event.target.value)}
-            required
+            placeholder="Search for a course on google"
+            onChange={(event) => setDiscGolfCourseSearch(event.target.value)}
+            required={true} 
           />  
           <Button 
             type="submit" 
             variant="contained" 
             color="primary" 
             className={classes.button} 
-            onClick={getSearchResults}
+            onClick={getDiscGolfCourseSearch}
           >
             Search
           </Button>
-        </FormControl>
-        
-      </Grid>
+      </FormControl>
+    </Grid>
   )
   }
 }

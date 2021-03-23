@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 
 // Material UI imports
@@ -27,6 +27,12 @@ function CourseSearchResults() {
     },
   }));
 
+  useEffect(() => {
+    dispatch({
+      type: 'CLEAR_SEARCH_REDUCER'
+    })
+  }, [])
+
   const classes = useStyles();
   // End Material UI
 
@@ -34,7 +40,8 @@ function CourseSearchResults() {
   const dispatch = useDispatch();
 
   // fetch course search results from reducer
-  const courseSearchResults = useSelector(store => store.courseSearchReducer);
+  const courseSearchResults = useSelector(store => store.discGolfSearchResults);
+  console.log('courseSearchResults', courseSearchResults)
 
   // handle starting game once a course has been selected
   const startGame = (courseName, courseId, holeCount) => {
@@ -51,11 +58,6 @@ function CourseSearchResults() {
     // navigate to selectFriend
     history.push('/selectFriend');
   }
-    
-  const goToAddCourseForm = () => {
-    history.push('/addCourse');
-  }
-
   return(
     <Grid
       container 
@@ -68,24 +70,16 @@ function CourseSearchResults() {
       <Grid item xs={12}>
         <List>
           {courseSearchResults.map(course => {
-            return (
-              <ListItem key={course.id}>
+            return(
+              <ListItem key={course.course_id}>
                 <Grid item xs={12}>{course.course_name}</Grid> 
-                <Grid item xs={12}>number of holes: {course.hole_count}</Grid>
-                <Grid item xs={12}><button onClick={() => startGame(course.course_name, course.id, course.hole_count)}>Play Course</button></Grid>
+                <Grid item xs={12}>number of holes: {course.holes}</Grid>
+                <Grid item xs={12}><button onClick={() => startGame(course.course_name, course.course_id, course.holes)}>Play Course</button></Grid>
               </ListItem>
             )
           })}
         </List>
       </Grid>
-      <Grid item xs={12}>Or Add a Course</Grid>
-      <Button 
-        variant="contained" 
-        color="primary"
-        onClick={goToAddCourseForm}
-      >
-        Add a course
-      </Button>
       <Link 
         component="button"
         variant="body1"
