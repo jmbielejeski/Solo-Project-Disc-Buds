@@ -3,7 +3,6 @@ import axios from 'axios';
 
 function* course (action) {
   yield takeEvery('FETCH_COURSE_SEARCH', fetchCourseSearch);
-  yield takeEvery('ADD_COURSE', addCourse);
   yield takeEvery('FETCH_FRIEND_COURSE_HISTORY', fetchFriendCourseHistory);
   yield takeEvery('FETCH_RANDOM_COURSE_HISTORY', fetchRandomPlayer);
   yield takeEvery('HANDLE_LOGIN', handleLogin);
@@ -30,16 +29,6 @@ function* fetchCourseSearch (action) {
   }
   catch (error) {
     console.log('error in fetchCourseSearch', error);
-  }
-}
-
-function* addCourse (action) {
-  console.log('saga addCourse', action.payload);
-  try {
-    yield axios.post('api/course', action.payload);
-  }
-  catch(error) {
-    console.log('error in saga adding course', error);
   }
 }
 

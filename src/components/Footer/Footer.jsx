@@ -7,7 +7,10 @@ import './Footer.css';
 // or even care what the redux state is, so it doesn't need 'connect()'
 
 function Footer() {
-  return <footer>Disc Buds</footer>;
+  return <footer>Disc Buds 
+    <a href="https://www.pdga.com/"> Course data © 2021 PDGA</a>
+  </footer>;
+  
 }
 
 export default Footer;

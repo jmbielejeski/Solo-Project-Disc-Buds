@@ -42,6 +42,7 @@ function EditProfile() {
     setChangeUserNameView('');
   }
 
+  // delete user profile, user's friends, and user's match history
   const deleteButton = () => {
     Swal.fire({
       title: "Are you sure?",
@@ -67,6 +68,7 @@ function EditProfile() {
   })
   }
 
+  // Edit view
 switch(changeUserNameView) {
   case 'edit':
     return (

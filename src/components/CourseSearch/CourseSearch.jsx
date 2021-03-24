@@ -31,6 +31,7 @@ const dispatch = useDispatch();
 // set local state to store the input for the course search
 const [discGolfCourseSearch, setDiscGolfCourseSearch]= useState('');
 
+// send input values to third party API to search for course
 const getDiscGolfCourseSearch = (event) => {
   event.preventDefault();
   console.log('in google maps search', discGolfCourseSearch)
@@ -43,7 +44,7 @@ const getDiscGolfCourseSearch = (event) => {
   // navigate to courseSearchResults
   history.push('/courseSearchResults');
 }
-
+// if nothing is entered disable the button
 if (discGolfCourseSearch === '') {
   return (
     <Grid 
@@ -79,6 +80,7 @@ if (discGolfCourseSearch === '') {
 
       </Grid>
   )
+  // once input is entered enable button
 } else {
   return (
     <Grid 

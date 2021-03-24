@@ -12,13 +12,15 @@ import Grid from '@material-ui/core/Grid';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import Link from '@material-ui/core/Link';
+import { MemoryRouter as Router } from 'react-router';
+import { Link as RouterLink } from 'react-router-dom';
 import Accordion from '@material-ui/core/Accordion';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Divider from '@material-ui/core/Divider';
-
+import course from '../../redux/sagas/course.saga';
 
 function CourseSearchResults() {
   // Material UI
@@ -32,14 +34,15 @@ function CourseSearchResults() {
     },
   }));
 
-  useEffect(() => {
-    dispatch({
-      type: 'CLEAR_SEARCH_REDUCER'
-    })
-  }, [])
-
   const classes = useStyles();
   // End Material UI
+
+// on load clear the search results reducer
+useEffect(() => {
+  dispatch({
+    type: 'CLEAR_SEARCH_REDUCER'
+  })
+}, [])
 
   const history = useHistory();
   const dispatch = useDispatch();
@@ -63,6 +66,9 @@ function CourseSearchResults() {
     // navigate to selectFriend
     history.push('/selectFriend');
   }
+
+  let courseLink = `https://www.pdga.com/node/${course.course_node_nid}`
+
   return(
     <Grid
       container 
@@ -85,9 +91,11 @@ function CourseSearchResults() {
               >
                 <Divider />
                 <ListItem key={course.course_id}>
-                  <Grid item xs={12}>{course.course_name}</Grid> 
-                  <Grid item xs={12}>number of holes: {course.holes}</Grid>
-                  <Grid item xs={12}><button onClick={() => startGame(course.course_name, course.course_id, course.holes)}>Play Course</button></Grid>
+                  <Link target="_blank" href={`https://www.pdga.com/node/${course.course_node_nid}`}>
+                    <Grid item xs={12}>{course.course_name}</Grid> 
+                  </Link>
+                  <Grid item xs={12}>Number of holes: {course.holes}</Grid>
+                  <Grid item xs={12}><button onClick={() => startGame(course.course_name, course.course_id, course.holes)}>Play Course {course.course_node_nid}</button></Grid>
                 </ListItem>
                   <Accordion>
                     <AccordionSummary
