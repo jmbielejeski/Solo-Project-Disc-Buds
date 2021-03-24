@@ -10,8 +10,8 @@ import {Button, TextField} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
-import PlusOneIcon from '@material-ui/icons/PlusOne';
-import ExposureNeg1Icon from '@material-ui/icons/ExposureNeg1';
+import AddBoxIcon from '@material-ui/icons/AddBox';
+import IndeterminateCheckBoxIcon from '@material-ui/icons/IndeterminateCheckBox';
 import Typography from '@material-ui/core/Typography';
 
 function SoloGame() {
@@ -172,7 +172,7 @@ switch(finishGameButton) {
               <Typography variant="body1">Enter Score: </Typography>
             </Grid>
             <Grid item xs={12}>
-              <ExposureNeg1Icon className={classes.icons}  onClick={() => setCurrentScore(Number(currentScore) - 1)}/>
+              <IndeterminateCheckBoxIcon className={classes.icons}  onClick={() => setCurrentScore(Number(currentScore) - 1)}/>
               <TextField 
                 className={classes.textField}
                 variant="outlined"
@@ -181,7 +181,7 @@ switch(finishGameButton) {
                 type="number"
                 required
               />
-              <PlusOneIcon className={classes.icons}  onClick={() => setCurrentScore(Number(currentScore) + 1)}/>
+              <AddBoxIcon className={classes.icons}  onClick={() => setCurrentScore(Number(currentScore) + 1)}/>
             </Grid>
             <Button
               type="submit" 
