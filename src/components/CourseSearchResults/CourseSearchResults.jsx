@@ -71,7 +71,7 @@ useEffect(() => {
 
   return (
     // check if we have search results
-    courseSearchResults.course_id === undefined ?
+    courseSearchResults[0] === undefined ?
     <Grid
       container 
       className={classes.root} 
