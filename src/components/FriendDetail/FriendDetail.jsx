@@ -4,8 +4,28 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import Swal from 'sweetalert2'
 
-function FriendDetail() {
+// Material UI imports
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import { makeStyles } from '@material-ui/core/styles';
+import {Button} from '@material-ui/core';
+import Grid from '@material-ui/core/Grid';
+import Link from '@material-ui/core/Link';
 
+function FriendDetail() {
+  // Material UI
+  const useStyles = makeStyles((theme) => ({
+    root: {
+      flexGrow: 1,
+    },
+    control: {
+      padding: theme.spacing(2),
+      margin: 'auto',
+    },
+  }));
+
+  const classes = useStyles();
+  // End Material UI
   const history = useHistory();
   const dispatch = useDispatch();
 
@@ -62,13 +82,32 @@ function FriendDetail() {
 }
 
   return (
-    <div>
+    <Grid
+      container 
+      className={classes.root} 
+      spacing={2}
+      alignItems="center"
+      direction="column" 
+    >
       <h4>Friend Details</h4>
-      <div>{friendDetails.friendUsername}
-        <button onClick={() => handleDelete(friendDetails.friendId)}>Delete</button>
-      </div>
-      <button onClick={goBack}>Back</button>
-    </div>
+      <Grid item xs={12}>{friendDetails.friendUsername}
+        <Button
+          type="submit" 
+          variant="contained" 
+          color="primary" 
+          className={classes.button} 
+          onClick={() => handleDelete(friendDetails.friendId)}
+        >
+          Delete
+        </Button>
+      </Grid>
+      <Link 
+        variant="body1"
+        onClick={() => {history.push('/friendsList')}}
+      >
+        Back
+      </Link>
+    </Grid>
   )
 }
 

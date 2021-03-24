@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import Link from '@material-ui/core/Link';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
 
 function HomePage() {
   // Material UI
@@ -28,7 +29,9 @@ const classes = useStyles();
       alignItems="center"
       direction="column"
     >
-      <Grid item xs={12}>Welcome to Disc Buds!</Grid>
+      <Grid item xs={12}>
+        <Typography variant="h5">Welcome to Disc Buds! </Typography>
+      </Grid>
       <Grid item xs={12}>
         <Link  
           component="button"

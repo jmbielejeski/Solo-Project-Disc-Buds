@@ -40,9 +40,11 @@ function Footer() {
       <Grid item xs={12}>
         Disc Buds 
       </Grid>
-      <Typography>
-        <Link target="_blank" href="https://www.pdga.com/"> Course data © 2021 PDGA</Link>
-      </Typography>
+      <Grid item xs={12}>
+        <Typography>
+          <Link target="_blank" href="https://www.pdga.com/"> Course data © 2021 PDGA</Link>
+        </Typography>
+      </Grid>
     </Grid>
   )
 }

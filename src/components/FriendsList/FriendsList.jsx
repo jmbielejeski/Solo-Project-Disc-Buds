@@ -9,6 +9,8 @@ import FormLabel from '@material-ui/core/FormLabel';
 import {Button, TextField} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
 
 function FriendsList() {
   // Material UI
@@ -86,11 +88,13 @@ function FriendsList() {
         </Grid>
         <Grid item xs={12}>
           <Grid item xs={12}>
-            {friendList.map(friend => {
-              return(
-                <li key={friend.id} onClick={() => handleClick(friend.id, friend.username)}>{friend.username}</li>
-              )
-            })}
+            <List>
+              {friendList.map(friend => {
+                return(
+                  <ListItem key={friend.id} onClick={() => handleClick(friend.id, friend.username)}>{friend.username}</ListItem>
+                )
+              })}
+            </List>
           </Grid>
           <FormControl component="fieldset">
           <FormLabel component="legend">Search for a friend to add</FormLabel> 
@@ -131,7 +135,7 @@ function FriendsList() {
           <Grid item xs={12}>
             {friendList.map(friend => {
               return(
-                <li key={friend.id} onClick={() => handleClick(friend.id, friend.username)}>{friend.username}</li>
+                <ListItem key={friend.id} onClick={() => handleClick(friend.id, friend.username)}>{friend.username}</ListItem>
               )
             })}
           </Grid>

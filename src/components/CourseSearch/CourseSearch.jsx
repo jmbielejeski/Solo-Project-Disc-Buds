@@ -9,6 +9,7 @@ import FormLabel from '@material-ui/core/FormLabel';
 import {Button, TextField} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
 
 function CourseSearch() {
 // Material UI
@@ -54,15 +55,16 @@ if (discGolfCourseSearch === '') {
       alignItems="center"
       direction="column"
     >
-
       <Grid item xs={12}>
-        Course Search
+        <Typography variant="h5">
+          Course Search
+        </Typography>
       </Grid>
       <FormControl component="fieldset">
         <FormLabel component="legend"></FormLabel> 
           <TextField 
             variant="outlined"
-            placeholder="Search for a course on google"
+            placeholder="Search for a course"
             onChange={(event) => setDiscGolfCourseSearch(event.target.value)}
             required={true} 
           />  
@@ -91,7 +93,9 @@ if (discGolfCourseSearch === '') {
       direction="column"
     >
       <Grid item xs={12}>
-        Course Search
+        <Typography variant="h5">
+          Course Search
+        </Typography>
       </Grid>
       <FormControl component="fieldset">
         <FormLabel component="legend"></FormLabel> 
