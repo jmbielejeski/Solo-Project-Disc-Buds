@@ -69,7 +69,26 @@ useEffect(() => {
 
   let courseLink = `https://www.pdga.com/node/${course.course_node_nid}`
 
-  return(
+  return (
+    // check if we have search results
+    courseSearchResults.course_id === undefined ?
+    <Grid
+      container 
+      className={classes.root} 
+      spacing={2}
+      alignItems="center"
+      direction="column"     
+    >
+      <Grid item xs={12}>No results found</Grid>
+      <Link 
+        component="button"
+        variant="body1"
+        onClick={() => {history.push('/courseSearch')}}
+      >
+        Back
+      </Link>
+    </Grid>
+  :
     <Grid
       container 
       className={classes.root} 
@@ -146,7 +165,6 @@ useEffect(() => {
         Back
       </Link>
     </Grid>
-
   )
 }
 
