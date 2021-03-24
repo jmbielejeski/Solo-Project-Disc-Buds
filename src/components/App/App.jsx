@@ -5,6 +5,7 @@ import {
   Redirect,
   Switch,
 } from 'react-router-dom';
+import 'fontsource-roboto';
 
 import { useDispatch } from 'react-redux';
 
