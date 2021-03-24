@@ -4,8 +4,39 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import Swal from 'sweetalert2'
 
+// Material UI imports
+import Grid from '@material-ui/core/Grid';
+import {Button, TextField} from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+import FormControl from '@material-ui/core/FormControl';
+import FormLabel from '@material-ui/core/FormLabel';
+import AddBoxIcon from '@material-ui/icons/AddBox';
+import IndeterminateCheckBoxIcon from '@material-ui/icons/IndeterminateCheckBox';
+import Typography from '@material-ui/core/Typography';
 
 function SoloGame() {
+    // Material UI
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+  },
+  control: {
+    padding: theme.spacing(2),
+    margin: 'auto',
+  },
+  textField: {
+    width: '10ch',
+    autoFocus: 'true',
+    textAlign: "center"
+  },
+  icons: {
+    height: '3rem',
+  },
+}));
+
+const classes = useStyles();
+// End Material UI
+
   const history = useHistory();
   const dispatch = useDispatch();
   // local state to store your total score
@@ -86,32 +117,86 @@ const finishGame = () => {
 switch(finishGameButton) {
   case true:
     return (
-      <div>
-        <h2>{selectCourse.courseName}</h2>
-        <h3>Hole {currentHole}</h3>
-        
-        <h4>your score: {yourTotalScore}</h4>
-        <button onClick={finishGame}>Finish Game</button>
-      </div>
+      <Grid
+        container 
+        className={classes.root} 
+        spacing={2}
+        alignItems="center"
+        direction="column"
+      >
+        <Grid item xs={12}>
+          <Typography variang="h5">
+            {selectCourse.courseName}
+          </Typography>
+        </Grid>
+        <Grid item xs={12}>
+          <Typography variant="h6">
+            Hole {currentHole}
+          </Typography>
+        </Grid>
+        <Grid item xs={12}>
+          <Typography variant="body1">your score: {yourTotalScore} </Typography>
+        </Grid>
+        <Button
+          type="submit" 
+          variant="contained" 
+          color="primary" 
+          className={classes.button} 
+          onClick={finishGame}
+        >
+          Finish Game
+        </Button>
+      </Grid>
     )
     default:
       return (
-        <div>
-          <h2>{selectCourse.courseName}</h2>
-          <h3>Hole {currentHole}</h3>
-          <form onSubmit={handleSubmit}>
-            <input 
-              type="number" 
-              name="Score"
-              placeholder="Enter Score"
-              value={currentScore}
-              onChange={(event) => setCurrentScore(event.target.value)}
-              required
-            />
-            <button>Submit Score</button>
-          </form>
-          <h4>your score: {yourTotalScore}</h4>
-        </div>
+        <Grid
+          container 
+          className={classes.root} 
+          spacing={2}
+          alignItems="center"
+          direction="column"
+        >
+          <Grid item xs={12}>
+            <Typography variang="h5">
+              {selectCourse.courseName}
+            </Typography>
+          </Grid>
+          <Grid item xs={12}>
+            <Typography variant="h6">
+              Hole {currentHole}
+            </Typography>
+          </Grid>
+          <FormControl onSubmit={handleSubmit}>
+            <Grid item xs={12}>
+              <Typography variant="body1">Enter Score: </Typography>
+            </Grid>
+            <Grid item xs={12}>
+              <IndeterminateCheckBoxIcon className={classes.icons}  onClick={() => setCurrentScore(Number(currentScore) - 1)}/>
+              <TextField 
+                className={classes.textField}
+                variant="outlined"
+                value={currentScore}
+                onChange={(event) => setCurrentScore(event.target.value)}
+                type="number"
+                required
+              />
+              <AddBoxIcon className={classes.icons}  onClick={() => setCurrentScore(Number(currentScore) + 1)}/>
+            </Grid>
+            <Button
+              type="submit" 
+              variant="contained" 
+              color="primary" 
+              className={classes.button} 
+              onClick={handleSubmit}
+            >
+              Submit Score
+            </Button>
+          </FormControl>
+          <Grid item xs={12}>
+            <Typography variant="body1">your score: {yourTotalScore} </Typography>
+          </Grid>
+        </Grid>
       )
   }
 }

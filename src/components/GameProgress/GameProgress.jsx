@@ -10,8 +10,9 @@ import {Button, TextField} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
-import PlusOneIcon from '@material-ui/icons/PlusOne';
-import ExposureNeg1Icon from '@material-ui/icons/ExposureNeg1';
+import AddBoxIcon from '@material-ui/icons/AddBox';
+import IndeterminateCheckBoxIcon from '@material-ui/icons/IndeterminateCheckBox';
+import Typography from '@material-ui/core/Typography';
 
 function GameProgress() {
 
@@ -147,7 +148,11 @@ switch(finishGameButton) {
         alignItems="center"
         direction="column"
       >
-        <Grid item xs={12}>{friendAndCourse.courseName}</Grid>
+        <Grid item xs={12}>
+          <Typography variant="h5">
+            {friendAndCourse.courseName}
+          </Typography>
+        </Grid>
         <Grid item xs={12}>Hole {currentHole}</Grid>
         
         <Grid item xs={12}>your score: {yourTotalScore}</Grid>
@@ -172,13 +177,16 @@ switch(finishGameButton) {
           alignItems="center"
           direction="column"
         >
-          <Grid item xs={12}>{friendAndCourse.courseName}</Grid>
+          <Grid item xs={12}>
+            <Typography variant="h5">
+              {friendAndCourse.courseName}
+            </Typography>
+          </Grid>
           <Grid item xs={12}>Hole {currentHole}</Grid>
-
           <FormControl component="fieldset">
               <Grid item xs={12}>Enter Score:</Grid>
               <Grid item xs={12}>
-                <ExposureNeg1Icon className={classes.icons}  onClick={() => setCurrentScore(Number(currentScore) - 1)}/>
+                <IndeterminateCheckBoxIcon className={classes.icons}  onClick={() => setCurrentScore(Number(currentScore) - 1)}/>
                 <TextField 
                   className={classes.textField}
                   variant="outlined"
@@ -187,7 +195,7 @@ switch(finishGameButton) {
                   type="number"
                   required
                 />
-                <PlusOneIcon className={classes.icons}  onClick={() => setCurrentScore(Number(currentScore) + 1)}/>
+                <AddBoxIcon className={classes.icons}  onClick={() => setCurrentScore(Number(currentScore) + 1)}/>
               </Grid>
               
             <Button
@@ -200,8 +208,12 @@ switch(finishGameButton) {
               Submit Score
             </Button>
           </FormControl>
-          <Grid item xs={12}>your score: {yourTotalScore}</Grid>
-          <Grid item xs={12}>{friendAndCourse.friend}'s score: {friendTotalScore}</Grid>
+          <Grid item xs={12}>
+            <Typography variant="body1">your score: {yourTotalScore} </Typography>
+          </Grid>
+          <Grid item xs={12}>
+            <Typography variant="body1">{friendAndCourse.friend}'s score: {friendTotalScore} </Typography>
+          </Grid>
         </Grid>
       )
   }

@@ -77,7 +77,9 @@ useEffect(() => {
       alignItems="center"
       direction="column"     
     >
-      <Grid item xs={12}>Select a Course</Grid>
+      <Typography variant="h5">
+        Select a Course
+      </Typography>
       <Grid item xs={12}>
         <List>
           {courseSearchResults.map(course => {
@@ -94,8 +96,20 @@ useEffect(() => {
                   <Link target="_blank" href={`https://www.pdga.com/node/${course.course_node_nid}`}>
                     <Grid item xs={12}>{course.course_name}</Grid> 
                   </Link>
-                  <Grid item xs={12}>Number of holes: {course.holes}</Grid>
-                  <Grid item xs={12}><button onClick={() => startGame(course.course_name, course.course_id, course.holes)}>Play Course {course.course_node_nid}</button></Grid>
+                  <Grid item xs={12}>
+                    Number of holes: {course.holes}
+                  </Grid>
+                  <Grid item xs={12}>
+                    <Button 
+                      type="submit" 
+                      variant="contained" 
+                      color="primary" 
+                      className={classes.button} 
+                      onClick={() => startGame(course.course_name, course.course_id, course.holes)}
+                    >
+                      Play Course
+                    </Button>
+                  </Grid>
                 </ListItem>
                   <Accordion>
                     <AccordionSummary
@@ -107,7 +121,7 @@ useEffect(() => {
                     </AccordionSummary>
                     <AccordionDetails>
                       <Grid item xs={12}>
-                        <Link href={`https://www.google.com/maps/search/?api=1&query=${course.street}%2C${course.city}%2C${course.state_province}%2C${course.postal_code}`}>
+                        <Link target="_blank" href={`https://www.google.com/maps/search/?api=1&query=${course.street}%2C${course.city}%2C${course.state_province}%2C${course.postal_code}`}>
                           Address: {course.street}, {course.city}, {course.state_province}, {course.postal_code}
                         </Link>
                       </Grid>

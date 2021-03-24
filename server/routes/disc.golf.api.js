@@ -34,6 +34,7 @@ router.get('/:input', rejectUnauthenticated, (req, res) => {
   axios.get('https://api.pdga.com/services/json/course', {
     params: {
       course_name: req.params.input,
+      limit: 3,
     },
     headers: {
       'Cookie': session_name= process.env.PDGA_SESSION_COOKIE
