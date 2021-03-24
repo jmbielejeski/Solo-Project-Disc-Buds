@@ -116,9 +116,6 @@ useEffect(() => {
                     <Grid item xs={12}>{course.course_name}</Grid> 
                   </Link>
                   <Grid item xs={12}>
-                    Number of holes: {course.holes}
-                  </Grid>
-                  <Grid item xs={12}>
                     <Button 
                       type="submit" 
                       variant="contained" 
@@ -138,6 +135,11 @@ useEffect(() => {
                     >
                       <Typography className={classes.heading}>Course Details</Typography>
                     </AccordionSummary>
+                    <AccordionDetails>
+                      <Grid item xs={12}>
+                        {course.holes} hole course
+                      </Grid>
+                    </AccordionDetails>
                     <AccordionDetails>
                       <Grid item xs={12}>
                         <Link target="_blank" href={`https://www.google.com/maps/search/?api=1&query=${course.street}%2C${course.city}%2C${course.state_province}%2C${course.postal_code}`}>

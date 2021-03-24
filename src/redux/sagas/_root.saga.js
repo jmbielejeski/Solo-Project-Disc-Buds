@@ -9,6 +9,7 @@ import userName from './username.saga';
 import holeResults from './hole_results.saga';
 import discGolfSearch from './disc.golf.search.saga';
 import deleteProfile from './delete.profile';
+import matchResults from './match.results.saga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -28,6 +29,7 @@ export default function* rootSaga() {
     userName(),
     holeResults(),
     discGolfSearch(),
-    deleteProfile()
+    deleteProfile(),
+    matchResults()
   ]);
 }

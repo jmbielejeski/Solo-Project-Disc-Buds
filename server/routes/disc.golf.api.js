@@ -41,7 +41,7 @@ router.get('/:input', rejectUnauthenticated, (req, res) => {
     }
   })
     .then((response) => {
-      console.log('login to PDGA successful', response.data.courses)
+      // console.log('login to PDGA successful', response.data.courses)
       res.send(response.data.courses);
     })
     .catch((error) => {

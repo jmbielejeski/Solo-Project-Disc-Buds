@@ -25,6 +25,7 @@ const friendCourseRouter = require('./routes/friend.course.router');
 const userNameRouter = require('./routes/username.router');
 const holeResultsRouter = require('./routes/hole.results.router');
 const discGolfApi = require('./routes/disc.golf.api')
+const matchResultsRouter = require('./routes/match.results.router');
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -47,7 +48,8 @@ app.use('/api/course', courseRouter);
 app.use('/api/friendCourse', friendCourseRouter);
 app.use('/api/username', userNameRouter);
 app.use('/api/holeResults', holeResultsRouter);
-app.use('/api/discGolfApi', discGolfApi)
+app.use('/api/discGolfApi', discGolfApi);
+app.use('/api/matchResults', matchResultsRouter);
 
 
 // Serve static files

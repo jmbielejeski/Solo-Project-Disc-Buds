@@ -47,7 +47,7 @@ const classes = useStyles();
   // local state to store friend's total score
   const [friendTotalScore, setFriendTotalScore] = useState(0);
   // local state to store your current score
-  const [currentScore, setCurrentScore] = useState('');
+  const [currentScore, setCurrentScore] = useState(3);
   // local state to store current hole
   const [currentHole, setCurrentHole] = useState(1);
   const [finishGameButton, setFinishGameButton] = useState(false)
@@ -94,7 +94,7 @@ const classes = useStyles();
           holeIndex: currentHole
         }
       })
-      setCurrentScore('');
+      setCurrentScore(3);
       // change hole to next hole
       setCurrentHole(Number(currentHole) + 1);
     })
@@ -118,7 +118,7 @@ const classes = useStyles();
           holeIndex: currentHole
         }
       })
-      setCurrentScore('');
+      setCurrentScore(3);
       setFinishGameButton(true);
       })
     }
@@ -131,11 +131,12 @@ const classes = useStyles();
         yourScore: yourTotalScore,
         friendScore: friendTotalScore,
         friend: friendAndCourse.friend,
+        friend: friendAndCourse.friendId,
         course: friendAndCourse.courseName,
         courseId: friendAndCourse.courseId,
       }
     })
-    history.push('/gameResult');
+    // history.push('/gameResult');
   }
 
 switch(finishGameButton) {
@@ -197,7 +198,6 @@ switch(finishGameButton) {
                 />
                 <AddBoxIcon className={classes.icons}  onClick={() => setCurrentScore(Number(currentScore) + 1)}/>
               </Grid>
-              
             <Button
               type="submit" 
               variant="contained" 

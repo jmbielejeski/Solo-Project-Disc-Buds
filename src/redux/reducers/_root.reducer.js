@@ -12,6 +12,7 @@ import matchDetailsReducer from './match.details.reducer';
 import matchResultsReducer from './match.results.reducer';
 import discGolfSearchResults from './disc.golf.search.reducer'
 import randomPlayerReducer from './random.player.reducer'
+import matchResultsHistoryReducer from './match.results.history';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -33,6 +34,7 @@ const rootReducer = combineReducers({
   matchResultsReducer,
   discGolfSearchResults,
   randomPlayerReducer,
+  matchResultsHistoryReducer,
 });
 
 export default rootReducer;

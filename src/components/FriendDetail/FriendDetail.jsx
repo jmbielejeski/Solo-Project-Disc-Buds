@@ -11,6 +11,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import {Button} from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
 import Link from '@material-ui/core/Link';
+import Typography from '@material-ui/core/Typography';
 
 function FriendDetail() {
   // Material UI
@@ -34,13 +35,15 @@ function FriendDetail() {
 
   // grab friend details from reducer
   const friendDetails = useSelector(store => store.friendDetailReducer);
+  const matchHistory = useSelector(store => store.matchResultsHistoryReducer);
 
   // on load grab friend details
-  useEffect(() => {
-    dispatch({
-      type: 'GRAB_FRIEND_DETAILS'
-    })
-  }, [])
+  // useEffect(() => {
+  //   dispatch({
+  //     type: 'GRAB_FRIEND_DETAILS'
+  //   })
+
+  // }, [])
 
   //console.log('currentFriend', friendDetails)
 
@@ -91,6 +94,9 @@ function FriendDetail() {
     >
       <h4>Friend Details</h4>
       <Grid item xs={12}>{friendDetails.friendUsername}
+      <Grid xs={12}>
+        <Typography variant="h5">Head to head record</Typography>
+      </Grid>
         <Button
           type="submit" 
           variant="contained" 

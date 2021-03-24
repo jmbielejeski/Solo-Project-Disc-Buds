@@ -42,7 +42,7 @@ const classes = useStyles();
   // local state to store your total score
   const [yourTotalScore, setYourTotalScore] = useState(0);
   // local state to store your current score
-  const [currentScore, setCurrentScore] = useState('');
+  const [currentScore, setCurrentScore] = useState(3);
   // local state to store current hole
   const [currentHole, setCurrentHole] = useState(1);
   const [finishGameButton, setFinishGameButton] = useState(false)
@@ -74,7 +74,7 @@ const handleSubmit = (event) => {
         holeIndex: currentHole
       }
     })
-    setCurrentScore('');
+    setCurrentScore(3);
     // change hole to next hole
     setCurrentHole(Number(currentHole) + 1);
   })
@@ -96,7 +96,7 @@ const handleSubmit = (event) => {
         holeIndex: currentHole
       }
     })
-    setCurrentScore('');
+    setCurrentScore(3);
     setFinishGameButton(true);
     })
   }

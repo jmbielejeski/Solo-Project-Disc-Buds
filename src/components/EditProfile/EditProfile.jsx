@@ -2,7 +2,6 @@ import React from 'react';
 import { Link, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
 import { useState } from 'react';
-import DropzoneS3Uploader from '../DropzoneS3Uploader/DropzoneS3Uploader';
 import Swal from 'sweetalert2';
 
 function EditProfile() {
@@ -83,7 +82,6 @@ switch(changeUserNameView) {
         />
         <button onClick={handleSave}>Save</button>
         <button onClick={handleCancel}>Cancel</button>
-        {/* <DropzoneS3Uploader /> */}
       </div>
     )
     default:

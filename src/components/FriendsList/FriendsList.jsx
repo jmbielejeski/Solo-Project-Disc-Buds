@@ -70,6 +70,12 @@ function FriendsList() {
         friendUsername
       }
     })
+    dispatch({
+      type: 'FETCH_MATCH_RESULTS',
+      payload: {
+        friendId: friendId
+      }
+    })
     // sends us to friend detail
     history.push(`/friendDetail/`)
   }
