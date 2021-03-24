@@ -107,7 +107,9 @@ useEffect(() => {
                     </AccordionSummary>
                     <AccordionDetails>
                       <Grid item xs={12}>
-                        Address: {course.street}, {course.city}, {course.state_province}, {course.postal_code}
+                        <Link href={`https://www.google.com/maps/search/?api=1&query=${course.street}%2C${course.city}%2C${course.state_province}%2C${course.postal_code}`}>
+                          Address: {course.street}, {course.city}, {course.state_province}, {course.postal_code}
+                        </Link>
                       </Grid>
                     </AccordionDetails>
                     <AccordionDetails>
