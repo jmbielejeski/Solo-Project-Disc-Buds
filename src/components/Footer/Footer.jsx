@@ -3,6 +3,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
+import { useHistory } from 'react-router-dom';
 
 // This is one of our simplest components
 // It doesn't have local state, so it can be a function component.
@@ -28,7 +29,9 @@ function Footer() {
   }));
 
   const classes = useStyles();
-  
+
+  const history = useHistory();
+
   return (
     <Grid
       container 
@@ -38,7 +41,9 @@ function Footer() {
       direction="column" 
     >
       <Grid item xs={12}>
-        Disc Buds 
+        <Typography>
+          <Link onClick={() => {history.push('/homePage')}}>Disc Buds</Link>
+        </Typography>
       </Grid>
       <Grid item xs={12}>
         <Typography>

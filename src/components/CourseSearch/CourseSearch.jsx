@@ -44,9 +44,8 @@ const getDiscGolfCourseSearch = (event) => {
   // navigate to courseSearchResults
   history.push('/courseSearchResults');
 }
-// if nothing is entered disable the button
-if (discGolfCourseSearch === '') {
-  return (
+
+return (
     <Grid 
       container 
       className={classes.root} 
@@ -73,7 +72,7 @@ if (discGolfCourseSearch === '') {
             color="primary" 
             className={classes.button} 
             onClick={getDiscGolfCourseSearch}
-            disabled
+            disabled={discGolfCourseSearch === '' ? true : false}
           >
             Search
           </Button>
@@ -81,42 +80,6 @@ if (discGolfCourseSearch === '') {
 
       </Grid>
   )
-  // once input is entered enable button
-} else {
-  return (
-    <Grid 
-      container 
-      className={classes.root} 
-      spacing={2}
-      alignItems="center"
-      direction="column"
-    >
-      <Grid item xs={12}>
-        <Typography variant="h5">
-          Course Search
-        </Typography>
-      </Grid>
-      <FormControl component="fieldset">
-        <FormLabel component="legend"></FormLabel> 
-          <TextField 
-            variant="outlined"
-            placeholder="Search for a course on google"
-            onChange={(event) => setDiscGolfCourseSearch(event.target.value)}
-            required={true} 
-          />  
-          <Button 
-            type="submit" 
-            variant="contained" 
-            color="primary" 
-            className={classes.button} 
-            onClick={getDiscGolfCourseSearch}
-          >
-            Search
-          </Button>
-      </FormControl>
-    </Grid>
-  )
-  }
 }
 
 export default CourseSearch;
