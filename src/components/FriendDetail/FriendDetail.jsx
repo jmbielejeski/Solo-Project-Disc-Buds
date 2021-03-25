@@ -1,7 +1,7 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Swal from 'sweetalert2'
 
 // Material UI imports
@@ -35,22 +35,31 @@ function FriendDetail() {
 
   // grab friend details from reducer
   const friendDetails = useSelector(store => store.friendDetailReducer);
-  // const matchHistory = useSelector(store => store.matchResultsHistoryReducer);
+  const matchHistory = useSelector(store => store.matchResultsHistoryReducer);
 
-  // // on load grab friend details
-  // useEffect(() => {
-  //   dispatch({
-  //     // sends to friendDetailReducer
-  //     type: 'GRAB_FRIEND_DETAILS'
-  //   })
-  // }, [])
-
-  //console.log('currentFriend', friendDetails)
-
-  // navigates back to friends list
+   // navigates back to friends list
   const goBack = () => {
     history.push('/friendsList');
   }
+
+  console.log('matchHistory', matchHistory)
+
+
+  let yourWins = 0;
+  let friendWins = 0;
+
+
+    for (let i = 0; i < matchHistory.length; i++) {
+        console.log('matchHistory at i', matchHistory[i]);
+        if (matchHistory[i].user_one_score === matchHistory[i].user_two_score) {
+          return;
+      } else if (matchHistory[i].user_one_score < matchHistory[i].user_two_score) {
+        yourWins += 1;
+        console.log('yourWins', yourWins)
+      } else {
+        friendWins += 1;
+      }
+    }
 
   // deletes friend relationship from database
   const handleDelete = (friendId) => {
@@ -97,6 +106,12 @@ function FriendDetail() {
       <Grid item xs={12}>{friendDetails.friendUsername}
       <Grid item xs={12}>
         <Typography variant="h5">Head to head record</Typography>
+        <Grid item xs={12}>
+          You have beat {friendDetails.friendUsername} {yourWins} times
+        </Grid>
+        <Grid item xs={12}>
+        {friendDetails.friendUsername} has beat you {friendWins} times
+        </Grid>
       </Grid>
         <Button
           type="submit" 
