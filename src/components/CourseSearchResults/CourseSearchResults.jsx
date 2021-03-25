@@ -50,11 +50,9 @@ useEffect(() => {
 
   // fetch course search results from reducer
   const courseSearchResults = useSelector(store => store.discGolfSearchResults);
-  console.log('courseSearchResults', courseSearchResults)
 
   // handle starting game once a course has been selected
   const startGame = (courseName, courseId, holeCount) => {
-   // console.log('courseId', courseName, courseId)
     // send selected course info so it can be pulled in on next page
     dispatch({
       // Goes to selectCourseReducer

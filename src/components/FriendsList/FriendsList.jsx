@@ -44,10 +44,9 @@ function FriendsList() {
     })
   }, [])
 
-  // searches for friend that match the input
+  // searches for friend that matches the input
   const getSearchResults = (event) => {
     event.preventDefault();
-    console.log('friendSearch', friendSearch)
     dispatch({
       // sends to friend saga
       type: 'FETCH_FRIEND_SEARCH',
@@ -61,8 +60,6 @@ function FriendsList() {
   // handles clicking on a friend to go to details.
   // takes the friendId to pass and store in a reducer.
   const handleClick = (friendId, friendUsername) => {
-
-    console.log('friendId', friendId, friendUsername)
 
     // sends friend ID to reducer to be stored
     dispatch({

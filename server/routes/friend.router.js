@@ -9,13 +9,9 @@ const router = express.Router();
 // GET route to search for friends
 router.get('/:search', rejectUnauthenticated, (req, res) => {
 
-  // console.log('GET Friend route', req.params.search)
-
   let queryParams = req.params.search;
 
   queryParams = '%'+queryParams+'%';
-
-  // console.log('queryParams', queryParams)
 
   const queryText = `
     SELECT "user".id, "user".username FROM "user"
@@ -39,8 +35,6 @@ router.get('/:search', rejectUnauthenticated, (req, res) => {
 
 router.get('/', rejectUnauthenticated, (req, res) => {
 
-  //console.log('in friend GET')
-
   const queryText = `
     SELECT "user".username, "user".id FROM "user"
       JOIN "friends" ON "user".id = "user_two"
@@ -57,8 +51,8 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 
 })
 
+// route to get friend details
 router.get('/details/:id', rejectUnauthenticated, (req, res) => {
-  // console.log('in friend details router', req.params.id);
 
   const queryText = `
   SELECT "user".username, "user".id FROM "user"
@@ -79,9 +73,6 @@ router.get('/details/:id', rejectUnauthenticated, (req, res) => {
 
 // POST route to add friend
 router.post('/', rejectUnauthenticated,  (req, res) => {
-  // POST route code here
-
-  // console.log('req.body', req.body);
 
   let queryText = `
     INSERT INTO "friends" ("user_one", "user_two")
@@ -100,7 +91,6 @@ router.post('/', rejectUnauthenticated,  (req, res) => {
 });
 
 router.delete('/:id', rejectUnauthenticated, (req, res) => {
-  console.log('router delete req.params', req.params.id);
 
   const queryText = `
   DELETE FROM "friends"
@@ -120,7 +110,6 @@ router.delete('/:id', rejectUnauthenticated, (req, res) => {
 })
 
 router.delete('/profile/friendships', rejectUnauthenticated, (req, res) => {
-  console.log('router delete friendships');
 
   let queryText = `
     DELETE FROM "friends"

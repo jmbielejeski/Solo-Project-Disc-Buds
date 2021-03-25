@@ -48,7 +48,6 @@ router.post('/logout', (req, res) => {
 });
 
 router.delete('/profile', rejectUnauthenticated, (req, res) => {
-  console.log('deleting profile');
 
   let queryText = `
     DELETE FROM "user"

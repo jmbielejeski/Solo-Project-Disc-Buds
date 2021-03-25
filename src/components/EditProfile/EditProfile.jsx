@@ -28,7 +28,6 @@ function EditProfile() {
 
   // save new username to DB
   const handleSave = () => {
-    console.log('handleSave', newUserName)
     // dispatch new username to saga
     dispatch({
       // sends to userName saga

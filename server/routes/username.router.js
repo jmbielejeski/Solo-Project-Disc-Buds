@@ -7,7 +7,6 @@ const router = express.Router();
 
 // PUT route to change username
 router.put('/', rejectUnauthenticated, (req, res) => {
-  console.log('in PUT route to  change username', req.body)
 
   const queryText = `
     UPDATE "user"

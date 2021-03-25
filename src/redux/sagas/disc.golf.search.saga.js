@@ -6,8 +6,6 @@ function* discGolfSearch (action) {
 };
 
 function* discGolfApiSearch (action) {
-  console.log('in discGolfApiSearch saga', action.payload.discGolfCourseSearch);
-
   try {
     const response = yield axios.get(`/api/discGolfApi/${action.payload.discGolfCourseSearch}`);
     yield put({

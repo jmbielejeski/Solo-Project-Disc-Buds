@@ -39,6 +39,7 @@ const classes = useStyles();
 
   const history = useHistory();
   const dispatch = useDispatch();
+  
   // local state to store your total score
   const [yourTotalScore, setYourTotalScore] = useState(0);
   // local state to store your current score

@@ -56,9 +56,6 @@ const classes = useStyles();
   // store friends match history from reducer
   let matchDetails = useSelector(store => store.matchDetailsReducer);
 
-  //console.log('matchDetails', matchDetails);
-  //console.log('friendAndCourse', friendAndCourse);
-
   // on load grab friends match history
   useEffect(() => {
     dispatch({
@@ -108,7 +105,6 @@ const classes = useStyles();
     .then(function() {
       setYourTotalScore(Number(yourTotalScore) + Number(currentScore));
       setFriendTotalScore(Number(friendTotalScore) + Number(matchDetails[holeIndex].hole_score));
-      console.log('your total score', yourTotalScore, 'friendTotalScore', friendTotalScore)
       // dispatch current hole results so it can be stored in DB
       dispatch({
         // sends to holeResults saga

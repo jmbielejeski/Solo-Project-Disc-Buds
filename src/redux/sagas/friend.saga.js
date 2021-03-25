@@ -15,8 +15,6 @@ function* fetchFriendSearch (action) {
   try {
     const response = yield axios.get(`/api/friend/${action.payload.friendSearch}`);
 
-    // console.log('friend search response', response);
-
     yield put({
       type:'SET_FRIEND_SEARCH',
       payload: response.data
@@ -28,8 +26,6 @@ function* fetchFriendSearch (action) {
 }
 
 function* fetchFriendDetails (action) {
-
-  //console.log('action.payload', action.payload.friendId);
 
   try {
 
@@ -46,8 +42,6 @@ function* fetchFriendDetails (action) {
 
 function* fetchCurrentFriendDetails (action) {
 
-  //console.log('action.payload', action.payload.friendId);
-
   try {
     const response = yield axios.get(`/api/friend/details/${action.payload.friendId}`)
     yield put({
@@ -61,7 +55,6 @@ function* fetchCurrentFriendDetails (action) {
 }
 
 function* addFriend (action) {
-  //console.log('action.payload', action.payload)
   try {
     yield axios.post(`/api/friend`, action.payload);
   }
@@ -71,7 +64,6 @@ function* addFriend (action) {
 };
 
 function* deleteFriend (action) {
-  // console.log('in deleteFriend saga')
   try {
     yield axios.delete(`/api/friend/${action.payload.friendId}`)
   }
@@ -81,7 +73,6 @@ function* deleteFriend (action) {
 }
 
 function* fetchFriendList (action) {
-  // console.log('fetchFriendList saga')
   try {
     const response = yield axios.get(`/api/friend`);
     yield put({
@@ -93,7 +84,5 @@ function* fetchFriendList (action) {
     console.log('error in fetchFriendList', error);
   }
 }
-
-
 
 export default friend;

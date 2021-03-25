@@ -6,7 +6,6 @@ function* userName (action) {
 };
 
 function* changeUserName (action) {
-  console.log('in changeUserName saga', action.payload);
 
   try {
     yield axios.put('/api/username', action.payload)

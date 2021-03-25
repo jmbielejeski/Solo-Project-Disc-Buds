@@ -8,7 +8,6 @@ const router = express.Router();
 
 // POST to add hole results to DB
 router.post('/', rejectUnauthenticated, (req, res) => {
-  // console.log('in hole results router', req.body)
 
   let queryText = `
     INSERT INTO "course_history"

@@ -43,7 +43,6 @@ const classes = useStyles();
 
   // Add a friend relationship to the DB
   const addFriend = (userId) => {
-    console.log('userId', userId);
     dispatch({
       // sends to friend saga
       type: 'ADD_FRIEND',

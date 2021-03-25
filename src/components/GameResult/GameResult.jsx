@@ -31,23 +31,26 @@ function GameResult() {
 
   const matchResults = useSelector(store => store.matchResultsReducer);
 
-  console.log('matchResults', matchResults);
-
+  // check if we have a friend we are playing against
+  // if we don't only show your score
   if (matchResults.friend === undefined) {
     Swal.fire({
       title: 'Results',
       text: `Your score is ${matchResults.yourScore}`
     })
+    // check if your score is less than friend's
   } else if (matchResults.yourScore < matchResults.friendScore) {
     Swal.fire({
       title: 'Results',
       text: `You won!`
     })
+    // check if your score is greater than friends
   } else if (matchResults.yourScore > matchResults.friendScore) {
     Swal.fire({
       title: 'Results',
       text: `${matchResults.friend} won!`
     })
+    // else it is a tie
   } else {
     Swal.fire({
       title: 'Results',
@@ -55,6 +58,7 @@ function GameResult() {
     })
   }
 
+  // save match results to DB
   const saveMatchResults = () => {
     console.log('saveMatchResults')
     dispatch({
@@ -68,6 +72,7 @@ function GameResult() {
     history.push('/');
   }
 
+  // if know friend only show your score
   if (matchResults.friend === undefined) {
     return (
       <Grid

@@ -7,7 +7,6 @@ function* matchResults (action) {
 };
 
   function* setMatchResults (action) {
-    console.log('in setMatchResults saga', action.payload);
 
     try {
       yield axios.post(`/api/matchResults`, action.payload);
@@ -18,11 +17,9 @@ function* matchResults (action) {
   }
 
   function* fetchMatchResults (action) {
-    console.log('in fetchMatchResults')
 
     try {
       const response = yield axios.get(`api/matchResults/${action.payload.friendId}`)
-      console.log('fetchMatchResults', response.data)
       yield put({
         // sends to matchResultsHistoryReducer
         type: 'SET_MATCH_RESULTS_HISTORY',

@@ -18,7 +18,6 @@ function* handleLogin (action) {
 }
 
 function* fetchCourseSearch (action) {
-// console.log('saga course search', action.payload.courseSearch)
   try {
     const response = yield axios.get(`/api/course/search/${action.payload.courseSearch}`)
 
@@ -33,7 +32,6 @@ function* fetchCourseSearch (action) {
 }
 
 function* fetchFriendCourseHistory (action) {
-  // console.log('fetchFriendCourseHistory saga', action.payload.courseId)
   try {
     const response = yield axios.get(`/api/course/selected/${action.payload.courseId}`);
     yield put({
@@ -48,9 +46,7 @@ function* fetchFriendCourseHistory (action) {
 
 
 function* fetchRandomPlayer (action) {
-  //console.log('in fetchRandomPlayer saga', action.payload);
 
-  console.log('fetchRandomPlayer saga', action.payload.courseId)
   try {
     const response = yield axios.get(`/api/course/random/${action.payload.courseId}`);
     yield put({

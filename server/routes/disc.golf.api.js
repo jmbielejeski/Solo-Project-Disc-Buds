@@ -18,7 +18,6 @@ router.post('/', rejectUnauthenticated, (req, res) => {
     }
   })
   .then((response) => {
-    console.log('logged in to API')
     res.sendStatus(200);
   })
   .catch((error) => {
@@ -28,8 +27,6 @@ router.post('/', rejectUnauthenticated, (req, res) => {
 
 // GET PDGA Search router
 router.get('/:input', rejectUnauthenticated, (req, res) => {
-
-  console.log('req.params', req.params.input)
 
   axios.get('https://api.pdga.com/services/json/course', {
     params: {
@@ -41,7 +38,6 @@ router.get('/:input', rejectUnauthenticated, (req, res) => {
     }
   })
     .then((response) => {
-      // console.log('login to PDGA successful', response.data.courses)
       res.send(response.data.courses);
     })
     .catch((error) => {

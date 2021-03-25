@@ -6,7 +6,6 @@ function* holeResults (action) {
 };
 
 function* setHoleResult (action) {
-  console.log('in setHoleResult saga', action.payload);
 
   try {
     yield axios.post(`/api/holeResults`, action.payload);

@@ -9,7 +9,6 @@ function* deleteProfile (action) {
 };
 
 function* deleteUserCourseHistory (action) {
-  console.log('in deleteUserCourseHistory saga')
   try {
     yield axios.delete(`/api/friendCourse`)
     yield put({
@@ -22,7 +21,6 @@ function* deleteUserCourseHistory (action) {
 }
 
 function* deleteFriendships (action) {
-  console.log('in deleteFriendships saga')
   try {
     yield axios.delete(`/api/friend/profile/friendships`)
     yield put({
@@ -35,7 +33,6 @@ function* deleteFriendships (action) {
 }
 
 function* deleteYourProfile (action) {
-  console.log('in deleteYourProfile saga')
   try {
     yield axios.delete(`/api/user/profile`)
     yield put({

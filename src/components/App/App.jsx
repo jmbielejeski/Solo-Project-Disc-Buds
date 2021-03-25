@@ -36,6 +36,7 @@ import SoloGame from '../SoloGame/SoloGame';
 
 import './App.css';
 
+// create custom material UI theme
 const customTheme = createMuiTheme({
   // theme settings
   palette: {

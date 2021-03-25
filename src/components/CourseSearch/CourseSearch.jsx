@@ -35,7 +35,6 @@ const [discGolfCourseSearch, setDiscGolfCourseSearch]= useState('');
 // send input values to third party API to search for course
 const getDiscGolfCourseSearch = (event) => {
   event.preventDefault();
-  console.log('in google maps search', discGolfCourseSearch)
   dispatch({
     type: 'PDGA_SEARCH',
     payload: {

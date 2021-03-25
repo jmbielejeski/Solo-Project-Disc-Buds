@@ -30,9 +30,6 @@ function FriendDetail() {
   const history = useHistory();
   const dispatch = useDispatch();
 
-  // // store current friend in local state
-  // const [currentFriend, setCurrentFriend] = useState('');
-
   // grab friend details from reducer
   const friendDetails = useSelector(store => store.friendDetailReducer);
   const matchHistory = useSelector(store => store.matchResultsHistoryReducer);
@@ -42,28 +39,22 @@ function FriendDetail() {
     history.push('/friendsList');
   }
 
-  console.log('matchHistory', matchHistory)
-
-
+  // local variable to set initial win totals
   let yourWins = 0;
   let friendWins = 0;
-
-
-    for (let i = 0; i < matchHistory.length; i++) {
-        console.log('matchHistory at i', matchHistory[i]);
-        if (matchHistory[i].user_one_score === matchHistory[i].user_two_score) {
-          return;
-      } else if (matchHistory[i].user_one_score < matchHistory[i].user_two_score) {
-        yourWins += 1;
-        console.log('yourWins', yourWins)
-      } else {
-        friendWins += 1;
-      }
+  // loop over match history data to update win totals
+  for (let i = 0; i < matchHistory.length; i++) {
+      if (matchHistory[i].user_one_score === matchHistory[i].user_two_score) {
+        return;
+    } else if (matchHistory[i].user_one_score < matchHistory[i].user_two_score) {
+      yourWins += 1;
+    } else {
+      friendWins += 1;
     }
+  }
 
   // deletes friend relationship from database
   const handleDelete = (friendId) => {
-    console.log('friendId', friendId);
     Swal.fire({
       title: "Are you sure?",
       text: "Once deleted you will no longer be able to play against this friend",

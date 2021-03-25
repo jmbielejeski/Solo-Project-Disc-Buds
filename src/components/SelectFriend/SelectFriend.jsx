@@ -32,19 +32,20 @@ function SelectFriend() {
   // End Material UI
 
   const history = useHistory();
-
   const dispatch = useDispatch();
 
+  //grab your friends from reducer
   const friendList = useSelector(store => store.friendCourseHistoryReducer);
-
+  // if no friends grab players who have played this course
   const randomPlayerList = useSelector(store => store.randomPlayerReducer);
-
+  // grab the selected course from the reducer
   const selectCourse = useSelector(store => store.selectCourseReducer);
-
+  // local state to store the friend you select
   const [selectedFriend, setSelectedFriend] = useState('');
-
+  // local state to store the random player you select
   const [randomPlayer, setRandomPlayer] = useState('');
 
+  // on load grab your friends and their course history
   useEffect(() => {
     dispatch({
       type: 'FETCH_FRIEND_COURSE_HISTORY',
@@ -52,6 +53,7 @@ function SelectFriend() {
         courseId: selectCourse.courseId
       }
     })
+    // on load grab players who have played this course
     dispatch({
       type: 'FETCH_RANDOM_COURSE_HISTORY',
       payload: {
@@ -60,15 +62,9 @@ function SelectFriend() {
     })
   }, [])
 
-  console.log('friendList', friendList[0])
-
 
   const handleClick = (event) => {
-    event.preventDefault();
-    console.log('clicked button', selectedFriend);
-    console.log('selectCourse is ', selectCourse);
-    console.log('friendList is ', friendList);
-
+    // send the chosen friend and course
     dispatch({
       type: 'SET_FRIEND_COURSE',
       payload: {
@@ -82,9 +78,9 @@ function SelectFriend() {
     history.push('/gameProgress');
   }
 
+  // send the chosen player and course
   const StartGameWithoutFriend = (event) => {
     event.preventDefault();
-    console.log('in StartGameWithoutFriend')
     dispatch({
       type: 'SET_FRIEND_COURSE',
       payload: {
@@ -98,9 +94,9 @@ function SelectFriend() {
     history.push('/gameProgress');
   }
 
+  // go to Solo Game component
   const startSoloGame = (event) => {
     event.preventDefault();
-    console.log('starting solo game');
     history.push('/soloGame');
   }
 
