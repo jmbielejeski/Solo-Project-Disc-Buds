@@ -36,6 +36,7 @@ const classes = useStyles();
   // grab friend search results on load
   useEffect(() =>{
     dispatch({
+      // sends to friend saga
       type: 'FETCH_FRIEND_SEARCH'
     })
   }, [])
@@ -44,6 +45,7 @@ const classes = useStyles();
   const addFriend = (userId) => {
     console.log('userId', userId);
     dispatch({
+      // sends to friend saga
       type: 'ADD_FRIEND',
       payload: {
         userId

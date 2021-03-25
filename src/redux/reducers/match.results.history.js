@@ -1,8 +1,8 @@
 const matchResultsHistoryReducer = (state = [], action) => {
-  console.log('reducer payload', action.payload)
+    console.log('matchResultHistoryReducer', action.payload)
   switch (action.type) {
-    case 'SET_MATCH_HISTORY':
-      return action.payload
+    case 'SET_MATCH_RESULTS_HISTORY':
+      return action.payload;
     default:
       return state;
   }

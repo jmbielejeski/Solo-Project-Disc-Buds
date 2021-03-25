@@ -35,14 +35,14 @@ function FriendDetail() {
 
   // grab friend details from reducer
   const friendDetails = useSelector(store => store.friendDetailReducer);
-  const matchHistory = useSelector(store => store.matchResultsHistoryReducer);
+  // const matchHistory = useSelector(store => store.matchResultsHistoryReducer);
 
-  // on load grab friend details
+  // // on load grab friend details
   // useEffect(() => {
   //   dispatch({
+  //     // sends to friendDetailReducer
   //     type: 'GRAB_FRIEND_DETAILS'
   //   })
-
   // }, [])
 
   //console.log('currentFriend', friendDetails)
@@ -71,6 +71,7 @@ function FriendDetail() {
           icon: "success",
         })
         dispatch({
+          // sends to friend saga
           type: 'DELETE_FRIEND',
           payload: {
             friendId
@@ -94,7 +95,7 @@ function FriendDetail() {
     >
       <h4>Friend Details</h4>
       <Grid item xs={12}>{friendDetails.friendUsername}
-      <Grid xs={12}>
+      <Grid item xs={12}>
         <Typography variant="h5">Head to head record</Typography>
       </Grid>
         <Button

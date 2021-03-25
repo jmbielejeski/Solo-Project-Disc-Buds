@@ -56,6 +56,7 @@ useEffect(() => {
    // console.log('courseId', courseName, courseId)
     // send selected course info so it can be pulled in on next page
     dispatch({
+      // Goes to selectCourseReducer
       type: 'SET_SELECT_COURSE',
       payload: {
         courseName,

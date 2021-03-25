@@ -111,6 +111,7 @@ const classes = useStyles();
       console.log('your total score', yourTotalScore, 'friendTotalScore', friendTotalScore)
       // dispatch current hole results so it can be stored in DB
       dispatch({
+        // sends to holeResults saga
         type: 'SET_HOLE_RESULT',
         payload: {
           courseId: friendAndCourse.courseId,
@@ -126,6 +127,7 @@ const classes = useStyles();
 
   const finishGame = () => {
     dispatch({
+      // sends to matchResultsReducer
       type: 'SET_MATCH_RESULTS',
       payload: {
         yourScore: yourTotalScore,
@@ -136,7 +138,7 @@ const classes = useStyles();
         courseId: friendAndCourse.courseId,
       }
     })
-    // history.push('/gameResult');
+    history.push('/gameResult');
   }
 
 switch(finishGameButton) {

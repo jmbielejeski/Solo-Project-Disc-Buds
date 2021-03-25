@@ -39,6 +39,7 @@ function FriendsList() {
   // on load of page fetch the user's friend list
   useEffect(() => {
     dispatch({
+      // sends to friend saga
       type: 'FETCH_FRIEND_LIST'
     })
   }, [])
@@ -48,6 +49,7 @@ function FriendsList() {
     event.preventDefault();
     console.log('friendSearch', friendSearch)
     dispatch({
+      // sends to friend saga
       type: 'FETCH_FRIEND_SEARCH',
       payload: {
         friendSearch,
@@ -64,6 +66,7 @@ function FriendsList() {
 
     // sends friend ID to reducer to be stored
     dispatch({
+      // sends to friend detail reducers
       type: 'SET_FRIEND_DETAILS',
       payload: {
         friendId,
@@ -71,6 +74,7 @@ function FriendsList() {
       }
     })
     dispatch({
+      // sends to matchResults saga
       type: 'FETCH_MATCH_RESULTS',
       payload: {
         friendId: friendId

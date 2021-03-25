@@ -31,6 +31,7 @@ function EditProfile() {
     console.log('handleSave', newUserName)
     // dispatch new username to saga
     dispatch({
+      // sends to userName saga
       type: 'CHANGE_USERNAME',
       payload: {
         newUserName: newUserName,

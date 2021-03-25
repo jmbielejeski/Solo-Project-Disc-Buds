@@ -67,6 +67,7 @@ const handleSubmit = (event) => {
   
     // dispatch current hole results so it can be stored in DB
     dispatch({
+      // sends to holeResults saga
       type: 'SET_HOLE_RESULT',
       payload: {
         courseId: selectCourse.courseId,
@@ -74,7 +75,7 @@ const handleSubmit = (event) => {
         holeIndex: currentHole
       }
     })
-    setCurrentScore(3);
+    setCurrentScore();
     // change hole to next hole
     setCurrentHole(Number(currentHole) + 1);
   })
@@ -89,6 +90,7 @@ const handleSubmit = (event) => {
     setYourTotalScore(Number(yourTotalScore) + Number(currentScore));
     // dispatch current hole results so it can be stored in DB
     dispatch({
+      // sends to holeResults saga
       type: 'SET_HOLE_RESULT',
       payload: {
         courseId: selectCourse.courseId,
@@ -104,6 +106,7 @@ const handleSubmit = (event) => {
 
 const finishGame = () => {
   dispatch({
+    // sends to matchResultsReducer
     type: 'SET_MATCH_RESULTS',
     payload: {
       yourScore: yourTotalScore,

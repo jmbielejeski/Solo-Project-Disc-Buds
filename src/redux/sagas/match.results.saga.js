@@ -2,7 +2,7 @@ import { put, takeEvery } from 'redux-saga/effects';
 import axios from 'axios';
 
 function* matchResults (action) {
-  yield takeEvery('SET_MATCH_RESULTS', setMatchResults);
+  yield takeEvery('SET_MATCH_HISTORY', setMatchResults);
   yield takeEvery('FETCH_MATCH_RESULTS', fetchMatchResults);
 };
 
@@ -16,13 +16,16 @@ function* matchResults (action) {
       console.log('in setMatchResults sage post failed', error)
     }
   }
+
   function* fetchMatchResults (action) {
     console.log('in fetchMatchResults')
 
     try {
-      const response = axios.get(`api/matchResults/${action.payload.friendId}`)
+      const response = yield axios.get(`api/matchResults/${action.payload.friendId}`)
+      console.log('fetchMatchResults', response.data)
       yield put({
-        type: 'SET_MATCH_HISTORY',
+        // sends to matchResultsHistoryReducer
+        type: 'SET_MATCH_RESULTS_HISTORY',
         payload: response.data
       })
     }

@@ -54,6 +54,10 @@ function GameResult() {
     })
   }
 
+  const saveMatchResults = () => {
+    console.log('saveMatchResults')
+  }
+
   if (matchResults.friend === undefined) {
     return (
       <Grid
@@ -94,7 +98,7 @@ function GameResult() {
         variant="contained" 
         color="primary" 
         className={classes.button}           
-        onClick={() => {history.push('/')}}
+        onClick={saveMatchResults}
       >
         Home page
       </Button>
