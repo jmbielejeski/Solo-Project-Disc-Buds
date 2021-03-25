@@ -21,6 +21,8 @@ import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Divider from '@material-ui/core/Divider';
 import course from '../../redux/sagas/course.saga';
+import StarIcon from '@material-ui/icons/Star';
+import StarBorderIcon from '@material-ui/icons/StarBorder';
 
 function CourseSearchResults() {
   // Material UI
@@ -126,6 +128,7 @@ useEffect(() => {
                     >
                       Play Course
                     </Button>
+                    <StarBorderIcon />
                   </Grid>
                 </ListItem>
                   <Accordion>
