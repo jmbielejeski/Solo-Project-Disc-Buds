@@ -133,7 +133,7 @@ const classes = useStyles();
         yourScore: yourTotalScore,
         friendScore: friendTotalScore,
         friend: friendAndCourse.friend,
-        friend: friendAndCourse.friendId,
+        friendId: friendAndCourse.friendId,
         course: friendAndCourse.courseName,
         courseId: friendAndCourse.courseId,
       }

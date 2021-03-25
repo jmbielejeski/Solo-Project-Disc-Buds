@@ -27,6 +27,7 @@ function GameResult() {
   // End Material UI
   
   const history = useHistory();
+  const dispatch = useDispatch();
 
   const matchResults = useSelector(store => store.matchResultsReducer);
 
@@ -56,6 +57,15 @@ function GameResult() {
 
   const saveMatchResults = () => {
     console.log('saveMatchResults')
+    dispatch({
+      type: 'SET_MATCH_HISTORY',
+      payload: {
+        friendId: matchResults.friendId,
+        yourScore: matchResults.yourScore,
+        friendScore: matchResults.friendScore
+      }
+    })
+    history.push('/');
   }
 
   if (matchResults.friend === undefined) {

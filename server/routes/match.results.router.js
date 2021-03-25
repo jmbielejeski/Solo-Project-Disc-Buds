@@ -36,7 +36,7 @@ router.post('/', rejectUnauthenticated, (req, res) => {
     INSERT INTO "match_results" ("user_one", "user_two", "user_one_score", "user_two_score")
       VALUES ($1, $2, $3, $4);
   `
-  pool.query(queryText, [req.user.id, req.body.friend, req.body.yourScore, req.body.friendScore])
+  pool.query(queryText, [req.user.id, req.body.friendId, req.body.yourScore, req.body.friendScore])
     .then(dbRes => {
       res.sendStatus(200);
     })

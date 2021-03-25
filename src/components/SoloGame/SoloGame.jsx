@@ -75,7 +75,7 @@ const handleSubmit = (event) => {
         holeIndex: currentHole
       }
     })
-    setCurrentScore();
+    setCurrentScore(3);
     // change hole to next hole
     setCurrentHole(Number(currentHole) + 1);
   })
@@ -161,7 +161,7 @@ switch(finishGameButton) {
           direction="column"
         >
           <Grid item xs={12}>
-            <Typography variang="h5">
+            <Typography variant="h5">
               {selectCourse.courseName}
             </Typography>
           </Grid>
