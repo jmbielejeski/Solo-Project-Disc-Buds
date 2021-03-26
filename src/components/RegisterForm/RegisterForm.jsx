@@ -1,7 +1,32 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+// Material UI imports
+import FormControl from '@material-ui/core/FormControl';
+import FormLabel from '@material-ui/core/FormLabel';
+import {Button, TextField} from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
+import InputLabel from '@material-ui/core/InputLabel';
+import Input from '@material-ui/core/Input';
+import OutlinedInput from '@material-ui/core/OutlinedInput';
+
 function RegisterForm() {
+  // Material UI
+  const useStyles = makeStyles((theme) => ({
+    root: {
+      flexGrow: 1,
+    },
+    control: {
+      padding: theme.spacing(2),
+      margin: 'auto',
+    },
+  }));
+
+  const classes = useStyles();
+// End Material UI
+
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const errors = useSelector((store) => store.errors);
@@ -21,38 +46,49 @@ function RegisterForm() {
 
   return (
     <form className="formPanel" onSubmit={registerUser}>
-      <h2>Register User</h2>
+      <Typography variant="h5">Register User</Typography>
       {errors.registrationMessage && (
         <h3 className="alert" role="alert">
           {errors.registrationMessage}
         </h3>
       )}
       <div>
-        <label htmlFor="username">
+        <InputLabel htmlFor="username">
           Username:
-          <input
-            type="text"
-            name="username"
+        </InputLabel>
+          <OutlinedInput
+            id="username"
             value={username}
             required
             onChange={(event) => setUsername(event.target.value)}
+            margin="dense"
           />
-        </label>
       </div>
       <div>
-        <label htmlFor="password">
+        <InputLabel htmlFor="password">
           Password:
-          <input
+        </InputLabel>
+          <OutlinedInput
             type="password"
-            name="password"
+            id="password"
             value={password}
             required
             onChange={(event) => setPassword(event.target.value)}
+            margin="dense"
           />
-        </label>
       </div>
       <div>
-        <input className="btn" type="submit" name="submit" value="Register" />
+        <Button 
+          className="btn" 
+          variant="contained" 
+          color="primary" 
+          type="submit" 
+          name="submit" 
+          value="Log In" 
+          onClick={registerUser} 
+        >
+          Register
+        </Button>
       </div>
     </form>
   );

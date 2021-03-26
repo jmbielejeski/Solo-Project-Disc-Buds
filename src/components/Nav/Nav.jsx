@@ -32,7 +32,6 @@ function Nav() {
   const toggleDrawer = () => {
     setDrawer(!drawer);
   };
-
   
   // End Material UI
 
