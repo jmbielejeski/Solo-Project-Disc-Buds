@@ -106,10 +106,9 @@ function FriendDetail() {
       alignItems="center"
       direction="column" 
     >
-      <h4>Friend Details</h4>
+      <Typography variant="h5">Friend Details</Typography>
       <Grid item xs={12}>{friendDetails.friendUsername}
       <Grid item xs={12}>
-        <Typography variant="h5">Head to head record</Typography>
         <Grid item xs={12}>
           You have beat {friendDetails.friendUsername} {yourWins} times
         </Grid>

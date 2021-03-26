@@ -52,7 +52,7 @@ useEffect(() => {
     setLoading(true);
     timer.current = window.setTimeout(() => {
       setLoading(false);
-    }, 1000);
+    }, 500);
   }
 }, [])
 

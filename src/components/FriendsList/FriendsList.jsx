@@ -11,6 +11,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
+import Typography from '@material-ui/core/Typography';
 
 function FriendsList() {
   // Material UI
@@ -91,14 +92,23 @@ function FriendsList() {
         direction="column"
       >
         <Grid item xs={12}>
-          Current Friends!
+          <Typography variant="h5">Current Friends</Typography>
         </Grid>
         <Grid item xs={12}>
           <Grid item xs={12}>
             <List>
               {friendList.map(friend => {
                 return(
-                  <ListItem key={friend.id} onClick={() => handleClick(friend.id, friend.username)}>{friend.username}</ListItem>
+                  <ListItem key={friend.id}> {friend.username}
+                    <Button
+                      type="submit" 
+                      variant="contained" 
+                      color="primary" 
+                      onClick={() => handleClick(friend.id, friend.username)}
+                    >
+                      Details
+                    </Button>
+                  </ListItem>
                 )
               })}
             </List>
