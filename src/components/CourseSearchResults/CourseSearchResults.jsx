@@ -21,7 +21,7 @@ import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Divider from '@material-ui/core/Divider';
 import course from '../../redux/sagas/course.saga';
-
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 function CourseSearchResults() {
   // Material UI
@@ -38,11 +38,22 @@ function CourseSearchResults() {
   const classes = useStyles();
   // End Material UI
 
+  const timer = React.useRef();
+
+  const [loading, setLoading] = useState(false);
+
 // on load clear the search results reducer
 useEffect(() => {
   dispatch({
     type: 'CLEAR_SEARCH_REDUCER'
   })
+  // have a spinner appear so the results from the API have time to be fetched
+  if (!loading) {
+    setLoading(true);
+    timer.current = window.setTimeout(() => {
+      setLoading(false);
+    }, 1000);
+  }
 }, [])
 
   const history = useHistory();
@@ -70,15 +81,27 @@ useEffect(() => {
   let courseLink = `https://www.pdga.com/node/${course.course_node_nid}`
 
   return (
-    // check if we have search results
-    courseSearchResults[0] === undefined ?
+    // have spinner load so results have time to be fetched
+    loading ? 
+      <Grid
+        container 
+        className={classes.root} 
+        spacing={2}
+        alignItems="center"
+        direction="column"     
+      >  
+        <CircularProgress/> 
+      </Grid>
+    :
+        // check if we have search results
+        courseSearchResults[0] === undefined ?
     <Grid
       container 
       className={classes.root} 
       spacing={2}
       alignItems="center"
       direction="column"     
-    >
+    >      
       <Grid item xs={12}>No results found</Grid>
       <Link 
         component="button"
