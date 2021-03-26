@@ -11,8 +11,9 @@ const router = express.Router();
 router.get('/:friendId', rejectUnauthenticated, (req, res) => {
 
   let queryText = `
-    SELECT user_one_score, user_two_score FROM "match_results"
-    WHERE user_one = $1 AND user_two = $2 OR user_one = $2 AND user_two = $1;
+    SELECT * FROM "match_results"
+    WHERE (user_one = $1 AND user_two = $2) 
+    OR (user_one = $2 AND user_two = $1);
   `
 
   pool.query(queryText, [req.user.id, req.params.friendId])

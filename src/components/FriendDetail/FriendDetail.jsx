@@ -42,16 +42,29 @@ function FriendDetail() {
   // local variable to set initial win totals
   let yourWins = 0;
   let friendWins = 0;
-  // loop over match history data to update win totals
-  for (let i = 0; i < matchHistory.length; i++) {
-      if (matchHistory[i].user_one_score === matchHistory[i].user_two_score) {
-        return;
-    } else if (matchHistory[i].user_one_score < matchHistory[i].user_two_score) {
-      yourWins += 1;
+
+
+  matchHistory.forEach(match => {
+    let friendScore = 0;
+    let myScore = 0;
+
+    if (match.user_one === friendDetails.friendId) {
+      friendScore = match.user_one_score;
+      myScore = match.user_two_score;
     } else {
-      friendWins += 1;
+      myScore = match.user_one_score;
+      friendScore = match.user_two_score;
     }
-  }
+
+    if (myScore < friendScore) {
+      yourWins++;
+    } else if (friendScore < myScore) {
+      friendWins++;
+    } else {
+      // No-op, tis a tie
+    }
+  });
+  
 
   // deletes friend relationship from database
   const handleDelete = (friendId) => {
