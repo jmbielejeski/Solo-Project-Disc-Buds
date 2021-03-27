@@ -119,9 +119,6 @@ useEffect(() => {
       alignItems="center"
       direction="column"     
     >
-      <Typography variant="h5">
-        Select a Course
-      </Typography>
       <Grid item xs={12}>
         <List>
           {courseSearchResults.map(course => {

@@ -75,7 +75,7 @@ const classes = useStyles();
           />
       </Grid>
       <Grid item xs={12}>
-        <InputLabel hrmlFor="password">
+        <InputLabel htmlFor="password">
           Password:
         </InputLabel>
           <OutlinedInput

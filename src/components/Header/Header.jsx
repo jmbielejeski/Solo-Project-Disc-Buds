@@ -4,13 +4,14 @@ import { makeStyles } from '@material-ui/core/styles';
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import { useHistory } from 'react-router-dom';
+import Logo from '../../images/logo.png';
 
 // This is one of our simplest components
 // It doesn't have local state, so it can be a function component.
 // It doesn't dispatch any redux actions or display any part of redux state
 // or even care what the redux state is, so it doesn't need 'connect()'
 
-function Footer() {
+function Header() {
 
   const useStyles = makeStyles((theme) => ({
     root: {
@@ -19,12 +20,12 @@ function Footer() {
       flexGrow: 1,
     },
     control: {
-      padding: theme.spacing(2),
-      margin: 'auto',
+      padding: theme.spacing(0),
+      margin: 1,
     },
-    footer: {
-      position: "fixed",
-      bottom: theme.spacing(4),
+    header: {
+      position: "relative",
+      top: theme.spacing(0),
     },
   }));
 
@@ -35,23 +36,17 @@ function Footer() {
   return (
     <Grid
       container 
-      className={classes.footer} 
+      className={classes.header} 
       spacing={2}
       alignItems="center"
       direction="column" 
     >
-      <Grid item xs={12}>
-        <Typography>
-          <Link onClick={() => {history.push('/homePage')}}>Disc Buds © 2021</Link>
-        </Typography>
-      </Grid>
-      <Grid item xs={12}>
-        <Typography>
-          <Link target="_blank" href="https://www.pdga.com/"> Course data © 2021 PDGA</Link>
-        </Typography>
-      </Grid>
+        <img 
+          src={Logo}
+          onClick={() => {history.push('/homePage')}}
+        />
     </Grid>
   )
 }
 
-export default Footer;
+export default Header;
