@@ -27,6 +27,7 @@ function FriendDetail() {
 
   const classes = useStyles();
   // End Material UI
+  
   const history = useHistory();
   const dispatch = useDispatch();
 

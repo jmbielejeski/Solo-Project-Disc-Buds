@@ -81,12 +81,14 @@ const classes = useStyles();
           )
         })}
       </List>
-      <Link 
-        variant="body1"
+      <Button 
+        type="submit" 
+        variant="contained" 
+        color="primary"
         onClick={() => {history.push('/friendsList')}}
       >
         Back
-      </Link>
+      </Button>
     </Grid>
   )
 }

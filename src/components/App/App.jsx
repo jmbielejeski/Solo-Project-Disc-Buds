@@ -33,6 +33,7 @@ import FriendsSearchResults from '../FriendsSearchResults/FriendsSearchResults';
 import EditProfile from '../EditProfile/EditProfile';
 import FriendDetail from '../FriendDetail/FriendDetail';  
 import SoloGame from '../SoloGame/SoloGame';
+import Header from '../Header/Header';
 
 import './App.css';
 
@@ -75,6 +76,7 @@ function App() {
       <Router>
         <div>
           <Nav />
+          <Header />
           <Switch>
             {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
             <Redirect exact from="/" to="/home" />
@@ -92,7 +94,7 @@ function App() {
               Visiting localhost:3000/user will show the UserPage if the user is logged in.
               If the user is not logged in, the ProtectedRoute will show the LoginPage (component).
               Even though it seems like they are different pages, the user is always on localhost:3000/user */}
-
+            
             <ProtectedRoute
               // logged in shoes HomePage
               exact

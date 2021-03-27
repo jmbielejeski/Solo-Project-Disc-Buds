@@ -154,7 +154,7 @@ switch(finishGameButton) {
         </Grid>
         <Grid item xs={12}>Hole {currentHole}</Grid>
         
-        <Grid item xs={12}>your score: {yourTotalScore}</Grid>
+        <Grid item xs={12}>Your score: {yourTotalScore}</Grid>
         <Grid item xs={12}>{friendAndCourse.friend}'s score: {friendTotalScore}</Grid>
         <Button
           type="submit" 
@@ -207,7 +207,7 @@ switch(finishGameButton) {
             </Button>
           </FormControl>
           <Grid item xs={12}>
-            <Typography variant="body1">your score: {yourTotalScore} </Typography>
+            <Typography variant="body1">Your score: {yourTotalScore} </Typography>
           </Grid>
           <Grid item xs={12}>
             <Typography variant="body1">{friendAndCourse.friend}'s score: {friendTotalScore} </Typography>

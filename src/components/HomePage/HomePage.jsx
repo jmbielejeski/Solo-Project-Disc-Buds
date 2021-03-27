@@ -4,6 +4,7 @@ import Link from '@material-ui/core/Link';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
+import {Button} from '@material-ui/core';
 
 function HomePage() {
   // Material UI
@@ -29,26 +30,26 @@ const classes = useStyles();
       alignItems="center"
       direction="column"
     >
+
       <Grid item xs={12}>
-        <Typography variant="h5">Welcome to Disc Buds! </Typography>
-      </Grid>
-      <Grid item xs={12}>
-        <Link  
-          component="button"
-          variant="body1"
+        <Button  
+          className="btn" 
+          variant="contained" 
+          color="primary"
           onClick={() => {history.push('/courseSearch')}}
         >
           Start Game
-        </Link>
+        </Button>
       </Grid>
       <Grid item xs={12}>
-        <Link  
-          component="button"
-          variant="body1"
+        <Button
+          className="btn" 
+          variant="contained" 
+          color="primary"
           onClick={() => {history.push('/friendsList')}}
         >
           Add a friend      
-        </Link>
+        </Button>
       </Grid>
     </Grid>
   )

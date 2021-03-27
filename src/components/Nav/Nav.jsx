@@ -16,13 +16,18 @@ import Drawer from '@material-ui/core/Drawer';
 import TextField from '@material-ui/core/TextField';
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
+import InfoIcon from '@material-ui/icons/Info';
+import HomeIcon from '@material-ui/icons/Home';
+import PermContactCalendarIcon from '@material-ui/icons/PermContactCalendar';
+import EditIcon from '@material-ui/icons/Edit';
 
 function Nav() {
 
   // material UI
   const useStyles = makeStyles({
     list: {
-      width: "225px",
+      width: "13em",
+      backgroundColor: '#3fc2c9'
     }
   });
 
@@ -32,7 +37,6 @@ function Nav() {
   const toggleDrawer = () => {
     setDrawer(!drawer);
   };
-
   
   // End Material UI
 
@@ -61,6 +65,7 @@ function Nav() {
     >
       <List>
         <ListItem>
+          <HomeIcon />
           <Link 
             component="button"
             variant="body1"
@@ -70,6 +75,7 @@ function Nav() {
           </Link>
         </ListItem>
         <ListItem>
+          <InfoIcon />
           <Link 
             component="button"
             variant="body1"
@@ -95,6 +101,7 @@ function Nav() {
           Welcome {user.username}
         </ListItem>
         <ListItem>
+        <HomeIcon />
           <Link 
             component="button"
             variant="body1"
@@ -104,6 +111,7 @@ function Nav() {
           </Link>
         </ListItem>
         <ListItem>
+        <PermContactCalendarIcon />
           <Link 
             component="button"
             variant="body1"
@@ -113,6 +121,7 @@ function Nav() {
           </Link>
         </ListItem>
         <ListItem>
+          <EditIcon />
           <Link 
             component="button"
             variant="body1"
@@ -122,6 +131,7 @@ function Nav() {
           </Link>
         </ListItem>
         <ListItem>
+        <InfoIcon />
         <Link 
             component="button"
             variant="body1"
