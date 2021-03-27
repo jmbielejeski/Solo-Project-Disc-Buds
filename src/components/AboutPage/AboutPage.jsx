@@ -34,7 +34,7 @@ const classes = useStyles();
       <Grid item xs={12}>
         <Typography variant="h5">Welcome to Disc Buds</Typography>
       </Grid>
-      <Grid item xs={12}>
+      <Grid item xs={9}>
         <Typography 
           variant="body1"
         >

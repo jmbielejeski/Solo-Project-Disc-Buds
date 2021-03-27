@@ -22,6 +22,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Divider from '@material-ui/core/Divider';
 import course from '../../redux/sagas/course.saga';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import Box from '@material-ui/core/Box';
 
 function CourseSearchResults() {
   // Material UI
@@ -107,6 +108,7 @@ useEffect(() => {
       <Grid item xs={12}>
         <Typography variant="h5">No results found</Typography>
       </Grid>
+      <Box m={1}/>
       <Button 
         type="submit" 
         variant="contained" 
@@ -139,9 +141,9 @@ useEffect(() => {
                 <Divider />
                 <ListItem key={course.course_id}>
                   <Link target="_blank" href={`https://www.pdga.com/node/${course.course_node_nid}`}>
-                    <Grid item xs={12}>{course.course_name}</Grid> 
+                    <Grid item xs={6}>{course.course_name}</Grid> 
                   </Link>
-                  <Grid item xs={12}>
+                  <Grid item xs={6}>
                     <Button 
                       type="submit" 
                       variant="contained" 
@@ -162,23 +164,25 @@ useEffect(() => {
                       <Typography className={classes.heading}>Course Details</Typography>
                     </AccordionSummary>
                     <AccordionDetails>
-                      <Grid item xs={12}>
+                      <Grid item xs={9}>
                         {course.holes} hole course
                       </Grid>
                     </AccordionDetails>
                     <AccordionDetails>
-                      <Grid item xs={12}>
+                      <Grid item xs={9}>
                         <Link target="_blank" href={`https://www.google.com/maps/search/?api=1&query=${course.street}%2C${course.city}%2C${course.state_province}%2C${course.postal_code}`}>
-                          Address: {course.street}, {course.city}, {course.state_province}, {course.postal_code}
+                          {course.street}, {course.city}, {course.state_province}, {course.postal_code}
                         </Link>
                       </Grid>
                     </AccordionDetails>
                     <AccordionDetails>
-                    <Grid item xs={12}>
+                    <Grid item xs={9}>
                         Description: {course.course_description}
                     </Grid>
                   </AccordionDetails>
                 </Accordion>
+                <Box m={1}/>
+
                 <Divider />
               </Grid>
             )

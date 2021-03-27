@@ -10,6 +10,7 @@ import {Button, TextField} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
 
 function CourseSearch() {
 // Material UI
@@ -64,7 +65,8 @@ const getDiscGolfCourseSearch = (event) => {
             placeholder="Search for a course"
             onChange={(event) => setDiscGolfCourseSearch(event.target.value)}
             required={true} 
-          />  
+          />   
+          <Box m={1}/>
           <Button 
             type="submit" 
             variant="contained" 

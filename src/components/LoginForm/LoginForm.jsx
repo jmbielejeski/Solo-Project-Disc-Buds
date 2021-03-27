@@ -13,7 +13,6 @@ import Typography from '@material-ui/core/Typography';
 import InputLabel from '@material-ui/core/InputLabel';
 import Input from '@material-ui/core/Input';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
-import { ClassRounded } from '@material-ui/icons';
 import Box from '@material-ui/core/Box';
 
 function LoginForm() {

@@ -12,6 +12,7 @@ import Grid from '@material-ui/core/Grid';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
 
 function FriendsList() {
   // Material UI
@@ -120,13 +121,15 @@ function FriendsList() {
           </Grid>
           <FormControl component="fieldset">
           <FormLabel component="legend">Search for a friend to add</FormLabel> 
+          <Box m={1}/>
             <TextField
               required 
               variant="outlined"
               placeholder="Search for friend"
               defaultValue={friendSearch}
               onChange={(event) => setFriendSearch(event.target.value)}
-            />  
+            /> 
+            <Box m={1}/> 
             <Button 
               type="submit" 
               variant="contained" 
