@@ -43,6 +43,7 @@ function Header() {
     >
         <img 
           src={Logo}
+          alt="Disc Buds Logo"
           onClick={() => {history.push('/homePage')}}
 
         />
