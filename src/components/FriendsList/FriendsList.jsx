@@ -20,7 +20,7 @@ function FriendsList() {
       flexGrow: 1,
     },
     control: {
-      padding: theme.spacing(2),
+      padding: theme.spacing(0),
       margin: 'auto',
     },
   }));

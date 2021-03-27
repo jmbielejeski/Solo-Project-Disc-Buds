@@ -13,6 +13,8 @@ import Typography from '@material-ui/core/Typography';
 import InputLabel from '@material-ui/core/InputLabel';
 import Input from '@material-ui/core/Input';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
+import { ClassRounded } from '@material-ui/icons';
+import Box from '@material-ui/core/Box';
 
 function LoginForm() {
 
@@ -25,6 +27,9 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(2),
     margin: 'auto',
   },
+  inputs: {
+    marginBottom: '10rem',
+  }
 }));
 
 const classes = useStyles();
@@ -56,16 +61,16 @@ const classes = useStyles();
 
   return (
     <form className="formPanel" onSubmit={login}>
-      <Typography variant="h5">Login</Typography>
       {errors.loginMessage && (
         <Typography variant="h3" className="alert" role="alert">
           {errors.loginMessage}
         </Typography>
       )}
-      <Grid item xs={12}>
+      <Grid item xs>
         <InputLabel htmlFor="username">
           Username:
         </InputLabel>
+        <Box m={1}/>
           <OutlinedInput
             id="username"
             required
@@ -74,11 +79,14 @@ const classes = useStyles();
             margin="dense"
           />
       </Grid>
-      <Grid item xs={12}>
+      <Box m={1}/>
+      <Grid item xs>
         <InputLabel htmlFor="password">
           Password:
         </InputLabel>
+        <Box m={1}/>
           <OutlinedInput
+            className={classes.margin}
             type="password"
             id="password"
             required
@@ -87,7 +95,8 @@ const classes = useStyles();
             margin="dense"
           />
       </Grid>
-      <Grid item xs={12}>
+      <Box m={3}/>
+      <Grid item xs>
         <Button 
           className="btn" 
           variant="contained" 

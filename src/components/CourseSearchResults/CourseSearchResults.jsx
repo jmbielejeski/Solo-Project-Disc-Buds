@@ -88,6 +88,7 @@ useEffect(() => {
         className={classes.root} 
         spacing={2}
         alignItems="center"
+        justify="space-between"
         direction="column"     
       >  
         <CircularProgress/> 
@@ -99,23 +100,28 @@ useEffect(() => {
       container 
       className={classes.root} 
       spacing={2}
+      justify="space-between"
       alignItems="center"
       direction="column"     
     >      
-      <Grid item xs={12}>No results found</Grid>
-      <Link 
-        component="button"
-        variant="body1"
+      <Grid item xs={12}>
+        <Typography variant="h5">No results found</Typography>
+      </Grid>
+      <Button 
+        type="submit" 
+        variant="contained" 
+        color="primary"
         onClick={() => {history.push('/courseSearch')}}
       >
         Back
-      </Link>
+      </Button>
     </Grid>
   :
     <Grid
       container 
       className={classes.root} 
       spacing={2}
+      justify="space-between"
       alignItems="center"
       direction="column"     
     >

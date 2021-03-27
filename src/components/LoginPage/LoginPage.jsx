@@ -32,7 +32,7 @@ function LoginPage() {
       alignItems="center"
       direction="column"
     >
-      <LoginForm />
+        <LoginForm />
       <center>
         <Button
           type="button"

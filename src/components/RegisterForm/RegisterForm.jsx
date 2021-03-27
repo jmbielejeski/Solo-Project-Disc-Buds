@@ -11,6 +11,7 @@ import Typography from '@material-ui/core/Typography';
 import InputLabel from '@material-ui/core/InputLabel';
 import Input from '@material-ui/core/Input';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
+import Box from '@material-ui/core/Box';
 
 function RegisterForm() {
   // Material UI
@@ -46,7 +47,6 @@ function RegisterForm() {
 
   return (
     <form className="formPanel" onSubmit={registerUser}>
-      <Typography variant="h5">Register User</Typography>
       {errors.registrationMessage && (
         <h3 className="alert" role="alert">
           {errors.registrationMessage}
@@ -56,6 +56,7 @@ function RegisterForm() {
         <InputLabel htmlFor="username">
           Username:
         </InputLabel>
+        <Box m={1}/>
           <OutlinedInput
             id="username"
             value={username}
@@ -64,10 +65,12 @@ function RegisterForm() {
             margin="dense"
           />
       </div>
+      <Box m={1}/>
       <div>
         <InputLabel htmlFor="password">
           Password:
         </InputLabel>
+        <Box m={1}/>
           <OutlinedInput
             type="password"
             id="password"
@@ -77,6 +80,7 @@ function RegisterForm() {
             margin="dense"
           />
       </div>
+      <Box m={3}/>
       <div>
         <Button 
           className="btn" 

@@ -159,7 +159,6 @@ function SelectFriend() {
       direction="column"
     >
     <Grid item xs={12}>
-      {selectCourse.courseName} 
     </Grid>
       <Grid item xs={12}>
         <FormControl component="fieldset">
@@ -207,7 +206,7 @@ function SelectFriend() {
       direction="column"
     >
     <Grid item xs={12}>
-      {selectCourse.courseName} 
+      <Typography variant="h5"> {selectCourse.courseName}</Typography>
     </Grid>
       <Grid item xs={12}>
         <FormControl component="fieldset">

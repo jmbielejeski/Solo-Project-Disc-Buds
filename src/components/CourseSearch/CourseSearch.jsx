@@ -44,8 +44,7 @@ const getDiscGolfCourseSearch = (event) => {
   // navigate to courseSearchResults
   history.push('/courseSearchResults');
 }
-
-return (
+  return (
     <Grid 
       container 
       className={classes.root} 

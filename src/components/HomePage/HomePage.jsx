@@ -30,9 +30,7 @@ const classes = useStyles();
       alignItems="center"
       direction="column"
     >
-      {/* <Grid item xs={12}>
-        <Typography variant="h5">Welcome to Disc Buds! </Typography>
-      </Grid> */}
+
       <Grid item xs={12}>
         <Button  
           className="btn" 
@@ -44,7 +42,7 @@ const classes = useStyles();
         </Button>
       </Grid>
       <Grid item xs={12}>
-        <Button  
+        <Button
           className="btn" 
           variant="contained" 
           color="primary"

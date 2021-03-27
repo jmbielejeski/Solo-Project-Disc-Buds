@@ -20,7 +20,7 @@ function Header() {
       flexGrow: 1,
     },
     control: {
-      padding: theme.spacing(0),
+      padding: 0,
       margin: 1,
     },
     header: {
@@ -44,6 +44,7 @@ function Header() {
         <img 
           src={Logo}
           onClick={() => {history.push('/homePage')}}
+
         />
     </Grid>
   )

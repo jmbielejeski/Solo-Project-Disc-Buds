@@ -22,7 +22,8 @@ function Nav() {
   // material UI
   const useStyles = makeStyles({
     list: {
-      width: "225px",
+      width: "13em",
+      backgroundColor: '#3fc2c9'
     }
   });
 
