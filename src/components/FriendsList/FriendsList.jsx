@@ -23,6 +23,11 @@ function FriendsList() {
       padding: theme.spacing(0),
       margin: 'auto',
     },
+    absolute: {
+      position: 'absolute',
+      bottom: theme.spacing(2),
+      right: theme.spacing(3),
+    },
   }));
   
   const classes = useStyles();
@@ -152,7 +157,7 @@ function FriendsList() {
           <Grid item xs={12}>
             {friendList.map(friend => {
               return(
-                <ListItem key={friend.id} onClick={() => handleClick(friend.id, friend.username)}>{friend.username}</ListItem>
+                  <ListItem key={friend.id} onClick={() => handleClick(friend.id, friend.username)}>{friend.username}</ListItem>
               )
             })}
           </Grid>
