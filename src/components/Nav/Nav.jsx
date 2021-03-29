@@ -27,7 +27,11 @@ function Nav() {
   const useStyles = makeStyles({
     list: {
       width: "13em",
-      backgroundColor: '#3fc2c9'
+      backgroundColor: '#3fc2c9',
+      
+    },
+    text: {
+      color: '#000'
     }
   });
 
@@ -67,6 +71,7 @@ function Nav() {
         <ListItem>
           <HomeIcon />
           <Link 
+            className={classes.text}
             component="button"
             variant="body1"
             onClick={() => {history.push('/homePage')}}
@@ -77,6 +82,7 @@ function Nav() {
         <ListItem>
           <InfoIcon />
           <Link 
+            className={classes.text}
             component="button"
             variant="body1"
             onClick={() => {history.push('/about')}}
@@ -103,6 +109,7 @@ function Nav() {
         <ListItem>
         <HomeIcon />
           <Link 
+            className={classes.text}
             component="button"
             variant="body1"
             onClick={() => {history.push('/')}}
@@ -113,6 +120,7 @@ function Nav() {
         <ListItem>
         <PermContactCalendarIcon />
           <Link 
+            className={classes.text}
             component="button"
             variant="body1"
             onClick={() => {history.push('/friendsList')}}
@@ -123,6 +131,7 @@ function Nav() {
         <ListItem>
           <EditIcon />
           <Link 
+            className={classes.text}
             component="button"
             variant="body1"
             onClick={() => {history.push('/editProfile')}}
@@ -133,6 +142,7 @@ function Nav() {
         <ListItem>
         <InfoIcon />
         <Link 
+            className={classes.text}
             component="button"
             variant="body1"
             onClick={() => {history.push('/about')}}
