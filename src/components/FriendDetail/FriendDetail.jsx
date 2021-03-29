@@ -12,6 +12,7 @@ import {Button} from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
 import Link from '@material-ui/core/Link';
 import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
 
 function FriendDetail() {
   // Material UI
@@ -99,6 +100,15 @@ function FriendDetail() {
   })
 }
 
+let winner;
+if (yourWins === friendWins) {
+  winner = 'You are tied!';
+} else if (yourWins > friendWins) {
+  winner = 'You are in the lead!'
+} else {
+  winner = `{friendDetails.friendUsername} is in the lead!`
+}
+
   return (
     <Grid
       container 
@@ -107,16 +117,16 @@ function FriendDetail() {
       alignItems="center"
       direction="column" 
     >
-      <Typography variant="h5">Friend Details</Typography>
-      <Grid item xs={12}>{friendDetails.friendUsername}
-      <Grid item xs={12}>
-        <Grid item xs={12}>
-          You have beat {friendDetails.friendUsername} {yourWins} times
-        </Grid>
-        <Grid item xs={12}>
-        {friendDetails.friendUsername} has beat you {friendWins} times
-        </Grid>
-      </Grid>
+      <Typography variant="h4">{friendDetails.friendUsername}</Typography>
+      <Box m={2}/>
+        <Typography variant="h5">
+            Stats:        
+          </Typography>
+        <Box m={1}/>
+          Your wins: {yourWins} vs {friendDetails.friendUsername} wins: {friendWins}
+          <Box m={1}/>
+        <Typography variant="body1">{winner}</Typography>
+      <Box m={3}/>
         <Button
           type="submit" 
           variant="contained" 
@@ -124,9 +134,9 @@ function FriendDetail() {
           className={classes.button} 
           onClick={() => handleDelete(friendDetails.friendId)}
         >
-          Delete
+          Delete Friend
         </Button>
-      </Grid>
+        <Box m={1}/>
       <Link 
         variant="body1"
         onClick={() => {history.push('/friendsList')}}
