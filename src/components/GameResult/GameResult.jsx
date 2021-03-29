@@ -9,6 +9,8 @@ import Swal from 'sweetalert2'
 import Grid from '@material-ui/core/Grid';
 import {Button} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
 
 function GameResult() {
 
@@ -82,8 +84,9 @@ function GameResult() {
         alignItems="center"
         direction="column"
       >
-        <Grid item xs={12}>Game Results!</Grid>
-        <Grid item xs={12}>your score: {matchResults.yourScore}</Grid>
+        <Typography variant="h5">Game Results!</Typography>
+        <Typography variant="h6">your score: {matchResults.yourScore}</Typography>
+        <Box m={1}/>
           <Button 
             type="submit" 
             variant="contained" 
@@ -105,9 +108,10 @@ function GameResult() {
       alignItems="center"
       direction="column"
     >
-      <Grid item xs={12}>Game Results!</Grid>
-      <Grid item xs={12}>Your score: {matchResults.yourScore}</Grid>
-      <Grid item xs={12}>{matchResults.friend}'s score: {matchResults.friendScore}</Grid>
+      <Typography variant="h5">Game Results!</Typography>
+      <Typography variant="h6">Your score: {matchResults.yourScore}</Typography>
+      <Typography variant="h6">{matchResults.friend}'s score: {matchResults.friendScore}</Typography>
+      <Box m={1}/>
       <Button 
         type="submit" 
         variant="contained" 

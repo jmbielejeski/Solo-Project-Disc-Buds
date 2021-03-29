@@ -105,9 +105,13 @@ function FriendsList() {
             <List>
               {friendList.map(friend => {
                 return(
-                  <ListItem key={friend.id}> {friend.username}
-                            <Box m={1}/>
-
+                  <Grid item xs={12}>
+                  <ListItem key={friend.id}> 
+                  <Grid item xs={12}>
+                    {friend.username}
+                  </Grid>
+                    <Box m={1}/>
+                    <Grid item xs={12}>
                     <Button
                       type="submit" 
                       variant="contained" 
@@ -116,13 +120,14 @@ function FriendsList() {
                     >
                       Details
                     </Button>
+                    </Grid>
                   </ListItem>
+                  </Grid>
                 )
               })}
             </List>
           </Grid>
           <Box m={1}/>
-
           <FormControl component="fieldset">
           <FormLabel component="legend">Search for a friend to add</FormLabel> 
           <Box m={1}/>
@@ -158,28 +163,47 @@ function FriendsList() {
         direction="column"
       >
         <Grid item xs={12}>
-          Current Friends!
+          <Typography variant="h5">Current Friends</Typography>
         </Grid>
+        <Grid item xs={12}>
           <Grid item xs={12}>
-            {friendList.map(friend => {
-              return(
-                <Grid item xs={12}>
-                  <ListItem key={friend.id} onClick={() => handleClick(friend.id, friend.username)}>{friend.username}</ListItem>
-                </Grid>
-              )
-            })}
+            <List>
+              {friendList.map(friend => {
+                return(
+                  <Grid item xs={12}>
+                  <ListItem key={friend.id}> 
+                  <Grid item xs={12}>
+                    {friend.username}
+                  </Grid>
+                    <Box m={1}/>
+                    <Grid item xs={12}>
+                    <Button
+                      type="submit" 
+                      variant="contained" 
+                      color="primary" 
+                      onClick={() => handleClick(friend.id, friend.username)}
+                    >
+                      Details
+                    </Button>
+                    </Grid>
+                  </ListItem>
+                  </Grid>
+                )
+              })}
+            </List>
           </Grid>
-
+          <Box m={1}/>
           <FormControl component="fieldset">
           <FormLabel component="legend">Search for a friend to add</FormLabel> 
+          <Box m={1}/>
             <TextField
               required 
               variant="outlined"
               placeholder="Search for friend"
               defaultValue={friendSearch}
               onChange={(event) => setFriendSearch(event.target.value)}
-            />  
-            <Grid item xs={12}>
+            /> 
+            <Box m={1}/> 
             <Button 
               type="submit" 
               variant="contained" 
@@ -189,9 +213,9 @@ function FriendsList() {
             >
               Search
             </Button>
-            </Grid>
           </FormControl>
         </Grid>
+      </Grid>
     )
   }
 }
