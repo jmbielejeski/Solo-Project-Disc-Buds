@@ -146,9 +146,10 @@ switch(changeUserNameView) {
         direction="column" 
       >
         <Typography variant="h5">Edit your profile</Typography> 
-          <Grid item xs>
+          {/* <Grid item xs>
             <Typography variant="h6">{newUserName}</Typography>
-          </Grid>
+          </Grid> */}
+          <Box m={1}/>
           <Button 
             type="submit" 
             variant="contained" 

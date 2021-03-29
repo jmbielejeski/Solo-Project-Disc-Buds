@@ -13,6 +13,7 @@ import FormLabel from '@material-ui/core/FormLabel';
 import AddBoxIcon from '@material-ui/icons/AddBox';
 import IndeterminateCheckBoxIcon from '@material-ui/icons/IndeterminateCheckBox';
 import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
 
 function GameProgress() {
 
@@ -26,12 +27,12 @@ const useStyles = makeStyles((theme) => ({
     margin: 'auto',
   },
   textField: {
-    width: '10ch',
+    width: '5ch',
     autoFocus: 'true',
     textAlign: "center"
   },
   icons: {
-    height: '3rem',
+    height: '3.3rem',
   },
 }));
 
@@ -152,10 +153,10 @@ switch(finishGameButton) {
             {friendAndCourse.courseName}
           </Typography>
         </Grid>
-        <Grid item xs={12}>Hole {currentHole}</Grid>
-        
-        <Grid item xs={12}>Your score: {yourTotalScore}</Grid>
-        <Grid item xs={12}>{friendAndCourse.friend}'s score: {friendTotalScore}</Grid>
+        <Typography variant="h6">Your score: {yourTotalScore}</Typography>
+        <Typography variant="h6">{friendAndCourse.friend}'s score: {friendTotalScore}</Typography>
+        <Box m={2}/>
+
         <Button
           type="submit" 
           variant="contained" 
@@ -181,9 +182,22 @@ switch(finishGameButton) {
               {friendAndCourse.courseName}
             </Typography>
           </Grid>
-          <Grid item xs={12}>Hole {currentHole}</Grid>
-          <FormControl component="fieldset">
-              <Grid item xs={12}>Enter Score:</Grid>
+          <Grid item xs={12}>
+            <Typography variant="h6">
+              Hole {currentHole}
+            </Typography>
+          </Grid>
+          <Grid
+            container 
+            className={classes.root} 
+            spacing={2}
+            alignItems="center"
+            justify="center"
+            direction="column"
+          >
+              <Typography variant="body1">
+                Enter Score:
+              </Typography>
               <Grid item xs={12}>
                 <IndeterminateCheckBoxIcon className={classes.icons}  onClick={() => setCurrentScore(Number(currentScore) - 1)}/>
                 <TextField 
@@ -192,6 +206,7 @@ switch(finishGameButton) {
                   value={currentScore}
                   onChange={(event) => setCurrentScore(event.target.value)}
                   type="number"
+                  margin="dense"
                   required
                 />
                 <AddBoxIcon className={classes.icons}  onClick={() => setCurrentScore(Number(currentScore) + 1)}/>
@@ -205,13 +220,11 @@ switch(finishGameButton) {
             >
               Submit Score
             </Button>
-          </FormControl>
-          <Grid item xs={12}>
-            <Typography variant="body1">Your score: {yourTotalScore} </Typography>
+            <Box m={3}/>
           </Grid>
-          <Grid item xs={12}>
-            <Typography variant="body1">{friendAndCourse.friend}'s score: {friendTotalScore} </Typography>
-          </Grid>
+            <Typography variant="h6">Your score: {yourTotalScore} </Typography>
+            <Box m={1}/>
+            <Typography variant="h6">{friendAndCourse.friend}'s score: {friendTotalScore} </Typography>
         </Grid>
       )
   }

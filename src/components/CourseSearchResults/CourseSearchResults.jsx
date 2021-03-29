@@ -22,6 +22,11 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Divider from '@material-ui/core/Divider';
 import course from '../../redux/sagas/course.saga';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import Card from '@material-ui/core/Card';
+import CardHeader from '@material-ui/core/CardHeader';
+import CardMedia from '@material-ui/core/CardMedia';
+import CardContent from '@material-ui/core/CardContent';
+import CardActions from '@material-ui/core/CardActions';
 import Box from '@material-ui/core/Box';
 
 function CourseSearchResults() {
@@ -34,6 +39,9 @@ function CourseSearchResults() {
       padding: theme.spacing(2),
       margin: 'auto',
     },
+    card: {
+      alignItems: "center",
+    }
   }));
 
   const classes = useStyles();
@@ -53,7 +61,7 @@ useEffect(() => {
     setLoading(true);
     timer.current = window.setTimeout(() => {
       setLoading(false);
-    }, 500);
+    }, 750);
   }
 }, [])
 
@@ -108,7 +116,6 @@ useEffect(() => {
       <Grid item xs={12}>
         <Typography variant="h5">No results found</Typography>
       </Grid>
-      <Box m={1}/>
       <Button 
         type="submit" 
         variant="contained" 
@@ -123,72 +130,68 @@ useEffect(() => {
       container 
       className={classes.root} 
       spacing={2}
-      justify="space-between"
       alignItems="center"
       direction="column"     
     >
-      <Grid item xs={12}>
-        <List>
+      <List>
           {courseSearchResults.map(course => {
             return(
-              <Grid 
+              <Grid
                 container 
                 className={classes.root} 
                 spacing={2}
                 alignItems="center"
-                direction="column"
+                direction="column"    
               >
-                <Divider />
-                <ListItem key={course.course_id}>
-                  <Link target="_blank" href={`https://www.pdga.com/node/${course.course_node_nid}`}>
-                    <Grid item xs={6}>{course.course_name}</Grid> 
-                  </Link>
-                  <Grid item xs={6}>
-                    <Button 
-                      type="submit" 
-                      variant="contained" 
-                      color="primary" 
-                      className={classes.button} 
-                      onClick={() => startGame(course.course_name, course.course_id, course.holes)}
-                    >
-                      Play Course
-                    </Button>
-                  </Grid>
-                </ListItem>
-                  <Accordion>
-                    <AccordionSummary
-                      expandIcon={<ExpandMoreIcon />}
-                      aria-controls="panel1a-content"
-                      id="panel1a-header"
-                    >
-                      <Typography className={classes.heading}>Course Details</Typography>
-                    </AccordionSummary>
-                    <AccordionDetails>
-                      <Grid item xs={9}>
-                        {course.holes} hole course
-                      </Grid>
-                    </AccordionDetails>
-                    <AccordionDetails>
-                      <Grid item xs={9}>
-                        <Link target="_blank" href={`https://www.google.com/maps/search/?api=1&query=${course.street}%2C${course.city}%2C${course.state_province}%2C${course.postal_code}`}>
-                          {course.street}, {course.city}, {course.state_province}, {course.postal_code}
-                        </Link>
-                      </Grid>
-                    </AccordionDetails>
-                    <AccordionDetails>
-                    <Grid item xs={9}>
-                        Description: {course.course_description}
+                  <Grid item xs={12}>
+                    <Typography variant="h6">
+                    <Link target="_blank" href={`https://www.pdga.com/node/${course.course_node_nid}`}>
+                      {course.course_name}
+                    </Link>
+                    </Typography>
                     </Grid>
-                  </AccordionDetails>
-                </Accordion>
-                <Box m={1}/>
-
-                <Divider />
-              </Grid>
+                    <Grid item xs={12}>
+                    <Accordion>
+                      <AccordionSummary
+                        expandIcon={<ExpandMoreIcon />}
+                        aria-controls="panel1a-content"
+                        id="panel1a-header"
+                      >
+                        <Typography className={classes.heading}>Course Details</Typography>
+                      </AccordionSummary>
+                      <AccordionDetails>
+                        <Grid item xs={12}>
+                          {course.holes} hole course
+                        </Grid>
+                      </AccordionDetails>
+                      <AccordionDetails>
+                        <Grid item xs={12}>
+                          <Link target="_blank" href={`https://www.google.com/maps/search/?api=1&query=${course.street}%2C${course.city}%2C${course.state_province}%2C${course.postal_code}`}>
+                            Address: {course.street}, {course.city}, {course.state_province}, {course.postal_code}
+                          </Link>
+                        </Grid>
+                      </AccordionDetails>
+                      <AccordionDetails>
+                      <Grid item xs={12}>
+                          Description: {course.course_description}
+                      </Grid>
+                    </AccordionDetails>
+                  </Accordion>
+                  </Grid>
+                  <Box m={1}/>
+                      <Button 
+                        type="submit" 
+                        variant="contained" 
+                        color="primary"  
+                        onClick={() => startGame(course.course_name, course.course_id, course.holes)}
+                      >
+                        Play Course
+                      </Button>
+                      <Box m={3}/>
+                </Grid>
             )
-          })}
-        </List>
-      </Grid>
+          })}     
+      </List>
       <Link 
         component="button"
         variant="body1"

@@ -11,6 +11,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import {Button} from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
 import Link from '@material-ui/core/Link';
+import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
 
 function FriendsSearchResults() {
 
@@ -63,21 +65,28 @@ const classes = useStyles();
       alignItems="center"
       direction="column" 
     >
-      <h3>Friend Search Results</h3>
+      <Grid item xs={12}>
+        <Typography variant="h5">Friend Search Results</Typography>
+      </Grid>
       <List>
         {friendSearch.map(friend => {
           return(
-            <ListItem key={friend.id}>{friend.username} 
-              <Button 
-                type="submit" 
-                variant="contained" 
-                color="primary" 
-                className={classes.button} 
-                onClick={() => addFriend(friend.id)}
+            <ListItem key={friend.id}>
+              <Grid item xs={12}>
+                {friend.username} 
+              </Grid>
+              <Box m={1}/>
+              <Grid item xs={12}>
+                <Button 
+                  type="submit" 
+                  variant="contained" 
+                  color="primary" 
+                  onClick={() => addFriend(friend.id)}
                 >
-                  Add Friend
+                  Add
                 </Button>
-            </ListItem>            
+              </Grid>
+            </ListItem>        
           )
         })}
       </List>
