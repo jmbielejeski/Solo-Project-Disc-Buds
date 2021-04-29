@@ -1,4 +1,4 @@
-# Prime Digital Academy Solo Project: _App of Holding_
+# Prime Digital Academy Solo Project: _Disc Buds_
 
 ## Description
 
